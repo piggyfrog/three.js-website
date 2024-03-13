@@ -11,7 +11,7 @@ const sidewaysDirectionVector = new THREE.Vector3();
 
 const FPScontrols = () => {
   const [subscribeToKeys, getKeys] = useKeyboardControls();
-  const { scene } = useGLTF("girl.glb");
+  // const { scene } = useGLTF("girl.glb");
   const rigidBodyRef = useRef();
   const { camera } = useThree();
   const playerRef = useRef();

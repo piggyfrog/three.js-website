@@ -4,8 +4,8 @@ import { RigidBody } from "@react-three/rapier";
 export default function Wall(props) {
   const { nodes, materials, scene } = useGLTF("/wall.glb");
   const { scene: roofScene } = useGLTF("/roof.glb");
-  const { scene: itemScene1 } = useGLTF("/items1.glb");
-  const { scene: itemScene2 } = useGLTF("/items2.glb");
+  // const { scene: itemScene1 } = useGLTF("/items1.glb");
+  // const { scene: itemScene2 } = useGLTF("/items2.glb");
   return (
     <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
       <primitive object={scene} />
