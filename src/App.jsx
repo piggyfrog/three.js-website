@@ -4,14 +4,20 @@ import { KeyboardControls, PointerLockControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import World from "./World.jsx";
 import FPScontrols from "./FPScontrols.jsx";
+import FPV from "./components/FPV.jsx";
 import { OrbitControls } from "@react-three/drei";
 
 export default function Viewer() {
-  const ref = useRef();
   return (
     <>
-      <Canvas camera={{ position: [0, 2, 5] }} flat shadows dpr={[1, 2]}>
+      <Canvas camera={{ position: [0, 2, 5] }} shadows>
         {/* <OrbitControls /> */}
+        <ambientLight intensity={0.3} />
+
+        <directionalLight intensity={1} position={[2, 7, 7]} />
+        <directionalLight intensity={0.5} position={[-2, -7, -3]} />
+
+        <FPV />
         <Physics>
           <World />
           <KeyboardControls
@@ -25,12 +31,6 @@ export default function Viewer() {
             <FPScontrols />
           </KeyboardControls>
         </Physics>
-        <ambientLight intensity={0.3} />
-
-        <directionalLight intensity={1} position={[2, 7, 7]} />
-        <directionalLight intensity={0.5} position={[-2, -7, -3]} />
-
-        <PointerLockControls />
       </Canvas>
     </>
   );

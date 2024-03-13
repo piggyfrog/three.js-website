@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 export default function Wall(props) {
-  const { nodes, materials, scene } = useGLTF("/wall.glb");
+  const { scene } = useGLTF("/wall.glb");
   const { scene: roofScene } = useGLTF("/roof.glb");
   // const { scene: itemScene1 } = useGLTF("/items1.glb");
   // const { scene: itemScene2 } = useGLTF("/items2.glb");
