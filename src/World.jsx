@@ -3,12 +3,12 @@ import Floor from "./components/Floor";
 import Wall from "./components/Wall";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import Items from "./components/Item";
-const World = () => {
+const World = ({ setShowDialog }) => {
   return (
     <>
       <Wall />
       <Floor />
-      {/* <Items /> */}
+      <Items setShowDialog={setShowDialog} />
     </>
   );
 };

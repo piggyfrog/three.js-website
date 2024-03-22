@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
@@ -8,6 +8,14 @@ import FPV from "./components/FPV.jsx";
 import { OrbitControls } from "@react-three/drei";
 
 export default function Viewer() {
+  const [showDialog, setShowDialog] = useState(false);
+  useEffect(() => {
+    if (showDialog) {
+      setTimeout(() => {
+        setShowDialog(false);
+      }, 3000);
+    }
+  }, [showDialog]);
   return (
     <>
       <Canvas camera={{ position: [0, 2, 5] }} shadows>
@@ -18,8 +26,8 @@ export default function Viewer() {
         <directionalLight intensity={0.5} position={[-2, -7, -3]} />
 
         <FPV />
-        <Physics>
-          <World />
+        <Physics debug>
+          <World setShowDialog={setShowDialog} />
           <KeyboardControls
             map={[
               { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
@@ -32,6 +40,8 @@ export default function Viewer() {
           </KeyboardControls>
         </Physics>
       </Canvas>
+      <div className="cursor">&#x25CB;</div>
+      {showDialog && <div className="dialog">这是一个电视</div>}
     </>
   );
 }

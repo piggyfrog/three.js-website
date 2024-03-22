@@ -8,3 +8,42 @@ body,
   height: 100%;
   background: #201919;
 }
+
+.cursor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2rem;
+}
+
+.dialog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 150px;
+  background: #00000088;
+  color: white;
+  font-size: 1.8rem;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 15px;
+}
+
+.label > div {
+  font-family: Helvetica, Arial;
+  position: absolute;
+  background: #00000088;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 30px;
+  user-select: none;
+  font-size: 1.2rem;
+}
