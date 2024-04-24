@@ -29,7 +29,7 @@ const FPScontrols = () => {
       const pos = rigidBodyRef.current.translation();
 
       //copy rigid body position to camera (on every frame)
-      // camera.position.copy(new THREE.Vector3(pos.x, pos.y + 1.5, pos.z));
+      camera.position.copy(new THREE.Vector3(pos.x, pos.y + 1.55, pos.z));
 
       //'front direction' takes true/false values from keyboard input
       //  and treats them as 1/0. When summed together you get a number
