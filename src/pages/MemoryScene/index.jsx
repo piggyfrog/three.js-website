@@ -18,11 +18,11 @@ export default function MemoryScene() {
   return (
     <>
       <Canvas camera={{ position: [0, 2, 5] }} shadows>
-        {/* <OrbitControls /> */}
         <ambientLight intensity={0.3} />
 
         <directionalLight intensity={1} position={[2, 7, 7]} />
         <directionalLight intensity={0.5} position={[-2, -7, -3]} />
+        {/* 这两个切换第一还是自由视角  */}
         <OrbitControls />
         {/* <FPV /> */}
         <Physics debug>
