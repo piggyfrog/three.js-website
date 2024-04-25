@@ -36,6 +36,7 @@ export default function CheckbleItemWrapper({
       ]}
       onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
+      onClick={() => setShowDialog(true)}
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}

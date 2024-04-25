@@ -157,3 +157,10 @@ body,
   padding-bottom: 8px;
   margin: 0px;
 }
+.time-frame-png {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+}
