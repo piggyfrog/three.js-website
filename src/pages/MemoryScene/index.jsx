@@ -15,7 +15,7 @@ export default function MemoryScene() {
     if (showDialog) {
       setTimeout(() => {
         setShowDialog(false);
-      }, 3000);
+      }, 8000);
     }
   }, [showDialog]);
   return (
@@ -49,7 +49,14 @@ export default function MemoryScene() {
       </Canvas>
       <div className="cursor">&#x25CB;</div>
       <GameUI />
-      <DialogUI />
+      {!showDialog && (
+        <img
+          src="/images/time-frame.png"
+          className="time-frame-png"
+          alt="Time frame"
+        />
+      )}
+      {showDialog && <DialogUI />}
     </KeyboardControls>
   );
 }
