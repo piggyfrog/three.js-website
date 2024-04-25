@@ -42,14 +42,18 @@ body,
   border-radius: 60px;
   user-select: none;
   font-size: 2.4rem;
-  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.5);  /* 添加羽化效果 */
-  width: 80px;  /* 设置宽度 */
-  height: 80px;  /* 设置高度 */
-  padding: 10px;  /* 添加内边距以适应内容 */
+  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.5); /* 添加羽化效果 */
+  width: 80px; /* 设置宽度 */
+  height: 80px; /* 设置高度 */
+  padding: 10px; /* 添加内边距以适应内容 */
 }
 .checkIcon {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .loading {

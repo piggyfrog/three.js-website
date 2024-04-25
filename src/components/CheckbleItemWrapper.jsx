@@ -6,6 +6,9 @@ import * as THREE from "three";
 export default function CheckbleItemWrapper({
   setShowDialog,
   position,
+  offsetX = 0,
+  offsetY = 0,
+  offsetZ = 0,
   scaleX = 1,
   scaleY = 1,
   scaleZ = 1,
@@ -24,22 +27,23 @@ export default function CheckbleItemWrapper({
       setShowLabel(true);
     }
   };
-  useEffect(() => {
-    console.log(camera.position);
-  }, [camera.position]);
   return (
     <mesh
-      position={[position.x * 2+0.7, position.y * 2+0.2, position.z * 2+0.3]}
+      position={[
+        position.x * 2 + offsetX,
+        position.y * 2 + offsetY,
+        position.z * 2 + offsetZ,
+      ]}
       onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
     >
-      <boxGeometry args={[2.5 * scaleX, 0.5 * scaleY, 1.4 * scaleZ]} />
+      <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="#ffffff" opacity={0.1} transparent />
+      <meshBasicMaterial color="red" opacity={0.1} transparent />
 
       {showLabel && (
-        <Html position={[0, 0.8, 0]} wrapperClass="label">
-          <img src="/images/check.png" alt="check item" className="checkIcon" style={{ transform: "scale(1.5)", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%) scale(1.5)" }} />
+        <Html position={[0, 0.2, 0]} wrapperClass="label">
+          <img src="/images/check.png" alt="check item" className="checkIcon" />
         </Html>
       )}
     </mesh>
