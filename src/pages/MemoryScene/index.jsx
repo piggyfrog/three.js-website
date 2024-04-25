@@ -7,6 +7,8 @@ import FPScontrols from "../../components/FPScontrols.jsx";
 import FPV from "../../components/FPV.jsx";
 import { OrbitControls } from "@react-three/drei";
 import Items from "./CheckbleItems.jsx";
+import DialogUI from "../../components/DialogUI.jsx";
+import GameUI from "../../components/GameUI.jsx";
 export default function MemoryScene() {
   const [showDialog, setShowDialog] = useState(false);
   useEffect(() => {
@@ -17,7 +19,16 @@ export default function MemoryScene() {
     }
   }, [showDialog]);
   return (
-    <>
+    <KeyboardControls
+      map={[
+        { name: "forwardKeyPressed", keys: ["KeyW"] },
+        { name: "rightKeyPressed", keys: ["KeyD"] },
+        { name: "backwardKeyPressed", keys: ["KeyS"] },
+        { name: "leftKeyPressed", keys: ["KeyA"] },
+        { name: "selectUp", keys: ["ArrowUp"] },
+        { name: "selectDown", keys: ["ArrowDown"] },
+      ]}
+    >
       <Canvas
         camera={{ position: [0, 2, 5] }}
         shadows
@@ -30,20 +41,15 @@ export default function MemoryScene() {
         <FPV />
         <Physics>
           <World />
-          <KeyboardControls
-            map={[
-              { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
-              { name: "rightKeyPressed", keys: ["ArrowRight", "KeyD"] },
-              { name: "backwardKeyPressed", keys: ["ArrowDown", "KeyS"] },
-              { name: "leftKeyPressed", keys: ["ArrowLeft", "KeyA"] },
-            ]}
-          >
-            <FPScontrols />
-          </KeyboardControls>
+
+          <FPScontrols />
+
           <Items setShowDialog={setShowDialog} />
         </Physics>
       </Canvas>
       <div className="cursor">&#x25CB;</div>
-    </>
+      <GameUI />
+      <DialogUI />
+    </KeyboardControls>
   );
 }

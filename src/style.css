@@ -9,6 +9,11 @@ body,
   background: #201919;
 }
 
+@font-face {
+  font-family: "Normal-CH"; /*Can be any text*/
+  src: local("FZYIXTJW-M"), url("./font/FZYIXTJW-M.ttf") format("truetype");
+}
+
 .cursor {
   position: absolute;
   top: 50%;
@@ -59,4 +64,96 @@ body,
 .loading {
   color: #fff;
   font-size: 2rem;
+}
+
+.dialogBackground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 350px;
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 0) 8.9%,
+    rgba(0, 0, 0, 0.4) 46.4%
+  );
+}
+
+.person-back {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  left: 10%;
+  bottom: -30px;
+}
+
+.person {
+  width: 350px;
+  height: 400px;
+  position: absolute;
+  left: 15%;
+  bottom: 0;
+}
+
+.dialog {
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  position: relative;
+  left: 35%;
+  bottom: -30px;
+  background: none;
+  font-family: "Normal-CH";
+}
+
+.options {
+  max-width: 400px;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  margin-top: -50px;
+  margin-left: 50%;
+  background: none;
+  font-family: "Normal-CH";
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  min-width: 400px;
+}
+
+.select-png {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.title-png {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 280px;
+}
+
+.about-png {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  width: 70px;
+}
+
+.option-text {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0px;
 }
