@@ -27,6 +27,14 @@ export default function CheckbleItemWrapper({
       setShowLabel(true);
     }
   };
+
+  const showDialogFunc = () => {
+    const distance = camera.position.distanceTo(itemPosition);
+    if (showLabelDistance > distance) {
+      setShowDialog(true);
+    }
+  };
+
   return (
     <mesh
       position={[
@@ -36,7 +44,7 @@ export default function CheckbleItemWrapper({
       ]}
       onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
-      onClick={() => setShowDialog(true)}
+      onClick={showDialogFunc}
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
