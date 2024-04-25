@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-
+import { useThree } from "@react-three/fiber";
+import * as THREE from "three";
 export default function CheckbleItemWrapper({
   setShowDialog,
   position,
@@ -10,10 +11,26 @@ export default function CheckbleItemWrapper({
   scaleZ = 1,
 }) {
   const [showLabel, setShowLabel] = useState(false);
+  const { camera } = useThree();
+  const itemPosition = new THREE.Vector3(
+    position.x * 2,
+    position.y * 2,
+    position.z * 2
+  );
+  const showLabelDistance = 3;
+  const showLabelFunc = () => {
+    const distance = camera.position.distanceTo(itemPosition);
+    if (showLabelDistance > distance) {
+      setShowLabel(true);
+    }
+  };
+  useEffect(() => {
+    console.log(camera.position);
+  }, [camera.position]);
   return (
     <mesh
       position={[position.x * 2+0.7, position.y * 2+0.2, position.z * 2+0.3]}
-      onPointerOver={() => setShowLabel(true)}
+      onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
     >
       <boxGeometry args={[2.5 * scaleX, 0.5 * scaleY, 1.4 * scaleZ]} />
