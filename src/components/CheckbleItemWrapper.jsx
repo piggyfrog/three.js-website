@@ -20,6 +20,7 @@ export default function CheckbleItemWrapper({
     position.y * 2,
     position.z * 2
   );
+  // 距离小于3的时候显示label
   const showLabelDistance = 3;
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
