@@ -21,7 +21,7 @@ export default function Items({ setShowDialog }) {
       />
       {showLabel && (
         <Html position={[0, 1, 0]} wrapperClass="label">
-          👀
+          <img src="/images/check.png" alt="check item" className="checkIcon" />
         </Html>
       )}
     </RigidBody>

@@ -37,15 +37,15 @@ body,
   position: absolute;
   background: #00000088;
   color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 30px;
   user-select: none;
   font-size: 1.2rem;
+}
+.checkIcon {
+  width: 60px;
+  height: 60px;
 }
 
 .loading {

@@ -6,6 +6,7 @@ import World from "./World.jsx";
 import FPScontrols from "../../components/FPScontrols.jsx";
 import FPV from "../../components/FPV.jsx";
 import { OrbitControls } from "@react-three/drei";
+import Items from "./CheckbleItems.jsx";
 export default function MemoryScene() {
   const [showDialog, setShowDialog] = useState(false);
   useEffect(() => {
@@ -17,11 +18,16 @@ export default function MemoryScene() {
   }, [showDialog]);
   return (
     <>
-      <Canvas camera={{ position: [0, 2, 5] }} shadows background="lightblue">
+      <Canvas
+        camera={{ position: [0, 2, 5] }}
+        shadows
+        background="lightblue"
+        frameloop="demand"
+      >
         <ambientLight intensity={1.5} />
         {/* 这两个切换第一还是自由视角  */}
         {/* <OrbitControls />*/}
-        <FPV /> 
+        <FPV />
         <Physics>
           <World />
           <KeyboardControls
@@ -34,6 +40,7 @@ export default function MemoryScene() {
           >
             <FPScontrols />
           </KeyboardControls>
+          <Items setShowDialog={setShowDialog} />
         </Physics>
       </Canvas>
       <div className="cursor">&#x25CB;</div>

@@ -7,7 +7,7 @@ import { useAnimations } from "@react-three/drei";
 import { useTexture } from "@react-three/drei";
 import { Fog } from "three";
 import { useThree } from "@react-three/fiber";
-import * as THREE from 'three';
+import * as THREE from "three";
 const World = ({ setShowDialog }) => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
   const { nodes, materials } = useGLTF("/secondScene/with-collider/floor.glb");
@@ -27,11 +27,11 @@ const World = ({ setShowDialog }) => {
   const spotLightRef = useRef(); // 创建一个引用以访问spotLight
   const { scene } = useThree();
   //@@@@lights@@@@
-  
+
   useEffect(() => {
     const spotLight = new THREE.SpotLight("#FFF8DC", 200);
     spotLight.position.set(4.5, 10, -8);
-    spotLight.angle = Math.PI/8;
+    spotLight.angle = Math.PI / 8;
     spotLight.penumbra = 0.3;
     spotLight.castShadow = true;
     spotLightRef.current = spotLight;
@@ -57,17 +57,14 @@ const World = ({ setShowDialog }) => {
   //
 
   //import other glb
-  const { scene: Album } = useGLTF("secondScene/no-collider/album..glb");
-  const { scene: Camera } = useGLTF("secondScene/no-collider/camera.glb");
-  const { scene: Diary } = useGLTF("secondScene/no-collider/diary.glb");
-  const { scene: Fruit } = useGLTF("secondScene/no-collider/fruit.glb");
-  const { scene: RoomItems } = useGLTF("secondScene/no-collider/room-items.glb");
-  const { scene: Transparent } = useGLTF("secondScene/no-collider/transparent..glb");
 
-  //
+  const { scene: RoomItems } = useGLTF(
+    "secondScene/no-collider/room-items.glb"
+  );
+  const { scene: Transparent } = useGLTF(
+    "secondScene/no-collider/transparent.glb"
+  );
 
-  console.log(mAnimated);
-  console.log(gAnimated);
   useEffect(() => {
     const gAction = gAnimated.actions.standstill;
     const mAction = mAnimated.actions.sit;
@@ -85,7 +82,12 @@ const World = ({ setShowDialog }) => {
           scale={15}
         >
           <planeGeometry />
-          <meshStandardMaterial attach={"material"} map={floorMeterial} map-repeat={[1, -1]} map-offset={[0, 1]} />
+          <meshStandardMaterial
+            attach={"material"}
+            map={floorMeterial}
+            map-repeat={[1, -1]}
+            map-offset={[0, 1]}
+          />
         </mesh>
       </RigidBody>
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
@@ -100,10 +102,6 @@ const World = ({ setShowDialog }) => {
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <primitive object={grandpa} />
       </RigidBody>
-      <primitive object={Album} scale={[2, 2, 2]} />
-      <primitive object={Diary} scale={[2, 2, 2]} />
-      <primitive object={Camera} scale={[2, 2, 2]} />
-      <primitive object={Fruit} scale={[2, 2, 2]} />
       <primitive object={RoomItems} scale={[2, 2, 2]} />
       <primitive object={Transparent} scale={[2, 2, 2]} />
     </Suspense>
