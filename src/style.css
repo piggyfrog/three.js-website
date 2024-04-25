@@ -35,13 +35,17 @@ body,
 .label > div {
   font-family: Helvetica, Arial;
   position: absolute;
-  background: #00000088;
+  background: #00000070;
   color: white;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 60px;
   user-select: none;
-  font-size: 1.2rem;
+  font-size: 2.4rem;
+  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.5);  /* 添加羽化效果 */
+  width: 80px;  /* 设置宽度 */
+  height: 80px;  /* 设置高度 */
+  padding: 10px;  /* 添加内边距以适应内容 */
 }
 .checkIcon {
   width: 60px;
