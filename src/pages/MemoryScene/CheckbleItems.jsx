@@ -1,8 +1,5 @@
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
 import { useGLTF } from "@react-three/drei";
-import { useState } from "react";
-import { RigidBody } from "@react-three/rapier";
-import { Html } from "@react-three/drei";
 import * as THREE from "three";
 const Items = ({ setShowDialog }) => {
   const { scene: Album } = useGLTF("secondScene/no-collider/album.glb");
