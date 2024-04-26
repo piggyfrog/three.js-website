@@ -8,7 +8,9 @@ import { useTexture } from "@react-three/drei";
 import { Fog } from "three";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
+import { useMemo } from 'react';
+import { useFrame } from '@react-three/fiber';
+
 const World = ({ setShowDialog }) => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
   const { nodes, materials } = useGLTF("/secondScene/with-collider/floor.glb");
@@ -39,7 +41,16 @@ const World = ({ setShowDialog }) => {
     spotLight.target.position.set(4.5, 0, -8);
     scene.add(spotLight);
 
-    const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+    const spotLight2 = new THREE.SpotLight("#FFDEAD", 70);
+    spotLight2.position.set(-8, 10, -6.5);
+    spotLight2.angle = Math.PI / 14;
+    spotLight2.penumbra = 0.3;
+    spotLight2.castShadow = true;
+    spotLightRef.current = spotLight;
+    spotLight2.target.position.set(-8, 0, -6.5);
+    scene.add(spotLight2);
+
+    const spotLightHelper = new THREE.SpotLightHelper(spotLight2);
     //scene.add(spotLightHelper);
 
     const ambientLight = new THREE.AmbientLight(2);
@@ -47,6 +58,7 @@ const World = ({ setShowDialog }) => {
     // 清理函数
     return () => {
       scene.remove(spotLight);
+      scene.remove(spotLight2);
       scene.remove(spotLightHelper);
     };
   }, [scene]);
@@ -54,7 +66,7 @@ const World = ({ setShowDialog }) => {
 
   //@@@@fog@@@@
   useEffect(() => {
-    scene.fog = new Fog("#161513", 3, 20);
+    scene.fog = new Fog("#161513", 2, 20);
     scene.background = new THREE.Color("#161513");
   }, [scene]);
   //
@@ -68,6 +80,44 @@ const World = ({ setShowDialog }) => {
     "secondScene/no-collider/transparent.glb"
   );
 
+   //@@@@dust@@@@
+   function DustParticles() {
+    const count = 2000; // 粒子数量
+    const particleGeometry = useMemo(() => {
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3); // 每个粒子有 x, y, z 三个坐标
+  
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 20; // 随机分布在一个范围内
+      }
+  
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      return geometry;
+    }, [count]);
+  
+    const particleMaterial = useMemo(() => {
+      return new THREE.PointsMaterial({
+        color: 'gray',
+        size: 0.015,
+        sizeAttenuation: true
+      });
+    }, []);
+  
+    // 让粒子缓慢下落
+    useFrame(() => {
+      const positions = particleGeometry.attributes.position.array;
+      for (let i = 1; i < count * 3; i += 3) {
+        positions[i] -= 0.0004; // y 轴下降
+        if (positions[i] < -10) {
+          positions[i] = 10; // 当粒子落到一定位置时重新出现在顶部
+        }
+      }
+      particleGeometry.attributes.position.needsUpdate = true; // 更新粒子位置
+    });
+  
+    return <points geometry={particleGeometry} material={particleMaterial} />;
+  }
+   //
   useEffect(() => {
     const gAction = gAnimated.actions.standstill;
     const mAction = mAnimated.actions.sit;
@@ -77,6 +127,7 @@ const World = ({ setShowDialog }) => {
 
   return (
     <Suspense fallback={<Loader />}>
+        <DustParticles /> {/* 添加粒子系统组件 */}
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <mesh
           position-y={-0.02}
