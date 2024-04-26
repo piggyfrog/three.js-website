@@ -21,7 +21,7 @@ export default function CheckbleItemWrapper({
     position.z * 2
   );
   // 距离小于3的时候显示label
-  const showLabelDistance = 3;
+  const showLabelDistance = 4;
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
@@ -49,10 +49,10 @@ export default function CheckbleItemWrapper({
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="red" opacity={0.1} transparent />
+      <meshBasicMaterial color="red" opacity={0.001} transparent />
 
       {showLabel && (
-        <Html position={[0, 0.2, 0]} wrapperClass="label">
+        <Html position={[0, 0.5, 0]} wrapperClass="label">
           <img src="/images/check.png" alt="check item" className="checkIcon" />
         </Html>
       )}

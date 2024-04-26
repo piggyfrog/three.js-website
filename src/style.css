@@ -99,27 +99,29 @@ body,
   max-width: 800px;
   text-align: center;
   padding: 20px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
-  color: #fff;
+  color: #CDCDCD;
   position: relative;
   left: 35%;
   bottom: -30px;
   background: none;
   font-family: "Normal-CH";
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
 }
 
 .options {
   max-width: 400px;
   text-align: center;
   padding: 20px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   color: #fff;
   margin-top: -50px;
   margin-left: 50%;
   background: none;
   font-family: "Normal-CH";
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
 }
 
 .option-item {
@@ -155,12 +157,17 @@ body,
 .option-text {
   padding-top: 8px;
   padding-bottom: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Normal-CH";
   margin: 0px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
 }
 .time-frame-png {
   position: absolute;
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
+  width: 400px;
+  
 }

@@ -28,13 +28,13 @@ const Items = ({ setShowDialog }) => {
         // 需要给一个child的位置
         position={Camera.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
-        offsetX={0.7}
-        offsetY={0.2}
-        offsetZ={0.3}
+        offsetX={-0.2}
+        offsetY={-0.2}
+        offsetZ={0}
         // 调整透明盒子大小
-        scaleX={0.1}
-        scaleY={0.1}
-        scaleZ={0.1}
+        scaleX={0.5}
+        scaleY={0.3}
+        scaleZ={0.4}
       />
       <primitive object={Album} scale={2} />
       <CheckbleItemWrapper
@@ -42,13 +42,13 @@ const Items = ({ setShowDialog }) => {
         // 需要给一个child的位置
         position={Album.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
-        offsetX={0.7}
-        offsetY={0.2}
-        offsetZ={0.3}
+        offsetX={0}
+        offsetY={0}
+        offsetZ={0}
         // 调整透明盒子大小
-        scaleX={0.1}
-        scaleY={0.1}
-        scaleZ={0.1}
+        scaleX={0.4}
+        scaleY={0.2}
+        scaleZ={0.7}
       />
       <primitive object={Diary} scale={2} />
       <CheckbleItemWrapper
@@ -56,13 +56,13 @@ const Items = ({ setShowDialog }) => {
         // 需要给一个child的位置
         position={Diary.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
-        offsetX={0.7}
-        offsetY={0.2}
-        offsetZ={0.3}
+        offsetX={-0.1}
+        offsetY={0}
+        offsetZ={0}
         // 调整透明盒子大小
-        scaleX={0.1}
-        scaleY={0.1}
-        scaleZ={0.1}
+        scaleX={0.4}
+        scaleY={0.2}
+        scaleZ={0.6}
       />
     </>
   );
