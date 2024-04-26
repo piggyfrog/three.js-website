@@ -10,6 +10,7 @@ import Items from "./CheckbleItems.jsx";
 import DialogUI from "../../components/DialogUI.jsx";
 import GameUI from "../../components/GameUI.jsx";
 import { EffectComposer, DepthOfField,N8AO, Bloom } from '@react-three/postprocessing';
+
 export default function MemoryScene() {
   const [showDialog, setShowDialog] = useState(false);
   useEffect(() => {
@@ -19,6 +20,8 @@ export default function MemoryScene() {
       }, 8000);
     }
   }, [showDialog]);
+
+
   return (
     <KeyboardControls
       map={[
