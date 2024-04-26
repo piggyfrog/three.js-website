@@ -172,16 +172,16 @@ body,
   
 }
 .mask-jpg {
-  position: fixed;  /* 让蒙版固定在页面上，覆盖全屏 */
+  position: fixed;  
   top: 0;
   left: 0;
-  width: 100vw;     /* 宽度等于视窗宽度 */
-  height: 100vh;    /* 高度等于视窗高度 */
-  background-image: url('/images/mask.jpg'); /* 设置你的纹理图片 */
-  background-size: cover;  /* 背景图片覆盖整个 div */
-  pointer-events: none;  /* 禁止鼠标事件，使其不可点击 */
-  user-select: none;  /* 禁止内容被选中 */
-  mix-blend-mode: screen;  /* 使用屏幕混合模式去除黑色部分 */
-  opacity: 0.2; /* Set transparency to 20% */
+  width: 100vw;     
+  height: 100vh;    
+  background-image: url('/images/mask.jpg'); 
+  background-size: cover;  
+  pointer-events: none;  
+  user-select: none;  
+  mix-blend-mode: screen; 
+  opacity: 0.2; 
   
 }
