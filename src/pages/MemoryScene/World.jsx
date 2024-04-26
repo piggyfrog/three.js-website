@@ -82,7 +82,7 @@ const World = ({ setShowDialog }) => {
 
    //@@@@dust@@@@
    function DustParticles() {
-    const count = 2000; // 粒子数量
+    const count = 1000; // 粒子数量
     const particleGeometry = useMemo(() => {
       const geometry = new THREE.BufferGeometry();
       const positions = new Float32Array(count * 3); // 每个粒子有 x, y, z 三个坐标
