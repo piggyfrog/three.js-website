@@ -8,6 +8,7 @@ import { useTexture } from "@react-three/drei";
 import { Fog } from "three";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
 const World = ({ setShowDialog }) => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
   const { nodes, materials } = useGLTF("/secondScene/with-collider/floor.glb");
@@ -41,6 +42,8 @@ const World = ({ setShowDialog }) => {
     const spotLightHelper = new THREE.SpotLightHelper(spotLight);
     //scene.add(spotLightHelper);
 
+    const ambientLight = new THREE.AmbientLight(2);
+    scene.add(ambientLight);
     // 清理函数
     return () => {
       scene.remove(spotLight);
@@ -76,7 +79,7 @@ const World = ({ setShowDialog }) => {
     <Suspense fallback={<Loader />}>
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <mesh
-          position-y={0}
+          position-y={-0.02}
           rotation-x={-Math.PI * 0.5}
           rotateZ={Math.PI}
           scale={15}
