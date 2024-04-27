@@ -8,12 +8,11 @@ import { useTexture } from "@react-three/drei";
 import { Fog } from "three";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
 
 const World = ({ setShowDialog }) => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
-  const { nodes, materials } = useGLTF("/secondScene/with-collider/floor.glb");
   const { scene: WallScene } = useGLTF("secondScene/with-collider/wall.glb");
   const { scene: FixedItemsScene } = useGLTF(
     "secondScene/with-collider/room.glb"
@@ -80,29 +79,32 @@ const World = ({ setShowDialog }) => {
     "secondScene/no-collider/transparent.glb"
   );
 
-   //@@@@dust@@@@
-   function DustParticles() {
+  //@@@@dust@@@@
+  function DustParticles() {
     const count = 1000; // 粒子数量
     const particleGeometry = useMemo(() => {
       const geometry = new THREE.BufferGeometry();
       const positions = new Float32Array(count * 3); // 每个粒子有 x, y, z 三个坐标
-  
+
       for (let i = 0; i < count * 3; i++) {
         positions[i] = (Math.random() - 0.5) * 20; // 随机分布在一个范围内
       }
-  
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
       return geometry;
     }, [count]);
-  
+
     const particleMaterial = useMemo(() => {
       return new THREE.PointsMaterial({
-        color: 'gray',
+        color: "gray",
         size: 0.015,
-        sizeAttenuation: true
+        sizeAttenuation: true,
       });
     }, []);
-  
+
     // 让粒子缓慢下落
     useFrame(() => {
       const positions = particleGeometry.attributes.position.array;
@@ -114,10 +116,10 @@ const World = ({ setShowDialog }) => {
       }
       particleGeometry.attributes.position.needsUpdate = true; // 更新粒子位置
     });
-  
+
     return <points geometry={particleGeometry} material={particleMaterial} />;
   }
-   //
+  //
   useEffect(() => {
     const gAction = gAnimated.actions.standstill;
     const mAction = mAnimated.actions.sit;
@@ -126,8 +128,8 @@ const World = ({ setShowDialog }) => {
   }, []);
 
   return (
-    <Suspense fallback={<Loader />}>
-        <DustParticles /> {/* 添加粒子系统组件 */}
+    <>
+      <DustParticles /> {/* 添加粒子系统组件 */}
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <mesh
           position-y={-0.02}
@@ -158,11 +160,15 @@ const World = ({ setShowDialog }) => {
       </RigidBody>
       <primitive object={RoomItems} scale={[2, 2, 2]} />
       <primitive object={Transparent} scale={[2, 2, 2]} />
-    </Suspense>
+    </>
   );
 };
-// useGLTF.preload("/secondScene/floor.glb");
-// useGLTF.preload("/secondScene/wall.glb");
-// useGLTF.preload("/secondScene/items.glb");
+
+useGLTF.preload("/secondScene/with-collider/wall.glb");
+useGLTF.preload("/secondScene/with-collider/room.glb");
+useGLTF.preload("/secondScene/with-collider/mom.glb");
+useGLTF.preload("/secondScene/with-collider/grandpa.glb");
+useGLTF.preload("secondScene/no-collider/room-items.glb");
+useGLTF.preload("secondScene/no-collider/transparent.glb");
 
 export default World;

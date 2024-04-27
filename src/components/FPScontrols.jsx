@@ -1,4 +1,4 @@
-import { BallCollider, RigidBody } from "@react-three/rapier";
+import { BallCollider, RigidBody, CapsuleCollider } from "@react-three/rapier";
 import { useRef } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -29,7 +29,7 @@ const FPScontrols = () => {
       const pos = rigidBodyRef.current.translation();
 
       //copy rigid body position to camera (on every frame)
-      camera.position.copy(new THREE.Vector3(pos.x, pos.y + 1.58, pos.z));
+      camera.position.copy(new THREE.Vector3(pos.x, pos.y + 1.5, pos.z));
 
       //'front direction' takes true/false values from keyboard input
       //  and treats them as 1/0. When summed together you get a number
@@ -82,7 +82,7 @@ const FPScontrols = () => {
       mass={5}
       friction={0}
       restitution={0}
-      position={[0.3, 2, 0.3]}
+      position={[0.3, 0.2, 0.3]}
       enabledRotations={[false, false, false]} //prevent from falling sideways
     >
       {/**for the capsule, args={[halfCapsuleHeight-radius, radius]} 
