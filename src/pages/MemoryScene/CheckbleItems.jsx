@@ -1,16 +1,20 @@
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-const Items = ({ setShowDialog }) => {
+import { useDialogStore } from "../../hooks/store";
+const Items = () => {
   const { scene: Album } = useGLTF("secondScene/no-collider/album.glb");
   const { scene: Camera } = useGLTF("secondScene/no-collider/camera.glb");
   const { scene: Diary } = useGLTF("secondScene/no-collider/diary.glb");
   const { scene: Fruit } = useGLTF("secondScene/no-collider/fruit.glb");
+
+  const setShowDialog = useDialogStore((state) => state.setOpen);
   return (
     <>
       <primitive object={Fruit} scale={2} />
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
+        dialogID={"fruit"}
         // 需要给一个child的位置
         position={Fruit.children[6].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
@@ -25,6 +29,7 @@ const Items = ({ setShowDialog }) => {
       <primitive object={Camera} scale={2} />
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
+        dialogID={"radio"}
         // 需要给一个child的位置
         position={Camera.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
@@ -40,6 +45,7 @@ const Items = ({ setShowDialog }) => {
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
         // 需要给一个child的位置
+        dialogID={"album"}
         position={Album.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
         offsetX={0}
@@ -54,6 +60,7 @@ const Items = ({ setShowDialog }) => {
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
         // 需要给一个child的位置
+        dialogID={"diary"}
         position={Diary.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
         offsetX={-0.1}

@@ -17,33 +17,33 @@ import {
 } from "@react-three/postprocessing";
 import { Suspense } from "react";
 import Loader from "../../components/Loader.jsx";
-
+import { useDialogStore, useGameStateStore } from "../../hooks/store.js";
 export default function MemoryScene() {
-  const [showDialog, setShowDialog] = useState(false);
+  const showDialogStore = useDialogStore((state) => state.isOpen);
+  const useGameState = useGameStateStore((state) => state.gameState);
+
   useEffect(() => {
-    if (showDialog) {
-      setTimeout(() => {
-        setShowDialog(false);
-      }, 8000);
-    }
-  }, [showDialog]);
+    console.log("gameState", useGameState);
+  }, [useGameState]);
 
   return (
-    <KeyboardControls
-      map={[
-        { name: "forwardKeyPressed", keys: ["KeyW"] },
-        { name: "rightKeyPressed", keys: ["KeyD"] },
-        { name: "backwardKeyPressed", keys: ["KeyS"] },
-        { name: "leftKeyPressed", keys: ["KeyA"] },
-        { name: "selectUp", keys: ["ArrowUp"] },
-        { name: "selectDown", keys: ["ArrowDown"] },
-      ]}
-    >
-      <Canvas camera={{ position: [0, 2, 5] }} shadows frameloop="demand">
-        <ambientLight intensity={1.5} />
-        {/* 这两个切换第一还是自由视角  */}
-        {/* <OrbitControls />*/}
-        <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <KeyboardControls
+        map={[
+          { name: "forwardKeyPressed", keys: ["KeyW"] },
+          { name: "rightKeyPressed", keys: ["KeyD"] },
+          { name: "backwardKeyPressed", keys: ["KeyS"] },
+          { name: "leftKeyPressed", keys: ["KeyA"] },
+          { name: "selectUp", keys: ["ArrowUp"] },
+          { name: "selectDown", keys: ["ArrowDown"] },
+          { name: "nextPage", keys: ["ArrowRight"] },
+        ]}
+      >
+        <Canvas camera={{ position: [0, 2, 5] }} shadows frameloop="demand">
+          <ambientLight intensity={1.5} />
+          {/* 这两个切换第一还是自由视角  */}
+          {/* <OrbitControls />*/}
+
           <FPV />
 
           <Physics gravity={[0, 0, 0]}>
@@ -51,7 +51,7 @@ export default function MemoryScene() {
 
             <FPScontrols />
 
-            <Items setShowDialog={setShowDialog} />
+            <Items />
           </Physics>
           <EffectComposer>
             <Bloom
@@ -68,18 +68,18 @@ export default function MemoryScene() {
 
             <N8AO color="#696969" aoRadius={1} intensity={1} />
           </EffectComposer>
-        </Suspense>
-      </Canvas>
-      <div className="cursor">&#x25CB;</div>
-      <GameUI />
-      {!showDialog && (
-        <img
-          src="/images/time-frame.png"
-          className="time-frame-png"
-          alt="Time frame"
-        />
-      )}
-      {showDialog && <DialogUI />}
-    </KeyboardControls>
+        </Canvas>
+        <div className="cursor">&#x25CB;</div>
+        <GameUI />
+        {!showDialogStore && (
+          <img
+            src="/images/time-frame.png"
+            className="time-frame-png"
+            alt="Time frame"
+          />
+        )}
+        {showDialogStore && <DialogUI />}
+      </KeyboardControls>
+    </Suspense>
   );
 }

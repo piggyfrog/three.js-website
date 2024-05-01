@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useThree } from "@react-three/fiber";
+import { useTranslation } from "react-i18next";
 import * as THREE from "three";
+import { useGameStateStore } from "../hooks/store";
 export default function CheckbleItemWrapper({
   setShowDialog,
   position,
+  dialogID,
   offsetX = 0,
   offsetY = 0,
   offsetZ = 0,
@@ -22,6 +25,7 @@ export default function CheckbleItemWrapper({
   );
   // 距离小于3的时候显示label
   const showLabelDistance = 4;
+  const updateGameState = useGameStateStore((state) => state.setGameState);
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
@@ -32,7 +36,8 @@ export default function CheckbleItemWrapper({
   const showDialogFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
-      setShowDialog(true);
+      setShowDialog(dialogID);
+      updateGameState(dialogID);
     }
   };
 
