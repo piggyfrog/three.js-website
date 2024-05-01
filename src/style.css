@@ -101,7 +101,7 @@ body,
   padding: 20px;
   font-size: 20px;
   font-weight: 500;
-  color: #CDCDCD;
+  color: #cdcdcd;
   position: relative;
   left: 35%;
   bottom: -30px;
@@ -169,19 +169,69 @@ body,
   left: 50%;
   transform: translateX(-50%);
   width: 400px;
-  
 }
 .mask-jpg {
-  position: fixed;  
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;     
-  height: 100vh;    
-  background-image: url('/images/mask.jpg'); 
-  background-size: cover;  
-  pointer-events: none;  
-  user-select: none;  
-  mix-blend-mode: screen; 
-  opacity: 0.2; 
-  
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/mask.jpg");
+  background-size: cover;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  opacity: 0.2;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: blink 2.5s linear infinite;
+}
+
+.loading h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.loading .img-title {
+  width: 280px;
+  height: 75px;
+}
+
+.loading .img-text {
+  margin-top: 10px;
+  width: 104px;
+  height: 17px;
+}
+
+.loading-text {
+  font-size: 24px;
+  text-align: center;
+  color: #7a7a7a;
+  font-family: "Normal-CH";
+  margin-top: 25px;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
