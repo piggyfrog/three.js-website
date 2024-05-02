@@ -15,55 +15,64 @@ const DialogSelectDict = {
     pageAmount: 2,
     withSelect: true,
     selectAmount: 2,
-    selectMultiPageAmount: 2,
     selectFunctions: {
-      0: "text",
+      0: "radio2",
       1: () => console.log("hello"),
     },
+  },
+  radio2: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    selectFunctions: {
+      0: "radio3",
+      1: () => console.log("hello"),
+    },
+  },
+  radio3: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: false,
+    selectAmount: 0,
   },
 };
 
 const DialogUI = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isSelected, setIsSelected] = useState(false);
   const [sub, get] = useKeyboardControls();
   const dialogID = useDialogStore((state) => state.dialogID);
+  const setDialogID = useDialogStore((state) => state.setDialogID);
   const setDialogClose = useDialogStore((state) => state.setClose);
   const { t } = useTranslation();
 
   // determinate if the dialog has select options
-  const { withSelect, selectAmount } = DialogSelectDict[dialogID] || {
+  const { withSelect, selectAmount, selectFunctions } = DialogSelectDict[
+    dialogID
+  ] || {
     withSelect: false,
     selectAmount: 0,
   };
 
   // determinate if the dialog has multiple pages
-  const { withMultiPage, pageAmount, selectMultiPageAmount, selectFunctions } =
-    DialogSelectDict[dialogID] || {
-      withMultiPage: false,
-      pageAmount: 1,
-      selectMultiPageAmount: 1,
-    };
+  const { withMultiPage, pageAmount } = DialogSelectDict[dialogID] || {
+    withMultiPage: false,
+    pageAmount: 1,
+  };
 
   const [dialogKey, setDialogKey] = useState(0);
 
-  const mainTextID = !isSelected
-    ? `${dialogID}-${dialogKey}`
-    : `${dialogID}-select-${activeIndex}-text-${dialogKey}`;
+  const mainTextID = `${dialogID}-${dialogKey}`;
 
   // reset when dialog is cloesd or dialogID changes
 
   useEffect(() => {
     setDialogKey(0);
-    setIsSelected(false);
     setActiveIndex(0);
   }, [dialogID]);
 
   useEffect(() => {
-    if (
-      (!withSelect && dialogKey === pageAmount - 1) ||
-      (dialogKey === selectMultiPageAmount - 1 && isSelected)
-    ) {
+    if (!withSelect && dialogKey === pageAmount - 1) {
       const id = setTimeout(() => {
         setDialogClose();
       }, 10000);
@@ -72,7 +81,7 @@ const DialogUI = () => {
       };
     }
     return;
-  }, [dialogID, dialogKey, isSelected]);
+  }, [dialogID, dialogKey]);
 
   useEffect(() => {
     if (!withMultiPage) return;
@@ -80,10 +89,7 @@ const DialogUI = () => {
       (state) => state.nextPage,
       (pressed) => {
         if (pressed) {
-          if (!isSelected && dialogKey < pageAmount - 1) {
-            setDialogKey((prev) => prev + 1);
-          }
-          if (isSelected && dialogKey < selectMultiPageAmount - 1) {
+          if (dialogKey < pageAmount - 1) {
             setDialogKey((prev) => prev + 1);
           }
         }
@@ -96,49 +102,46 @@ const DialogUI = () => {
     return sub(
       (state) => state.selectUp,
       (pressed) => {
-        if (pressed && !isSelected) {
+        if (pressed && withSelect) {
           setActiveIndex((prev) => (prev === 0 ? 1 : prev - 1));
         }
       }
     );
-  }, [isSelected]);
+  }, [withSelect]);
 
   useEffect(() => {
     if (!withSelect) return;
     return sub(
       (state) => state.selectDown,
       (pressed) => {
-        if (pressed && !isSelected) {
+        if (pressed && withSelect) {
           setActiveIndex((prev) => (prev === 1 ? 0 : prev + 1));
         }
       }
     );
-  }, [isSelected]);
+  }, [withSelect]);
 
   useEffect(() => {
     if (!withSelect) return;
     return sub(
       (state) => state.select,
       (pressed) => {
-        if (dialogKey === pageAmount - 1 && !isSelected) {
-          if (pressed && selectFunctions[activeIndex] === "text") {
-            setIsSelected(true);
-            setDialogKey(0);
-          } else if (pressed && selectFunctions[activeIndex] !== "text") {
+        if (dialogKey === pageAmount - 1) {
+          if (pressed && typeof selectFunctions[activeIndex] === "string") {
+            setDialogID(selectFunctions[activeIndex]);
+          } else if (
+            pressed &&
+            typeof selectFunctions[activeIndex] !== "string"
+          ) {
             selectFunctions[activeIndex]();
             setDialogClose();
           }
         }
       }
     );
-  }, [activeIndex, dialogKey]);
+  }, [activeIndex, dialogKey, withSelect]);
 
-  if (
-    withSelect &&
-    selectAmount > 0 &&
-    dialogKey === pageAmount - 1 &&
-    !isSelected
-  ) {
+  if (withSelect && selectAmount > 0 && dialogKey === pageAmount - 1) {
     return (
       <div className="dialogBackground">
         <img className="person-back" src="/images/person-back.png" />
