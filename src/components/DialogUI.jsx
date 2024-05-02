@@ -96,7 +96,7 @@ const DialogUI = () => {
     return sub(
       (state) => state.selectUp,
       (pressed) => {
-        if (pressed) {
+        if (pressed && !isSelected) {
           setActiveIndex((prev) => (prev === 0 ? 1 : prev - 1));
         }
       }
@@ -108,7 +108,7 @@ const DialogUI = () => {
     return sub(
       (state) => state.selectDown,
       (pressed) => {
-        if (pressed) {
+        if (pressed && !isSelected) {
           setActiveIndex((prev) => (prev === 1 ? 0 : prev + 1));
         }
       }
