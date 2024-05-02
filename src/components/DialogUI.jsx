@@ -51,6 +51,14 @@ const DialogUI = () => {
     ? `${dialogID}-${dialogKey}`
     : `${dialogID}-select-${activeIndex}-text-${dialogKey}`;
 
+  // reset when dialog is cloesd or dialogID changes
+
+  useEffect(() => {
+    setDialogKey(0);
+    setIsSelected(false);
+    setActiveIndex(0);
+  }, [dialogID]);
+
   useEffect(() => {
     if (
       (!withSelect && dialogKey === pageAmount - 1) ||
@@ -81,7 +89,7 @@ const DialogUI = () => {
         }
       }
     );
-  }, [dialogKey]);
+  }, [dialogKey, dialogID]);
 
   useEffect(() => {
     if (!withSelect) return;
@@ -112,16 +120,18 @@ const DialogUI = () => {
     return sub(
       (state) => state.select,
       (pressed) => {
-        if (pressed && selectFunctions[activeIndex] === "text") {
-          setIsSelected(true);
-          setDialogKey(0);
-        } else if (pressed && selectFunctions[activeIndex] !== "text") {
-          selectFunctions[activeIndex]();
-          setDialogClose();
+        if (dialogKey === pageAmount - 1 && !isSelected) {
+          if (pressed && selectFunctions[activeIndex] === "text") {
+            setIsSelected(true);
+            setDialogKey(0);
+          } else if (pressed && selectFunctions[activeIndex] !== "text") {
+            selectFunctions[activeIndex]();
+            setDialogClose();
+          }
         }
       }
     );
-  }, [activeIndex]);
+  }, [activeIndex, dialogKey]);
 
   if (
     withSelect &&
