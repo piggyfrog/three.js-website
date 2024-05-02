@@ -8,6 +8,7 @@ export const useDialogStore = create((set) => ({
     set({ isOpen: false });
     set({ isOpen: true, dialogID: value });
   },
+  setDialogID: (value) => set({ dialogID: value }),
   setClose: () => set({ isOpen: false }),
 }));
 
