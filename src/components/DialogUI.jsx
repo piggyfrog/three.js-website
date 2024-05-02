@@ -112,8 +112,6 @@ const DialogUI = () => {
     return sub(
       (state) => state.select,
       (pressed) => {
-        console.log("activeIndex", activeIndex);
-        console.log("selectFunctions", selectFunctions[activeIndex]);
         if (pressed && selectFunctions[activeIndex] === "text") {
           setIsSelected(true);
           setDialogKey(0);
