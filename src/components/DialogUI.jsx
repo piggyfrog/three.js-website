@@ -101,7 +101,7 @@ const DialogUI = () => {
         }
       }
     );
-  }, []);
+  }, [isSelected]);
 
   useEffect(() => {
     if (!withSelect) return;
@@ -113,7 +113,7 @@ const DialogUI = () => {
         }
       }
     );
-  }, []);
+  }, [isSelected]);
 
   useEffect(() => {
     if (!withSelect) return;
