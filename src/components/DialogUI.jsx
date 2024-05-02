@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useDialogStore } from "../hooks/store";
 import { useTranslation } from "react-i18next";
+import { useLockCameraStore } from "../hooks/store";
 
 const DialogSelectDict = {
   fruit: {
@@ -15,6 +16,8 @@ const DialogSelectDict = {
     pageAmount: 2,
     withSelect: true,
     selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "radio2",
       1: () => console.log("hello"),
@@ -25,6 +28,8 @@ const DialogSelectDict = {
     pageAmount: 2,
     withSelect: true,
     selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "radio3",
       1: () => console.log("hello"),
@@ -35,6 +40,8 @@ const DialogSelectDict = {
     pageAmount: 2,
     withSelect: false,
     selectAmount: 0,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
   },
 };
 
@@ -45,6 +52,10 @@ const DialogUI = () => {
   const setDialogID = useDialogStore((state) => state.setDialogID);
   const setDialogClose = useDialogStore((state) => state.setClose);
   const { t } = useTranslation();
+  const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
+
+  // determinate if the dialog is an item
+  const { isItem, itemImgPath } = DialogSelectDict[dialogID];
 
   // determinate if the dialog has select options
   const { withSelect, selectAmount, selectFunctions } = DialogSelectDict[
@@ -74,9 +85,22 @@ const DialogUI = () => {
   }, [dialogID]);
 
   useEffect(() => {
+    return sub(
+      (state) => state.closeDialog,
+      (pressed) => {
+        if (pressed) {
+          setDialogClose();
+          setLockCamera(false);
+        }
+      }
+    );
+  }, []);
+
+  useEffect(() => {
     if (!withSelect && !nextPageExist) {
       const id = setTimeout(() => {
         setDialogClose();
+        setLockCamera(false);
       }, 10000);
       return () => {
         clearTimeout(id);
@@ -167,14 +191,21 @@ const DialogUI = () => {
     );
   }
   return (
-    <div className="dialogBackground">
-      <img className="person-back" src="/images/person-back.png" />
-      <img className="person" src="/images/young-grandma.png" />
-      <div className="dialog">
-        {t(mainTextID)}{" "}
-        {nextPageExist && <div className="dialog-next"> ⇒ </div>}
+    <>
+      {isItem && (
+        <div className="item-pic-background">
+          <img src={itemImgPath} alt="item" className="item-img" />
+        </div>
+      )}
+      <div className="dialogBackground">
+        <img className="person-back" src="/images/person-back.png" />
+        <img className="person" src="/images/young-grandma.png" />
+        <div className="dialog">
+          {t(mainTextID)}
+          {nextPageExist && <div className="dialog-next"> ⇒ </div>}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
