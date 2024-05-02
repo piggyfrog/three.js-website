@@ -5,8 +5,11 @@ import { useThree } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 import { useGameStateStore } from "../hooks/store";
+import { useLockCameraStore } from "../hooks/store";
+
 export default function CheckbleItemWrapper({
   setShowDialog,
+  lockCamera = false,
   position,
   dialogID,
   offsetX = 0,
@@ -26,6 +29,8 @@ export default function CheckbleItemWrapper({
   // 距离小于3的时候显示label
   const showLabelDistance = 4;
   const updateGameState = useGameStateStore((state) => state.setGameState);
+  const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
+
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
@@ -38,6 +43,9 @@ export default function CheckbleItemWrapper({
     if (showLabelDistance > distance) {
       setShowDialog(dialogID);
       updateGameState(dialogID);
+      if (lockCamera) {
+        setLockCamera(true);
+      }
     }
   };
 

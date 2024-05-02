@@ -15,6 +15,8 @@ const Items = () => {
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
         dialogID={"fruit"}
+        // 是否锁定视角
+        lockCamera={true}
         // 需要给一个child的位置
         position={Fruit.children[6].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置

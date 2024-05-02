@@ -23,3 +23,8 @@ export const useGameStateStore = create((set) => ({
     });
   },
 }));
+
+export const useLockCameraStore = create((set) => ({
+  lockCamera: false,
+  setLockCamera: (value) => set({ lockCamera: value }),
+}));
