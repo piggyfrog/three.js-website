@@ -1,4 +1,4 @@
-import { PointerLockControls } from "@react-three/drei";
+import { PointerLockControls, FirstPersonControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
 const FPV = () => {

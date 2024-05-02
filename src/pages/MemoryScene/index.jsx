@@ -37,6 +37,7 @@ export default function MemoryScene() {
           { name: "selectUp", keys: ["ArrowUp"] },
           { name: "selectDown", keys: ["ArrowDown"] },
           { name: "nextPage", keys: ["ArrowRight"] },
+          { name: "select", keys: ["Space"] },
         ]}
       >
         <Canvas camera={{ position: [0, 2, 5] }} shadows frameloop="demand">
