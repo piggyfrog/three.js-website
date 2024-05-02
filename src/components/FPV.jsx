@@ -20,6 +20,14 @@ const FPV = () => {
     }
   }, [lockCamera]);
 
+  useEffect(() => {
+    if (!locked) {
+      if (ref.current) {
+        ref.current.lock();
+      }
+    }
+  }, [locked]);
+
   return locked ? null : (
     <PointerLockControls args={[camera, gl.domElement]} ref={ref} />
   );
