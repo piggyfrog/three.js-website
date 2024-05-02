@@ -64,6 +64,8 @@ const DialogUI = () => {
 
   const mainTextID = `${dialogID}-${dialogKey}`;
 
+  const nextPageExist = dialogKey < pageAmount - 1;
+
   // reset when dialog is cloesd or dialogID changes
 
   useEffect(() => {
@@ -72,7 +74,7 @@ const DialogUI = () => {
   }, [dialogID]);
 
   useEffect(() => {
-    if (!withSelect && dialogKey === pageAmount - 1) {
+    if (!withSelect && !nextPageExist) {
       const id = setTimeout(() => {
         setDialogClose();
       }, 10000);
@@ -89,7 +91,7 @@ const DialogUI = () => {
       (state) => state.nextPage,
       (pressed) => {
         if (pressed) {
-          if (dialogKey < pageAmount - 1) {
+          if (nextPageExist) {
             setDialogKey((prev) => prev + 1);
           }
         }
@@ -141,7 +143,7 @@ const DialogUI = () => {
     );
   }, [activeIndex, dialogKey, withSelect]);
 
-  if (withSelect && selectAmount > 0 && dialogKey === pageAmount - 1) {
+  if (withSelect && selectAmount > 0 && !nextPageExist) {
     return (
       <div className="dialogBackground">
         <img className="person-back" src="/images/person-back.png" />
@@ -168,7 +170,10 @@ const DialogUI = () => {
     <div className="dialogBackground">
       <img className="person-back" src="/images/person-back.png" />
       <img className="person" src="/images/young-grandma.png" />
-      <div className="dialog">{t(mainTextID)}</div>
+      <div className="dialog">
+        {t(mainTextID)}{" "}
+        {nextPageExist && <div className="dialog-next"> ⇒ </div>}
+      </div>
     </div>
   );
 };
