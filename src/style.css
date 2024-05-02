@@ -24,17 +24,6 @@ body,
 }
 
 .dialog {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: 150px;
-  background: #00000088;
-  color: white;
-  font-size: 1.8rem;
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 15px;
 }
 
 .label > div {
@@ -96,6 +85,11 @@ body,
 }
 
 .dialog {
+  position: absolute;
+  height: 150px;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 15px;
   max-width: 800px;
   text-align: center;
   padding: 20px;
@@ -108,6 +102,12 @@ body,
   background: none;
   font-family: "Normal-CH";
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
+}
+
+.dialog .dialog-next {
+  font-size: 40px;
+  width: 100%;
+  text-align: right;
 }
 
 .options {
