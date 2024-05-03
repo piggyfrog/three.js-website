@@ -6,42 +6,123 @@ import { useLockCameraStore } from "../hooks/store";
 
 const DialogSelectDict = {
   fruit: {
-    withSelect: true,
-    selectAmount: 2,
-    pageAmount: 1,
-    withMultiPage: false,
+    withMultiPage: true,
+    pageAmount: 5,
+    withSelect: false,
   },
   radio: {
     withMultiPage: true,
-    pageAmount: 2,
-    withSelect: true,
-    selectAmount: 2,
+    pageAmount: 3,
     isItem: true,
     itemImgPath: "/images/radio.png",
-    selectFunctions: {
-      0: "radio2",
-      1: () => console.log("hello"),
-    },
-  },
-  radio2: {
-    withMultiPage: true,
-    pageAmount: 2,
-    withSelect: true,
-    selectAmount: 2,
-    isItem: true,
-    itemImgPath: "/images/radio.png",
-    selectFunctions: {
-      0: "radio3",
-      1: () => console.log("hello"),
-    },
-  },
-  radio3: {
-    withMultiPage: true,
-    pageAmount: 2,
     withSelect: false,
-    selectAmount: 0,
+  },
+  diary: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
     isItem: true,
     itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "diary2",
+      1: "diary3",
+    },
+  },
+  diary2: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "diary4",
+      1: "diary5",
+    },
+  },
+  diary3: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "diary5",
+      1: () => console.log("hello"),
+    },
+  },
+  diary4: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "diary6",
+      1: "diary7",
+    },
+  },
+  diary5: {
+    withMultiPage:false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  diary6: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  diary7: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  album: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "album2",
+      1: "album4",
+    },
+  },
+  album2: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: true,
+    selectAmount: 1,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "album3",
+    },
+  },
+  album3: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  album4: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: true,
+    selectAmount: 1,
+    isItem: true,
+    itemImgPath: "/images/radio.png",
+    selectFunctions: {
+      0: "album5",
+    },
+  },
+  album5: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
   },
 };
 
@@ -101,7 +182,7 @@ const DialogUI = () => {
       const id = setTimeout(() => {
         setDialogClose();
         setLockCamera(false);
-      }, 10000);
+      }, 5000);
       return () => {
         clearTimeout(id);
       };
