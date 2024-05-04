@@ -129,7 +129,7 @@ const World = ({ setShowDialog }) => {
 
   return (
     <>
-      <DustParticles /> {/* 添加粒子系统组件 */}
+      <DustParticles />
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <mesh
           position-y={-0.02}
