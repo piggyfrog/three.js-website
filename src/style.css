@@ -248,6 +248,7 @@ body,
 }
 
 .flipPhoto-pos-0 {
+  cursor: pointer;
   position: absolute;
   top: 25%;
   left: 30%;
