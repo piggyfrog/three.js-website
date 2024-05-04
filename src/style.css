@@ -247,6 +247,43 @@ body,
   opacity: 1;
 }
 
+.flipPhoto-pos-0 {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipPhoto-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flipPhoto-front,
+.flipPhoto-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the back side */
+.flipPhoto-back {
+  transform: rotateY(180deg);
+}
+
 @keyframes blink {
   0% {
     opacity: 1;

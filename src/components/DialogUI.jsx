@@ -3,12 +3,15 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useDialogStore } from "../hooks/store";
 import { useTranslation } from "react-i18next";
 import { useLockCameraStore } from "../hooks/store";
+import FlipPhoto from "./flipPhoto";
 
 const DialogSelectDict = {
   fruit: {
     withMultiPage: true,
     pageAmount: 5,
     withSelect: false,
+    isPhoto: true,
+    photo: ["foto1"],
   },
   radio: {
     withMultiPage: true,
@@ -66,7 +69,7 @@ const DialogSelectDict = {
     },
   },
   diary5: {
-    withMultiPage:false,
+    withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
   },
@@ -136,7 +139,16 @@ const DialogUI = () => {
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
 
   // determinate if the dialog is an item
-  const { isItem, itemImgPath } = DialogSelectDict[dialogID];
+  const { isItem, itemImgPath } = DialogSelectDict[dialogID] || {
+    isItem: false,
+    itemImgPath: "",
+  };
+
+  // determinate is the dialog has album function
+  const { isPhoto, photo } = DialogSelectDict[dialogID] || {
+    isPhoto: false,
+    photo: "",
+  };
 
   // determinate if the dialog has select options
   const { withSelect, selectAmount, selectFunctions } = DialogSelectDict[
@@ -276,6 +288,14 @@ const DialogUI = () => {
       {isItem && (
         <div className="item-pic-background">
           <img src={itemImgPath} alt="item" className="item-img" />
+        </div>
+      )}
+
+      {isPhoto && (
+        <div className="item-pic-background">
+          {photo.map((photo, index) => (
+            <FlipPhoto photo={photo} key={index} index={index} />
+          ))}
         </div>
       )}
       <div className="dialogBackground">
