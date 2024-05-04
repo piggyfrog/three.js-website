@@ -28,3 +28,8 @@ export const useLockCameraStore = create((set) => ({
   lockCamera: false,
   setLockCamera: (value) => set({ lockCamera: value }),
 }));
+
+export const useActionStore = create((set) => ({
+  action: "",
+  setAction: (value) => set({ action: value }),
+}));

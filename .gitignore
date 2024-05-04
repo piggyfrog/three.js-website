@@ -16,4 +16,6 @@ test/e2e/chromium
 test/e2e/output-screenshots
 
 **/public/secondScene
+
+**/public/ThirdScene
 **/node_modules
