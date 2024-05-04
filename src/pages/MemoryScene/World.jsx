@@ -11,7 +11,7 @@ import * as THREE from "three";
 import { useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 
-const World = ({ setShowDialog }) => {
+const World = () => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
   const { scene: WallScene } = useGLTF("secondScene/with-collider/wall.glb");
   const { scene: FixedItemsScene } = useGLTF(

@@ -3,6 +3,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useDialogStore } from "../hooks/store";
 import { useTranslation } from "react-i18next";
 import { useLockCameraStore } from "../hooks/store";
+import { useActionStore } from "../hooks/store";
 import FlipPhoto from "./flipPhoto";
 
 const DialogSelectDict = {
@@ -127,6 +128,17 @@ const DialogSelectDict = {
     pageAmount: 1,
     withSelect: false,
   },
+  laolao: {
+    withMultiPage: true,
+    pageAmount: 2,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: false,
+    selectFunctions: {
+      0: "laolao2",
+      1: "action-playLaoLaoAnimation",
+    },
+  },
 };
 
 const DialogUI = () => {
@@ -137,6 +149,7 @@ const DialogUI = () => {
   const setDialogClose = useDialogStore((state) => state.setClose);
   const { t } = useTranslation();
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
+  const setAction = useActionStore((state) => state.setAction);
 
   // determinate if the dialog is an item
   const { isItem, itemImgPath } = DialogSelectDict[dialogID] || {
@@ -246,13 +259,17 @@ const DialogUI = () => {
       (state) => state.select,
       (pressed) => {
         if (dialogKey === pageAmount - 1) {
-          if (pressed && typeof selectFunctions[activeIndex] === "string") {
+          if (
+            pressed &&
+            typeof selectFunctions[activeIndex] === "string" &&
+            !selectFunctions[activeIndex].includes("action")
+          ) {
             setDialogID(selectFunctions[activeIndex]);
           } else if (
             pressed &&
-            typeof selectFunctions[activeIndex] !== "string"
+            selectFunctions[activeIndex].includes("action")
           ) {
-            selectFunctions[activeIndex]();
+            setAction(selectFunctions[activeIndex].split("-")[1]);
             setDialogClose();
           }
         }
