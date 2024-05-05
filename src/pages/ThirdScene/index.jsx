@@ -27,8 +27,13 @@ export default function ThirdScene() {
   const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const action = useActionStore((state) => state.action);
+  const [bloom, setBloom] = useState({
+    luminanceThreshold: 0.5, // 控制从哪个亮度值开始应用泛光
+    luminanceSmoothing: 0.8, // 泛光的平滑度，较低的值会使泛光效果更尖锐
+    intensity: 0.5,
+  });
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     console.log("gameState", useGameState);
   }, [useGameState]);
@@ -37,6 +42,14 @@ export default function ThirdScene() {
     if (action === "ChangeScene2") {
       setShouldLoad(true);
       navigate("/memory");
+    }
+    if (action === "playLaoLaoAnimation") {
+      setBloom({
+        luminanceThreshold: 0.5,
+        luminanceSmoothing: 0.8,
+        intensity: 1000,
+      });
+      // 重置泛光参数
     }
   }, [action]);
 
@@ -68,11 +81,7 @@ export default function ThirdScene() {
             <FPScontrols />
           </Physics>
           <EffectComposer>
-            <Bloom
-              luminanceThreshold={0.5} // 控制从哪个亮度值开始应用泛光
-              luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
-              intensity={0.5} // 泛光的强度
-            />
+            <Bloom {...bloom} />
             <DepthOfField
               focusDistance={0.2} // 焦点距离，可以调整
               focalLength={1.5} // 焦距，可以调整
