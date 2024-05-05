@@ -39,6 +39,7 @@ export default function ThirdScene() {
   }, [useGameState]);
 
   useEffect(() => {
+    console.log("action", action);
     if (action === "ChangeScene2") {
       setShouldLoad(true);
       navigate("/memory");
