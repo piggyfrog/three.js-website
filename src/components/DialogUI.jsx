@@ -174,6 +174,30 @@ const DialogSelectDict = {
     withSelect: false,
     isItem: false,
   },
+  laoyeback: {
+    withMultiPage: false,
+    withSelect: false,
+    isItem: false,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: false,
+    selectFunctions: {
+      0: () => console.log("hello"),
+      1: "action-ChangeScene3",
+    },
+  },
+  mamaback: {
+    withMultiPage: false,
+    withSelect: false,
+    isItem: false,
+    withSelect: true,
+    selectAmount: 2,
+    isItem: false,
+    selectFunctions: {
+      0: () => console.log("hello"),
+      1: "action-ChangeScene3",
+    },
+  },
 };
 
 const DialogUI = () => {
