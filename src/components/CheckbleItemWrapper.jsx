@@ -62,7 +62,7 @@ export default function CheckbleItemWrapper({
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="red" opacity={0.1} transparent />
+      <meshBasicMaterial color="red" opacity={0.00001} transparent />
 
       {showLabel && (
         <Html position={[0, 0.5, 0]} wrapperClass="label">
