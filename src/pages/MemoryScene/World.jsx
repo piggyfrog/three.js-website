@@ -23,12 +23,8 @@ const World = () => {
   const { scene: grandpa, animations: grandpaAnimations } = useGLTF(
     "secondScene/with-collider/grandpa.glb"
   );
-  const { scene: momBack, animations: momBackAnimations } = useGLTF(
-    "secondScene/with-collider/mama-back.glb"
-  );
   const gAnimated = useAnimations(grandpaAnimations, grandpa);
   const mAnimated = useAnimations(monAnimations, mom);
-  const mbAnimated = useAnimations(momBackAnimations, momBack);
 
   const spotLightRef = useRef(); // 创建一个引用以访问spotLight
   const { scene } = useThree();
@@ -127,9 +123,7 @@ const World = () => {
   useEffect(() => {
     const gAction = gAnimated.actions.standstill;
     const mAction = mAnimated.actions.sit;
-    const mbAction = mbAnimated.actions.ldle;
     mAction.play();
-    mbAction.play();
     gAction.play();
   }, []);
 
@@ -165,7 +159,6 @@ const World = () => {
         <primitive object={grandpa} />
       </RigidBody>
 
-      <primitive object={momBack} scale={[2, 2, 2]} />
       <primitive object={RoomItems} scale={[2, 2, 2]} />
       <primitive object={Transparent} scale={[2, 2, 2]} />
     </>

@@ -1,14 +1,22 @@
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 import { useDialogStore } from "../../hooks/store";
+import { useEffect } from "react";
 const Items = () => {
   const { scene: Album } = useGLTF("secondScene/no-collider/album.glb");
   const { scene: Camera } = useGLTF("secondScene/no-collider/camera.glb");
   const { scene: Diary } = useGLTF("secondScene/no-collider/diary.glb");
   const { scene: Fruit } = useGLTF("secondScene/no-collider/fruit.glb");
-
+  const { scene: momBack, animations: momBackAnimations } = useGLTF(
+    "secondScene/with-collider/mama-back.glb"
+  );
   const setShowDialog = useDialogStore((state) => state.setOpen);
+  const mbAnimated = useAnimations(momBackAnimations, momBack);
+  useEffect(() => {
+    const mbAction = mbAnimated.actions.ldle;
+    mbAction.play();
+  }, []);
   return (
     <>
       <primitive object={Fruit} scale={2} />
@@ -72,6 +80,24 @@ const Items = () => {
         scaleX={0.4}
         scaleY={0.2}
         scaleZ={0.6}
+      />
+      <primitive object={momBack} scale={[2, 2, 2]} />
+      <CheckbleItemWrapper
+        setShowDialog={setShowDialog}
+        dialogID={"mama-back"}
+        isCheck={false}
+        // 是否锁定视角
+        lockCamera={false}
+        // 需要给一个child的位置
+        position={momBack.children[0].position || new THREE.Vector3(0, 0, 0)}
+        // 调整透明盒子位置
+        offsetX={0}
+        offsetY={1}
+        offsetZ={0.4}
+        // 调整透明盒子大小
+        scaleX={1}
+        scaleY={4}
+        scaleZ={0.8}
       />
     </>
   );

@@ -47,6 +47,7 @@ const World = () => {
         action.clampWhenFinished = true;
         action.play();
       });
+      setShowDialog("laolao2");
     }
   }, [actionStore]);
 
@@ -71,9 +72,24 @@ const World = () => {
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <primitive object={WallScene} />
       </RigidBody>
-      <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
-        <primitive object={laoye} />
-      </RigidBody>
+      <primitive object={laoye} scale={[2, 2, 2]} />
+      <CheckbleItemWrapper
+        setShowDialog={setShowDialog}
+        dialogID={"laoye-back"}
+        isCheck={false}
+        // 是否锁定视角
+        lockCamera={false}
+        // 需要给一个child的位置
+        position={laoye.children[0].position || new THREE.Vector3(0, 0, 0)}
+        // 调整透明盒子位置
+        offsetX={0}
+        offsetY={1}
+        offsetZ={0.4}
+        // 调整透明盒子大小
+        scaleX={1}
+        scaleY={4}
+        scaleZ={0.8}
+      />
       <primitive object={item1} scale={[2, 2, 2]} />
       <primitive object={item2} scale={[2, 2, 2]} />
       <primitive object={laolao} scale={[2, 2, 2]} />
@@ -82,6 +98,7 @@ const World = () => {
         dialogID={"laolao"}
         // 是否锁定视角
         lockCamera={false}
+        isCheck={false}
         // 需要给一个child的位置
         position={laolao.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
