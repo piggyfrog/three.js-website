@@ -84,7 +84,7 @@ const Items = () => {
       <primitive object={momBack} scale={[2, 2, 2]} />
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
-        dialogID={"mama-back"}
+        dialogID={"mamaback"}
         isCheck={false}
         // 是否锁定视角
         lockCamera={false}

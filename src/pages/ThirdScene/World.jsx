@@ -75,7 +75,7 @@ const World = () => {
       <primitive object={laoye} scale={[2, 2, 2]} />
       <CheckbleItemWrapper
         setShowDialog={setShowDialog}
-        dialogID={"laoye-back"}
+        dialogID={"laoyeback"}
         isCheck={false}
         // 是否锁定视角
         lockCamera={false}
