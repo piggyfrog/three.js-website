@@ -32,6 +32,7 @@ const World = () => {
 
   useEffect(() => {
     if (actionStore === "playLaoLaoAnimation") {
+      setAnimateBloom(true);
       const lAction = lAnimated.actions.idle;
       lAction.setLoop(THREE.LoopOnce);
       lAction.clampWhenFinished = true;
@@ -52,7 +53,7 @@ const World = () => {
           position-y={-0.02}
           rotation-x={-Math.PI * 0.5}
           rotateZ={Math.PI}
-          scale={15}
+          scale={20}
         >
           <planeGeometry />
           <meshStandardMaterial
@@ -82,7 +83,7 @@ const World = () => {
         offsetZ={0.4}
         // 调整透明盒子大小
         scaleX={1}
-        scaleY={2.5}
+        scaleY={4}
         scaleZ={0.8}
       />
       <primitive object={grass} scale={[2, 2, 2]} />

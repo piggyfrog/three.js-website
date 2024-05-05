@@ -58,7 +58,7 @@ export default function MemoryScene() {
           { name: "closeDialog", keys: ["KeyQ"] },
         ]}
       >
-        <Canvas camera={{ position: [0, 2, 5] }} shadows frameloop="demand">
+        <Canvas camera={{ position: [0, -10, 5] }} shadows frameloop="demand">
           <ambientLight intensity={1.5} />
           {/* 这两个切换第一还是自由视角  */}
           {/* <OrbitControls />*/}
