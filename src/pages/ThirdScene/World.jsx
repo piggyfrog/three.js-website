@@ -32,7 +32,6 @@ const World = () => {
 
   useEffect(() => {
     if (actionStore === "playLaoLaoAnimation") {
-      setAnimateBloom(true);
       const lAction = lAnimated.actions.idle;
       lAction.setLoop(THREE.LoopOnce);
       lAction.clampWhenFinished = true;
