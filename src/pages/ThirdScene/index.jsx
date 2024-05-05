@@ -28,7 +28,7 @@ export default function ThirdScene() {
   const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     console.log("gameState", useGameState);
   }, [useGameState]);
@@ -69,9 +69,9 @@ export default function ThirdScene() {
           </Physics>
           <EffectComposer>
             <Bloom
-              luminanceThreshold={0} // 控制从哪个亮度值开始应用泛光
+              luminanceThreshold={0.5} // 控制从哪个亮度值开始应用泛光
               luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
-              intensity={0.1} // 泛光的强度
+              intensity={0.5} // 泛光的强度
             />
             <DepthOfField
               focusDistance={0.2} // 焦点距离，可以调整
