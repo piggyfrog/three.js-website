@@ -19,7 +19,12 @@ const DialogSelectDict = {
     pageAmount: 3,
     isItem: true,
     itemImgPath: "/images/radio.png",
-    withSelect: false,
+    withSelect: true,
+    selectAmount: 2,
+    selectFunctions: {
+      0: "action-ChangeScene3",
+      1: "action-ChangeScene3",
+    },
   },
   diary: {
     withMultiPage: true,
@@ -135,7 +140,7 @@ const DialogSelectDict = {
     selectAmount: 2,
     isItem: false,
     selectFunctions: {
-      0: "laolao2",
+      0: "action-ChangeScene2",
       1: "action-playLaoLaoAnimation",
     },
   },
