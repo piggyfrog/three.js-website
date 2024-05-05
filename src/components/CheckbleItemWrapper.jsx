@@ -9,6 +9,7 @@ import { useLockCameraStore } from "../hooks/store";
 
 export default function CheckbleItemWrapper({
   setShowDialog,
+  isCheck = true,
   lockCamera = false,
   position,
   dialogID,
@@ -62,11 +63,15 @@ export default function CheckbleItemWrapper({
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="red" opacity={0.00001} transparent />
+      <meshBasicMaterial color="red" opacity={0.1} transparent />
 
       {showLabel && (
-        <Html position={[0, 0.5, 0]} wrapperClass="label">
-          <img src="/images/check.png" alt="check item" className="checkIcon" />
+        <Html position={[0, Math.max(scaleY / 2, 0.3), 0]} wrapperClass="label">
+          <img
+            src={isCheck ? "/images/check.png" : "/images/talk.png"}
+            alt="check item"
+            className="checkIcon"
+          />
         </Html>
       )}
     </mesh>

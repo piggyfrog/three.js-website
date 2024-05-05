@@ -75,7 +75,7 @@ export default function ThirdScene() {
 
           <FPV />
 
-          <Physics gravity={[0, 0, 0]} debug>
+          <Physics gravity={[0, 0, 0]}>
             <World />
 
             <FPScontrols />

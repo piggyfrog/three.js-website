@@ -165,7 +165,7 @@ const DialogSelectDict = {
     selectAmount: 1,
     isItem: false,
     selectFunctions: {
-      0: "action-playLaoLaoAnimation",  
+      0: "action-playLaoLaoAnimation",
     },
   },
   laolao2: {
@@ -355,7 +355,11 @@ const DialogUI = () => {
         <img className="person" src="/images/young-grandma.png" />
         <div className="dialog">
           {t(mainTextID)}
-          {nextPageExist && <div className="dialog-next"> ⇒ </div>}
+          {nextPageExist && (
+            <div className="dialog-next">
+              <img src="/images/next.png" className="next-png" />
+            </div>
+          )}
         </div>
       </div>
     </>
