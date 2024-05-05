@@ -13,6 +13,9 @@ const World = () => {
   const { scene: WallScene } = useGLTF("/thirdScene/with-collider/yangtai.glb");
   const { scene: item1 } = useGLTF("/thirdScene/no-collider/item1.glb");
   const { scene: item2 } = useGLTF("/thirdScene/no-collider/item2.glb");
+  const { scene: laoye, animations: laoyeAnimations } = useGLTF(
+    "/thirdScene/with-collider/laoye-back.glb"
+  );
 
   const { scene: grass, animations: grassAnimations } = useGLTF(
     "thirdScene/no-collider/grass.glb"
@@ -21,12 +24,14 @@ const World = () => {
     "thirdScene/no-collider/laolao.glb"
   );
   const lAnimated = useAnimations(laoAnimations, laolao);
+  const laoyeAnimated = useAnimations(laoyeAnimations, laoye);
   const gAnimated = useAnimations(grassAnimations, grass);
   const setShowDialog = useDialogStore((state) => state.setOpen);
   const actionStore = useActionStore((state) => state.action);
-
   useEffect(() => {
     const lAction = lAnimated.actions.look;
+    const laoyeAction = laoyeAnimated.actions.ldle;
+    laoyeAction.play();
     lAction.play();
   }, []);
 
@@ -65,6 +70,9 @@ const World = () => {
       </RigidBody>
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <primitive object={WallScene} />
+      </RigidBody>
+      <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
+        <primitive object={laoye} />
       </RigidBody>
       <primitive object={item1} scale={[2, 2, 2]} />
       <primitive object={item2} scale={[2, 2, 2]} />
