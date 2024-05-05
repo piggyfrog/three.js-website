@@ -164,9 +164,8 @@ const World = () => {
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <primitive object={grandpa} />
       </RigidBody>
-      <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
-        <primitive object={momBack} />
-      </RigidBody>
+
+      <primitive object={momBack} scale={[2, 2, 2]} />
       <primitive object={RoomItems} scale={[2, 2, 2]} />
       <primitive object={Transparent} scale={[2, 2, 2]} />
     </>

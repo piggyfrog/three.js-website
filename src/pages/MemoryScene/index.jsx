@@ -65,7 +65,7 @@ export default function MemoryScene() {
 
           <FPV />
 
-          <Physics gravity={[0, 0, 0]}>
+          <Physics gravity={[0, 0, 0]} debug>
             <World />
 
             <FPScontrols />
