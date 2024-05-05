@@ -133,6 +133,31 @@ const DialogSelectDict = {
     pageAmount: 1,
     withSelect: false,
   },
+  video1: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  video2: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  video3: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  video4: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
+  video5: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+  },
   laolao: {
     withMultiPage: true,
     pageAmount: 2,
