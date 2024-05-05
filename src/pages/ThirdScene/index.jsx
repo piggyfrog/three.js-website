@@ -15,14 +15,30 @@ import {
 } from "@react-three/postprocessing";
 import { Suspense } from "react";
 import Loader from "../../components/Loader.jsx";
-import { useDialogStore, useGameStateStore } from "../../hooks/store.js";
+import { useNavigate } from "react-router";
+import {
+  useDialogStore,
+  useGameStateStore,
+  useActionStore,
+  usePlayerLocationStore,
+} from "../../hooks/store.js";
 export default function ThirdScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
   const useGameState = useGameStateStore((state) => state.gameState);
+  const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
+  const action = useActionStore((state) => state.action);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("gameState", useGameState);
   }, [useGameState]);
+
+  useEffect(() => {
+    if (action === "ChangeScene2") {
+      setShouldLoad(true);
+      navigate("/memory");
+    }
+  }, [action]);
 
   return (
     <Suspense fallback={<Loader />}>

@@ -1,8 +1,9 @@
 import { BallCollider, RigidBody, CapsuleCollider } from "@react-three/rapier";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useThree, useFrame } from "@react-three/fiber";
+import { usePlayerLocationStore } from "../hooks/store";
 
 const SPEED = 5;
 const velocity = new THREE.Vector3();
@@ -13,6 +14,34 @@ const FPScontrols = () => {
   const [subscribeToKeys, getKeys] = useKeyboardControls();
   const rigidBodyRef = useRef();
   const { camera } = useThree();
+
+  const shouldSave = usePlayerLocationStore((state) => state.shouldSave);
+  const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
+  const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
+  const shouldLoad = usePlayerLocationStore((state) => state.shouldLoad);
+  const playerLocation = usePlayerLocationStore(
+    (state) => state.playerLocation
+  );
+  const setPlayerLocation = usePlayerLocationStore(
+    (state) => state.setPlayerLocation
+  );
+
+  useEffect(() => {
+    if (shouldLoad) {
+      rigidBodyRef.current.setTranslation({
+        x: playerLocation.x,
+        y: playerLocation.y,
+        z: playerLocation.z,
+      });
+      setShouldLoad(false);
+    }
+    if (shouldSave) {
+      const pos = rigidBodyRef.current.translation();
+      setPlayerLocation(new THREE.Vector3(pos.x, pos.y, pos.z));
+      console.log("saving location", pos);
+      setShouldSave(false);
+    }
+  }, [shouldSave, setShouldLoad]);
 
   useFrame((state, delta) => {
     //get input key values on every frame
@@ -82,7 +111,6 @@ const FPScontrols = () => {
       mass={5}
       friction={0}
       restitution={0}
-      position={[0.3, 0.2, 0.3]}
       enabledRotations={[false, false, false]} //prevent from falling sideways
     >
       {/**for the capsule, args={[halfCapsuleHeight-radius, radius]} 

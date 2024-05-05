@@ -1,5 +1,6 @@
 import { t } from "i18next";
 import { create } from "zustand";
+import * as THREE from "three";
 
 export const useDialogStore = create((set) => ({
   isOpen: false,
@@ -22,6 +23,15 @@ export const useGameStateStore = create((set) => ({
       return state;
     });
   },
+}));
+
+export const usePlayerLocationStore = create((set) => ({
+  shouldSave: false,
+  shouldLoad: false,
+  playerLocation: new THREE.Vector3(0, 0, 0),
+  setShouldSave: (value) => set({ shouldSave: value }),
+  setShouldLoad: (value) => set({ shouldLoad: value }),
+  setPlayerLocation: (value) => set({ playerLocation: value }),
 }));
 
 export const useLockCameraStore = create((set) => ({
