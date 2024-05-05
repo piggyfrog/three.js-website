@@ -160,14 +160,19 @@ const DialogSelectDict = {
   },
   laolao: {
     withMultiPage: true,
-    pageAmount: 2,
+    pageAmount: 4,
     withSelect: true,
-    selectAmount: 2,
+    selectAmount: 1,
     isItem: false,
     selectFunctions: {
-      0: "action-ChangeScene2",
-      1: "action-playLaoLaoAnimation",
+      0: "action-playLaoLaoAnimation",  
     },
+  },
+  laolao2: {
+    withMultiPage: true,
+    pageAmount: 3,
+    withSelect: false,
+    isItem: false,
   },
 };
 
