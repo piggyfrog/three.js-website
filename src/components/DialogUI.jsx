@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useLockCameraStore } from "../hooks/store";
 import { useActionStore } from "../hooks/store";
 import FlipPhoto from "./flipPhoto";
-import { t } from "i18next";
+import { t, use } from "i18next";
 
 const DialogSelectDict = {
   fruit: {
@@ -235,7 +235,7 @@ const DialogSelectDict = {
       1: "action-ChangeScene3",
     },
   },
-  teethMain:{
+  teethMain: {
     withMultiPage: true,
     isItem: true,
     withSelect: true,
@@ -249,7 +249,7 @@ const DialogSelectDict = {
       1: "teethMain2",
     },
   },
-  teethMain2:{
+  teethMain2: {
     withMultiPage: false,
     isItem: true,
     withSelect: true,
@@ -263,7 +263,7 @@ const DialogSelectDict = {
       1: "changevideo1",
     },
   },
-  albumMain:{
+  albumMain: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
@@ -272,11 +272,11 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "action-closeDialog",
+      0: "action-closeAlbum",
       1: "albumMain2",
     },
   },
-  albumMain2:{
+  albumMain2: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
@@ -285,11 +285,11 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "action-closeDialog",
+      0: "action-closeAlbum",
       1: "action-ChangeScene3",
     },
   },
-  chairMain:{
+  chairMain: {
     withMultiPage: true,
     isItem: true,
     withSelect: true,
@@ -303,7 +303,7 @@ const DialogSelectDict = {
       1: "action-ChangeScene3",
     },
   },
-  grandmaMain:{
+  grandmaMain: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
@@ -314,7 +314,7 @@ const DialogSelectDict = {
       0: "action-closeDialog",
     },
   },
-  grandpaMain:{
+  grandpaMain: {
     withMultiPage: false,
     isItem: false,
     withSelect: true,
@@ -325,7 +325,7 @@ const DialogSelectDict = {
       0: "action-closeDialog",
     },
   },
-  momMain:{
+  momMain: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
@@ -336,7 +336,7 @@ const DialogSelectDict = {
       0: "action-closeDialog",
     },
   },
-  uncleMain:{
+  uncleMain: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
@@ -347,7 +347,6 @@ const DialogSelectDict = {
       0: "action-closeDialog",
     },
   },
-  
 };
 
 const DialogUI = () => {
@@ -416,6 +415,7 @@ const DialogUI = () => {
     if (!withSelect && !nextPageExist) {
       const id = setTimeout(() => {
         setDialogClose();
+        setAction("");
         setLockCamera(false);
       }, 5000);
       return () => {

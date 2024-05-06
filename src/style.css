@@ -266,6 +266,54 @@ body,
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
+.flipPhoto-pos-1 {
+  cursor: pointer;
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-2 {
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 65%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-4 {
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-3 {
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
 .flipPhoto-inner {
   position: relative;
   width: 100%;
