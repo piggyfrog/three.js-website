@@ -23,12 +23,15 @@ import {
   useActionStore,
   usePlayerLocationStore,
 } from "../../hooks/store.js";
+import FlipPhoto from "../../components/flipPhoto.jsx";
 import { useNavigate } from "react-router";
 
 export default function MemoryScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
   const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
+  const [showFotos, setShowFotos] = useState(false);
+  const photos = ["foto1"]; //添加照片
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
 
@@ -40,6 +43,11 @@ export default function MemoryScene() {
     if (action === "ChangeScene3") {
       setShouldSave(true);
       navigate("/third");
+    }
+    if (action === "showAlbum") {
+      setShowFotos(true);
+    } else {
+      setShowFotos(false);
     }
   }, [action]);
 
@@ -98,6 +106,13 @@ export default function MemoryScene() {
           />
         )}
         {showDialogStore && <DialogUI />}
+        {showFotos && (
+          <div className="item-pic-background">
+            {photos.map((photo, index) => (
+              <FlipPhoto photo={photo} key={index} index={index} />
+            ))}
+          </div>
+        )}
       </KeyboardControls>
     </Suspense>
   );
