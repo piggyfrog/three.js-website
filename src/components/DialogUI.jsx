@@ -242,7 +242,7 @@ const DialogSelectDict = {
     pageAmount: 2,
     selectAmount: 2,
     withPersonArt: true,
-    itemImgPath: "/images/radio.png",
+    itemImgPath: "/images/teethMain.png",
     personArtPath: "/images/jiujiu.png",
     selectFunctions: {
       0: "action-closeDialog",
@@ -256,7 +256,7 @@ const DialogSelectDict = {
     pageAmount: 1,
     selectAmount: 2,
     withPersonArt: true,
-    itemImgPath: "/images/radio.png",
+    itemImgPath: "/images/teethMain.png",
     personArtPath: "/images/jiujiu.png",
     selectFunctions: {
       0: "action-closeDialog",
@@ -296,7 +296,7 @@ const DialogSelectDict = {
     pageAmount: 2,
     selectAmount: 1,
     withPersonArt: true,
-    itemImgPath: "/images/radio.png",
+    itemImgPath: "/images/chiarMain.png",
     personArtPath: "/images/mama.png",
     selectFunctions: {
       0: "action-closeDialog",

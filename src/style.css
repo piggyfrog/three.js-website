@@ -239,8 +239,8 @@ body,
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(#33333330, #000000);
-  opacity: 0.9;
+  background: linear-gradient(#000000, #0000003f);
+  opacity: 1;
 }
 
 .item-img {
@@ -251,6 +251,7 @@ body,
   max-width: 500px;
   max-height: 380px;
   opacity: 1;
+  filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
 }
 
 .flipPhoto-pos-0 {
