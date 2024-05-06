@@ -148,16 +148,16 @@ body,
 
 .title-png {
   position: absolute;
-  top: 40px;
-  left: 20px;
+  top: 80px;
+  left: 80px;
   width: 280px;
   z-index: 3;
 }
 
 .about-png {
   position: absolute;
-  top: 40px;
-  right: 20px;
+  top: 80px;
+  right: 80px;
   width: 70px;
   z-index: 3;
 }
