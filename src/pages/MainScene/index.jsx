@@ -64,7 +64,7 @@ export default function MemoryScene() {
           { name: "closeDialog", keys: ["KeyQ"] },
         ]}
       >
-        <Canvas camera={{ position: [0, -10, 5] }} shadows frameloop="demand">
+        <Canvas camera={{ position: [0, 2, 2] }} shadows frameloop="demand">
           <ambientLight intensity={0.5} />
           {/* 这两个切换第一还是自由视角  */}
           {/* <OrbitControls />*/}
@@ -79,6 +79,21 @@ export default function MemoryScene() {
 
             <FPScontrols />
           </Physics>
+          <EffectComposer>
+            <Bloom
+              luminanceThreshold={0.5} // 控制从哪个亮度值开始应用泛光
+              luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
+              intensity={0.5} // 泛光的强度
+            />
+            <DepthOfField
+              focusDistance={0.2} // 焦点距离，可以调整
+              focalLength={1.5} // 焦距，可以调整
+              bokehScale={8} // 虚化程度，可以调整
+              height={480} // 渲染分辨率，可以调整
+            />
+
+            <N8AO color="#696969" aoRadius={1} intensity={1} />
+          </EffectComposer>
         </Canvas>
         <div className="cursor">&#x25CB;</div>
         <GameUI />
