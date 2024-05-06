@@ -4,11 +4,10 @@ import { RigidBody } from "@react-three/rapier";
 import { useThree } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
-import { useGameStateStore } from "../hooks/store";
+import { useGameStateStore, useDialogStore } from "../hooks/store";
 import { useLockCameraStore, useActionStore } from "../hooks/store";
 
 export default function CheckbleItemWrapper({
-  setShowDialog,
   isCheck = true,
   lockCamera = false,
   position,
@@ -32,6 +31,7 @@ export default function CheckbleItemWrapper({
   const updateGameState = useGameStateStore((state) => state.setGameState);
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   const setAction = useActionStore((state) => state.setAction);
+  const setShowDialog = useDialogStore((state) => state.setOpen);
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
