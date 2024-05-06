@@ -1,4 +1,7 @@
-function Loader({ text = "这本相册记录了很多，这个家庭重要的时刻..." }) {
+import { useTranslation } from "react-i18next";
+
+function Loader({ text = "loading-default" }) {
+  const { t } = useTranslation();
   return (
     <div>
       <div className="centered">
@@ -6,7 +9,7 @@ function Loader({ text = "这本相册记录了很多，这个家庭重要的时
           <img src="/images/title.png" alt="" className="img-title" />
           <img src="/images/loading.png" alt="" className="img-text" />
         </div>
-        <p className="loading-text">{text}</p>
+        <p className="loading-text">{t(text)}</p>
       </div>
 
       <img src="/images/mask.jpg" alt="" />
