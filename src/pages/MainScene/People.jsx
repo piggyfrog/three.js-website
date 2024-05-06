@@ -41,12 +41,12 @@ const MainScenePeople = () => {
         position={grandMa.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
         offsetX={0}
-        offsetY={0.5}
-        offsetZ={0}
+        offsetY={0.8}
+        offsetZ={-1}
         // 调整透明盒子大小
         scaleX={1.5}
-        scaleY={1.5}
-        scaleZ={1.5}
+        scaleY={6}
+        scaleZ={1.2}
       />
       <primitive object={grandPa} scale={2} />
       <CheckbleItemWrapper
@@ -60,9 +60,9 @@ const MainScenePeople = () => {
         offsetY={0.5}
         offsetZ={0}
         // 调整透明盒子大小
-        scaleX={1.5}
-        scaleY={1.5}
-        scaleZ={1.5}
+        scaleX={1.2}
+        scaleY={5}
+        scaleZ={1.2}
       />
       <primitive object={mom} scale={2} />
       <CheckbleItemWrapper
@@ -76,9 +76,9 @@ const MainScenePeople = () => {
         offsetY={0.5}
         offsetZ={0}
         // 调整透明盒子大小
-        scaleX={1.5}
-        scaleY={1.5}
-        scaleZ={1.5}
+        scaleX={1.2}
+        scaleY={6.5}
+        scaleZ={1.2}
       />
 
       <primitive object={uncle} scale={2} />
@@ -93,9 +93,9 @@ const MainScenePeople = () => {
         offsetY={0.5}
         offsetZ={0}
         // 调整透明盒子大小
-        scaleX={1.5}
-        scaleY={1.5}
-        scaleZ={1.5}
+        scaleX={0.8}
+        scaleY={7.5}
+        scaleZ={0.8}
       />
     </>
   );
