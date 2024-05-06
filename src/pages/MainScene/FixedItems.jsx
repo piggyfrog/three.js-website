@@ -17,6 +17,7 @@ export default function FixedItems(props) {
       <CheckbleItemWrapper
         dialogID={"albumMain"}
         position={album.children[0].position}
+        lockCamera={true}
         offsetX={0}
         offsetY={0.5}
         offsetZ={0}

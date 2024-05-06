@@ -19,7 +19,6 @@ const MainScenePeople = () => {
   const momAnimated = useAnimations(momAnimations, mom);
   const { scene: uncle, animations: uncleAnimations } = useGLTF("uncle.glb");
   const uncleAnimated = useAnimations(uncleAnimations, uncle);
-  const setShowDialog = useDialogStore((state) => state.setOpen);
   useEffect(() => {
     const gMaAction = gMaAnimated.actions.ldle;
     const gPaAction = gPaAnimated.actions.ldle;
@@ -35,7 +34,6 @@ const MainScenePeople = () => {
     <>
       <primitive object={grandMa} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"grandmaMain"}
         isCheck={false}
         // 是否锁定视角
@@ -52,7 +50,6 @@ const MainScenePeople = () => {
       />
       <primitive object={grandPa} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"grandpaMain"}
         isCheck={false}
         // 是否锁定视角
@@ -69,7 +66,6 @@ const MainScenePeople = () => {
       />
       <primitive object={mom} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"momMain"}
         isCheck={false}
         // 是否锁定视角
@@ -87,7 +83,6 @@ const MainScenePeople = () => {
 
       <primitive object={uncle} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"uncleMain"}
         isCheck={false}
         // 是否锁定视角
