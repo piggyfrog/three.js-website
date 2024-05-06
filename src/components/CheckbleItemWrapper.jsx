@@ -5,7 +5,7 @@ import { useThree } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 import { useGameStateStore } from "../hooks/store";
-import { useLockCameraStore } from "../hooks/store";
+import { useLockCameraStore, useActionStore } from "../hooks/store";
 
 export default function CheckbleItemWrapper({
   setShowDialog,
@@ -31,7 +31,7 @@ export default function CheckbleItemWrapper({
   const showLabelDistance = 4;
   const updateGameState = useGameStateStore((state) => state.setGameState);
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
-
+  const setAction = useActionStore((state) => state.setAction);
   const showLabelFunc = () => {
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
@@ -46,6 +46,10 @@ export default function CheckbleItemWrapper({
       updateGameState(dialogID);
       if (lockCamera) {
         setLockCamera(true);
+      }
+      if (dialogID.includes("album")) {
+        console.log("showAlbum");
+        setAction("showAlbum");
       }
     }
   };

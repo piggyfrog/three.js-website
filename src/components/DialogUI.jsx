@@ -11,8 +11,6 @@ const DialogSelectDict = {
     withMultiPage: true,
     pageAmount: 5,
     withSelect: false,
-    isPhoto: true,
-    photo: ["foto1"],
   },
   radio: {
     withMultiPage: true,
@@ -94,8 +92,6 @@ const DialogSelectDict = {
     pageAmount: 2,
     withSelect: true,
     selectAmount: 2,
-    isItem: true,
-    itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "album2",
       1: "album4",
@@ -214,12 +210,6 @@ const DialogUI = () => {
     itemImgPath: "",
   };
 
-  // determinate is the dialog has album function
-  const { isPhoto, photo } = DialogSelectDict[dialogID] || {
-    isPhoto: false,
-    photo: "",
-  };
-
   // determinate if the dialog has select options
   const { withSelect, selectAmount, selectFunctions } = DialogSelectDict[
     dialogID
@@ -253,6 +243,7 @@ const DialogUI = () => {
       (pressed) => {
         if (pressed) {
           setDialogClose();
+          setAction("");
           setLockCamera(false);
         }
       }
@@ -365,13 +356,6 @@ const DialogUI = () => {
         </div>
       )}
 
-      {isPhoto && (
-        <div className="item-pic-background">
-          {photo.map((photo, index) => (
-            <FlipPhoto photo={photo} key={index} index={index} />
-          ))}
-        </div>
-      )}
       <div className="dialogBackground">
         <img className="person-back" src="/images/person-back.png" />
         <img className="person" src="/images/young-grandma.png" />
