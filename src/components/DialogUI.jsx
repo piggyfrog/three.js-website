@@ -143,10 +143,9 @@ const DialogSelectDict = {
     pageAmount: 1,
     withSelect: true,
     selectAmount: 1,
-    isItem: true,
+    isItem: false,
     withPersonArt: true,
     personArtPath: "/images/mama.png",
-    itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "album5",
     },
