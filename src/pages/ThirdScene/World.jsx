@@ -20,11 +20,6 @@ const World = () => {
   const { scene: laoye, animations: laoyeAnimations } = useGLTF(
     "/thirdScene/with-collider/laoye-back.glb"
   );
-  laoye.traverse((object) => {
-    if (object.isMesh) {
-      object.layers.set(2); // 设置为层2
-    }
-  });
 
   const { scene: grass, animations: grassAnimations } = useGLTF(
     "thirdScene/no-collider/grass.glb"
@@ -47,41 +42,41 @@ const World = () => {
     lAction.play();
   }, []);
 
-    //@@@@lights@@@@
+  //@@@@lights@@@@
 
-    useEffect(() => {
-      const spotLight3 = new THREE.SpotLight("#FFF8DC", 200);
-      spotLight3.position.set(4.5, 10, -7);
-      spotLight3.angle = Math.PI / 14;
-      spotLight3.penumbra = 0.8;
-      spotLight3.castShadow = true;
-      spotLightRef.current = spotLight3;
-      spotLight3.target.position.set(4.5, 0, -7);
-      scene.add(spotLight3);
-  
-      const spotLight4 = new THREE.SpotLight("#FFDEAD", 400);
-      spotLight4.position.set(-10, 10, -6.5);
-      spotLight4.angle = Math.PI / 6;
-      spotLight4.penumbra = 0.5;
-      spotLight4.castShadow = true;
-      spotLightRef.current = spotLight4;
-      spotLight4.target.position.set(-10, 0, -6.5);
-      scene.add(spotLight4);
-  
-      const spotLightHelper3 = new THREE.SpotLightHelper(spotLight3);
-      const spotLightHelper4 = new THREE.SpotLightHelper(spotLight4);
-      //scene.add(spotLightHelper4);
-  
-      const ambientLight = new THREE.AmbientLight(2);
-      scene.add(ambientLight);
-      // 清理函数
-      return () => {
-        scene.remove(spotLight3);
-        scene.remove(spotLight4);
-        scene.remove(spotLightHelper);
-      };
-    }, [scene]);
-    //
+  useEffect(() => {
+    const spotLight3 = new THREE.SpotLight("#FFF8DC", 200);
+    spotLight3.position.set(4.5, 10, -7);
+    spotLight3.angle = Math.PI / 14;
+    spotLight3.penumbra = 0.8;
+    spotLight3.castShadow = true;
+    spotLightRef.current = spotLight3;
+    spotLight3.target.position.set(4.5, 0, -7);
+    scene.add(spotLight3);
+
+    const spotLight4 = new THREE.SpotLight("#FFDEAD", 400);
+    spotLight4.position.set(-10, 10, -6.5);
+    spotLight4.angle = Math.PI / 6;
+    spotLight4.penumbra = 0.5;
+    spotLight4.castShadow = true;
+    spotLightRef.current = spotLight4;
+    spotLight4.target.position.set(-10, 0, -6.5);
+    scene.add(spotLight4);
+
+    const spotLightHelper3 = new THREE.SpotLightHelper(spotLight3);
+    const spotLightHelper4 = new THREE.SpotLightHelper(spotLight4);
+    //scene.add(spotLightHelper4);
+
+    const ambientLight = new THREE.AmbientLight(2);
+    scene.add(ambientLight);
+    // 清理函数
+    return () => {
+      scene.remove(spotLight3);
+      scene.remove(spotLight4);
+      scene.remove(spotLightHelper);
+    };
+  }, [scene]);
+  //
   //@@@@fog@@@@
   useEffect(() => {
     scene.fog = new Fog("#161513", 4, 20);

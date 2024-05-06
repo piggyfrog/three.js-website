@@ -285,8 +285,7 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "action-closeAlbum",
-      1: "action-ChangeScene3",
+      0: "action-ChangeScene3",
     },
   },
   chairMain: {
@@ -299,8 +298,7 @@ const DialogSelectDict = {
     itemImgPath: "/images/chiarMain.png",
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "action-closeDialog",
-      1: "action-ChangeScene3",
+      0: "action-ChangeScene3",
     },
   },
   grandmaMain: {
@@ -444,7 +442,7 @@ const DialogUI = () => {
     return sub(
       (state) => state.selectUp,
       (pressed) => {
-        if (pressed && withSelect) {
+        if (pressed && withSelect && selectAmount > 1) {
           setActiveIndex((prev) => (prev === 0 ? 1 : prev - 1));
         }
       }
@@ -456,7 +454,7 @@ const DialogUI = () => {
     return sub(
       (state) => state.selectDown,
       (pressed) => {
-        if (pressed && withSelect) {
+        if (pressed && withSelect && selectAmount > 1) {
           setActiveIndex((prev) => (prev === 1 ? 0 : prev + 1));
         }
       }
@@ -489,27 +487,36 @@ const DialogUI = () => {
 
   if (withSelect && selectAmount > 0 && !nextPageExist) {
     return (
-      <div className="dialogBackground">
-        {withPersonArt && (
-          <img className="person-back" src="/images/person-back.png" />
+      <>
+        {isItem && (
+          <div className="item-pic-background">
+            <img src={itemImgPath} alt="item" className="item-img" />
+          </div>
         )}
-        {withPersonArt && <img className="person" src={personArtPath} />}
-        <div className="dialog">{t(mainTextID)}</div>
-        <div className="options">
-          {Array.from({ length: selectAmount }).map((_, index) => (
-            <div className="option-item" key={index}>
-              <img
-                src="/images/select.png"
-                alt="select arrow"
-                className={`select-png ${
-                  index === activeIndex ? "" : " hidden"
-                }`}
-              />
-              <p className="option-text">{t(`${dialogID}-select-${index}`)}</p>
-            </div>
-          ))}
+        <div className="dialogBackground">
+          {withPersonArt && (
+            <img className="person-back" src="/images/person-back.png" />
+          )}
+          {withPersonArt && <img className="person" src={personArtPath} />}
+          <div className="dialog">{t(mainTextID)}</div>
+          <div className="options">
+            {Array.from({ length: selectAmount }).map((_, index) => (
+              <div className="option-item" key={index}>
+                <img
+                  src="/images/select.png"
+                  alt="select arrow"
+                  className={`select-png ${
+                    index === activeIndex ? "" : " hidden"
+                  }`}
+                />
+                <p className="option-text">
+                  {t(`${dialogID}-select-${index}`)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
   return (
