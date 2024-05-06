@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useLockCameraStore } from "../hooks/store";
 import { useActionStore } from "../hooks/store";
 import FlipPhoto from "./flipPhoto";
+import { t } from "i18next";
 
 const DialogSelectDict = {
   fruit: {
@@ -12,14 +13,14 @@ const DialogSelectDict = {
     pageAmount: 5,
     withSelect: false,
     withPersonArt: true,
-    personArtPath: "/images/young-grandma.png",
+    personArtPath: "/images/mama.png",
   },
   radio: {
     withMultiPage: true,
     pageAmount: 3,
     isItem: true,
     withPersonArt: true,
-    personArtPath: "/images/young-grandma.png",
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     withSelect: true,
     selectAmount: 2,
@@ -34,6 +35,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 2,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary2",
@@ -46,6 +49,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 2,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary4",
@@ -58,10 +63,12 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 2,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary5",
-      1: () => console.log("hello"),
+      1: "action-closeDialog",
     },
   },
   diary4: {
@@ -70,6 +77,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 2,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary6",
@@ -80,21 +89,29 @@ const DialogSelectDict = {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
   },
   diary6: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
   },
   diary7: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
   },
   album: {
     withMultiPage: true,
     pageAmount: 2,
     withSelect: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     selectAmount: 2,
     selectFunctions: {
       0: "album2",
@@ -107,6 +124,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 1,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "album3",
@@ -116,6 +135,8 @@ const DialogSelectDict = {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
   },
   album4: {
     withMultiPage: false,
@@ -123,6 +144,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 1,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "album5",
@@ -132,31 +155,43 @@ const DialogSelectDict = {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
   },
   video1: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/jiujiu.png",
   },
   video2: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/jiujiu.png",
   },
   video3: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/jiujiu.png",
   },
   video4: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/jiujiu.png",
   },
   video5: {
     withMultiPage: false,
     pageAmount: 1,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/jiujiu.png",
   },
   laolao: {
     withMultiPage: true,
@@ -164,6 +199,8 @@ const DialogSelectDict = {
     withSelect: true,
     selectAmount: 1,
     isItem: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
     selectFunctions: {
       0: "action-playLaoLaoAnimation",
     },
@@ -173,6 +210,8 @@ const DialogSelectDict = {
     pageAmount: 3,
     withSelect: false,
     isItem: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
   },
   laoyeback: {
     withMultiPage: false,
@@ -196,6 +235,119 @@ const DialogSelectDict = {
       1: "action-ChangeScene3",
     },
   },
+  teethMain:{
+    withMultiPage: true,
+    isItem: true,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 2,
+    withPersonArt: true,
+    itemImgPath: "/images/radio.png",
+    personArtPath: "/images/jiujiu.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "teethMain2",
+    },
+  },
+  teethMain2:{
+    withMultiPage: false,
+    isItem: true,
+    withSelect: true,
+    pageAmount: 1,
+    selectAmount: 2,
+    withPersonArt: true,
+    itemImgPath: "/images/radio.png",
+    personArtPath: "/images/jiujiu.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "changevideo1",
+    },
+  },
+  albumMain:{
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 3,
+    selectAmount: 2,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "albumMain2",
+    },
+  },
+  albumMain2:{
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "action-ChangeScene3",
+    },
+  },
+  chairMain:{
+    withMultiPage: true,
+    isItem: true,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: true,
+    itemImgPath: "/images/radio.png",
+    personArtPath: "/images/mama.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "action-ChangeScene3",
+    },
+  },
+  grandmaMain:{
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  grandpaMain:{
+    withMultiPage: false,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 1,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  momMain:{
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  uncleMain:{
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  
 };
 
 const DialogUI = () => {

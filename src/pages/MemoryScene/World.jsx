@@ -31,7 +31,7 @@ const World = () => {
   //@@@@lights@@@@
 
   useEffect(() => {
-    const spotLight = new THREE.SpotLight("#FFF8DC", 200);
+    const spotLight = new THREE.SpotLight("#FFF8DC", 300);
     spotLight.position.set(4.5, 10, -8);
     spotLight.angle = Math.PI / 8;
     spotLight.penumbra = 0.3;
@@ -45,11 +45,12 @@ const World = () => {
     spotLight2.angle = Math.PI / 14;
     spotLight2.penumbra = 0.3;
     spotLight2.castShadow = true;
-    spotLightRef.current = spotLight;
+    spotLightRef.current = spotLight2;
     spotLight2.target.position.set(-8, 0, -6.5);
     scene.add(spotLight2);
 
-    const spotLightHelper = new THREE.SpotLightHelper(spotLight2);
+    const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+    const spotLightHelper2 = new THREE.SpotLightHelper(spotLight2);
     //scene.add(spotLightHelper);
 
     const ambientLight = new THREE.AmbientLight(2);

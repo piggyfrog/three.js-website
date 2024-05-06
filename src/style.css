@@ -20,7 +20,8 @@ body,
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.708); /* 水平偏移、垂直偏移、模糊半径、颜色 */
 }
 
 .dialog {
@@ -29,21 +30,21 @@ body,
 .label > div {
   font-family: Helvetica, Arial;
   position: absolute;
-  background: #00000070;
-  color: white;
+  background: #00000050;
+  color: rgba(0, 0, 0, 0.7);
   white-space: nowrap;
   overflow: hidden;
   border-radius: 60px;
   user-select: none;
   font-size: 2.4rem;
-  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.5); /* 添加羽化效果 */
+  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.3); /* 添加羽化效果 */
   width: 80px; /* 设置宽度 */
   height: 80px; /* 设置高度 */
   padding: 10px; /* 添加内边距以适应内容 */
 }
 .checkIcon {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -73,7 +74,7 @@ body,
   width: 450px;
   height: 450px;
   position: absolute;
-  left: 10%;
+  left: 12%;
   bottom: -30px;
 }
 
@@ -137,8 +138,8 @@ body,
 }
 
 .select-png {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   margin-right: 15px;
 }
 

@@ -22,6 +22,8 @@ import {
   useActionStore,
   usePlayerLocationStore,
 } from "../../hooks/store.js";
+
+
 export default function ThirdScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
   const useGameState = useGameStateStore((state) => state.gameState);
@@ -30,8 +32,10 @@ export default function ThirdScene() {
   const [bloom, setBloom] = useState({
     luminanceThreshold: 0.5, // 控制从哪个亮度值开始应用泛光
     luminanceSmoothing: 0.8, // 泛光的平滑度，较低的值会使泛光效果更尖锐
-    intensity: 0.5,
+    intensity: 0.2,
+    layers: 0, // 用于指定哪些层应用泛光
   });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,16 +50,17 @@ export default function ThirdScene() {
     }
     if (action === "playLaoLaoAnimation") {
       setBloom({
-        luminanceThreshold: 0.5,
-        luminanceSmoothing: 0.8,
+        luminanceThreshold: 0.001,
+        luminanceSmoothing: 1,
         intensity: 1000,
+        layers:0,
       });
       // 重置泛光参数
     }
   }, [action]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader text="loading-thrird"/>}>
       <KeyboardControls
         map={[
           { name: "forwardKeyPressed", keys: ["KeyW"] },

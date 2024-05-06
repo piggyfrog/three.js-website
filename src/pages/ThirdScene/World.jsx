@@ -7,6 +7,10 @@ import * as THREE from "three";
 import { useDialogStore } from "../../hooks/store";
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
 import { useActionStore } from "../../hooks/store";
+import { Fog } from "three";
+import { useThree } from "@react-three/fiber";
+import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
 
 const World = () => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
@@ -16,6 +20,11 @@ const World = () => {
   const { scene: laoye, animations: laoyeAnimations } = useGLTF(
     "/thirdScene/with-collider/laoye-back.glb"
   );
+  laoye.traverse((object) => {
+    if (object.isMesh) {
+      object.layers.set(2); // 设置为层2
+    }
+  });
 
   const { scene: grass, animations: grassAnimations } = useGLTF(
     "thirdScene/no-collider/grass.glb"
@@ -28,12 +37,57 @@ const World = () => {
   const gAnimated = useAnimations(grassAnimations, grass);
   const setShowDialog = useDialogStore((state) => state.setOpen);
   const actionStore = useActionStore((state) => state.action);
+
+  const spotLightRef = useRef(); // 创建一个引用以访问spotLight
+  const { scene } = useThree();
   useEffect(() => {
     const lAction = lAnimated.actions.look;
     const laoyeAction = laoyeAnimated.actions.ldle;
     laoyeAction.play();
     lAction.play();
   }, []);
+
+    //@@@@lights@@@@
+
+    useEffect(() => {
+      const spotLight3 = new THREE.SpotLight("#FFF8DC", 200);
+      spotLight3.position.set(4.5, 10, -7);
+      spotLight3.angle = Math.PI / 14;
+      spotLight3.penumbra = 0.8;
+      spotLight3.castShadow = true;
+      spotLightRef.current = spotLight3;
+      spotLight3.target.position.set(4.5, 0, -7);
+      scene.add(spotLight3);
+  
+      const spotLight4 = new THREE.SpotLight("#FFDEAD", 400);
+      spotLight4.position.set(-10, 10, -6.5);
+      spotLight4.angle = Math.PI / 6;
+      spotLight4.penumbra = 0.5;
+      spotLight4.castShadow = true;
+      spotLightRef.current = spotLight4;
+      spotLight4.target.position.set(-10, 0, -6.5);
+      scene.add(spotLight4);
+  
+      const spotLightHelper3 = new THREE.SpotLightHelper(spotLight3);
+      const spotLightHelper4 = new THREE.SpotLightHelper(spotLight4);
+      //scene.add(spotLightHelper4);
+  
+      const ambientLight = new THREE.AmbientLight(2);
+      scene.add(ambientLight);
+      // 清理函数
+      return () => {
+        scene.remove(spotLight3);
+        scene.remove(spotLight4);
+        scene.remove(spotLightHelper);
+      };
+    }, [scene]);
+    //
+  //@@@@fog@@@@
+  useEffect(() => {
+    scene.fog = new Fog("#161513", 4, 20);
+    scene.background = new THREE.Color("#161513");
+  }, [scene]);
+  //
 
   useEffect(() => {
     if (actionStore === "playLaoLaoAnimation") {
@@ -83,11 +137,11 @@ const World = () => {
         // 调整透明盒子位置
         offsetX={0}
         offsetY={1}
-        offsetZ={0.4}
+        offsetZ={0}
         // 调整透明盒子大小
-        scaleX={1}
-        scaleY={4}
-        scaleZ={0.8}
+        scaleX={1.2}
+        scaleY={6.2}
+        scaleZ={1.2}
       />
       <primitive object={item1} scale={[2, 2, 2]} />
       <primitive object={item2} scale={[2, 2, 2]} />

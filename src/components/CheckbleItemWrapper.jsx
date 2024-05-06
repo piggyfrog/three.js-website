@@ -26,8 +26,8 @@ export default function CheckbleItemWrapper({
     position.y * 2,
     position.z * 2
   );
-  // 距离小于3的时候显示label
-  const showLabelDistance = 4;
+  // 距离小于6的时候显示label
+  const showLabelDistance = 6;
   const updateGameState = useGameStateStore((state) => state.setGameState);
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   const setAction = useActionStore((state) => state.setAction);
@@ -67,7 +67,7 @@ export default function CheckbleItemWrapper({
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="red" opacity={0.1} transparent />
+      <meshBasicMaterial color="red" opacity={0} transparent />
 
       {showLabel && (
         <Html position={[0, Math.max(scaleY / 2, 0.3), 0]} wrapperClass="label">
