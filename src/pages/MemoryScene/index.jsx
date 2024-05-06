@@ -52,7 +52,7 @@ export default function MemoryScene() {
   }, [action]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader text="loading-memory" />}>
       <KeyboardControls
         map={[
           { name: "forwardKeyPressed", keys: ["KeyW"] },
