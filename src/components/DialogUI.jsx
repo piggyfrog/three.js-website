@@ -11,11 +11,15 @@ const DialogSelectDict = {
     withMultiPage: true,
     pageAmount: 5,
     withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/young-grandma.png",
   },
   radio: {
     withMultiPage: true,
     pageAmount: 3,
     isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/young-grandma.png",
     itemImgPath: "/images/radio.png",
     withSelect: true,
     selectAmount: 2,
@@ -218,6 +222,12 @@ const DialogUI = () => {
     selectAmount: 0,
   };
 
+  // determinate if the dialog has person art
+  const { withPersonArt, personArtPath } = DialogSelectDict[dialogID] || {
+    withPersonArt: false,
+    personArtPath: "",
+  };
+
   // determinate if the dialog has multiple pages
   const { withMultiPage, pageAmount } = DialogSelectDict[dialogID] || {
     withMultiPage: false,
@@ -328,8 +338,10 @@ const DialogUI = () => {
   if (withSelect && selectAmount > 0 && !nextPageExist) {
     return (
       <div className="dialogBackground">
-        <img className="person-back" src="/images/person-back.png" />
-        <img className="person" src="/images/young-grandma.png" />
+        {withPersonArt && (
+          <img className="person-back" src="/images/person-back.png" />
+        )}
+        {withPersonArt && <img className="person" src={personArtPath} />}
         <div className="dialog">{t(mainTextID)}</div>
         <div className="options">
           {Array.from({ length: selectAmount }).map((_, index) => (
@@ -357,8 +369,10 @@ const DialogUI = () => {
       )}
 
       <div className="dialogBackground">
-        <img className="person-back" src="/images/person-back.png" />
-        <img className="person" src="/images/young-grandma.png" />
+        {withPersonArt && (
+          <img className="person-back" src="/images/person-back.png" />
+        )}
+        {withPersonArt && <img className="person" src={personArtPath} />}
         <div className="dialog">
           {t(mainTextID)}
           {nextPageExist && (
