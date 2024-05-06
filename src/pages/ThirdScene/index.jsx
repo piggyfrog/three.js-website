@@ -23,7 +23,6 @@ import {
   usePlayerLocationStore,
 } from "../../hooks/store.js";
 
-
 export default function ThirdScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
   const useGameState = useGameStateStore((state) => state.gameState);
@@ -53,14 +52,14 @@ export default function ThirdScene() {
         luminanceThreshold: 0.001,
         luminanceSmoothing: 1,
         intensity: 1000,
-        layers:0,
+        layers: 0,
       });
       // 重置泛光参数
     }
   }, [action]);
 
   return (
-    <Suspense fallback={<Loader text="loading-thrird"/>}>
+    <Suspense fallback={<Loader text="loading-third" />}>
       <KeyboardControls
         map={[
           { name: "forwardKeyPressed", keys: ["KeyW"] },

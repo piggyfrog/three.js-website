@@ -29,7 +29,7 @@ export default function MemoryScene() {
   const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
   const [showFotos, setShowFotos] = useState(false);
-  const photos = ["foto1"]; //添加照片
+  const photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]; //添加照片
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ export default function MemoryScene() {
   }, [action]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader text="loading-main" />}>
       <KeyboardControls
         map={[
           { name: "forwardKeyPressed", keys: ["KeyW"] },

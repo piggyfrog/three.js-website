@@ -41,7 +41,7 @@ const VideoScene = () => {
         onProgress={({ playedSeconds }) => {
           let sec = Math.floor(playedSeconds);
           console.log(sec);
-          if (sec % 5 === 0 && sec > 5) {
+          if (sec % 5 === 0 && sec > 5 && sec < 30) {
             setDialogID(`video${sec / 5}`);
           }
         }}
