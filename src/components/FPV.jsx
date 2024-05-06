@@ -32,7 +32,7 @@ const FPV = () => {
   }, [locked]);
 
   useEffect(() => {
-    if (action === "closeAlbum") {
+    if (action === "closeAlbum" || action.includes("ChangeScene")) {
       setAction("");
       setLockCamera(false);
     }
