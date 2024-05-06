@@ -74,7 +74,6 @@ const World = () => {
       </RigidBody>
       <primitive object={laoye} scale={[2, 2, 2]} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"laoyeback"}
         isCheck={false}
         // 是否锁定视角
@@ -94,7 +93,6 @@ const World = () => {
       <primitive object={item2} scale={[2, 2, 2]} />
       <primitive object={laolao} scale={[2, 2, 2]} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"laolao"}
         // 是否锁定视角
         lockCamera={false}

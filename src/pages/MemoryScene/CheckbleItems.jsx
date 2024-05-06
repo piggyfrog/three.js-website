@@ -11,7 +11,6 @@ const Items = () => {
   const { scene: momBack, animations: momBackAnimations } = useGLTF(
     "secondScene/with-collider/mama-back.glb"
   );
-  const setShowDialog = useDialogStore((state) => state.setOpen);
   const mbAnimated = useAnimations(momBackAnimations, momBack);
   useEffect(() => {
     const mbAction = mbAnimated.actions.ldle;
@@ -21,7 +20,6 @@ const Items = () => {
     <>
       <primitive object={Fruit} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"fruit"}
         // 是否锁定视角
         // 需要给一个child的位置
@@ -37,7 +35,6 @@ const Items = () => {
       />
       <primitive object={Camera} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"radio"}
         // 需要给一个child的位置
         position={Camera.children[0].position || new THREE.Vector3(0, 0, 0)}
@@ -52,7 +49,6 @@ const Items = () => {
       />
       <primitive object={Album} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         // 需要给一个child的位置
         dialogID={"album"}
         lockCamera={true}
@@ -68,7 +64,6 @@ const Items = () => {
       />
       <primitive object={Diary} scale={2} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         // 需要给一个child的位置
         dialogID={"diary"}
         position={Diary.children[0].position || new THREE.Vector3(0, 0, 0)}
@@ -83,7 +78,6 @@ const Items = () => {
       />
       <primitive object={momBack} scale={[2, 2, 2]} />
       <CheckbleItemWrapper
-        setShowDialog={setShowDialog}
         dialogID={"mamaback"}
         isCheck={false}
         // 是否锁定视角
