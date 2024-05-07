@@ -71,18 +71,18 @@ body,
 }
 
 .person-back {
-  width: 450px;
-  height: 450px;
+  width: 350px;
+  height: 350px;
   position: absolute;
-  left: 12%;
-  bottom: -30px;
+  left: 20%;
+  bottom: -40px;
 }
 
 .person {
-  width: 350px;
-  height: 400px;
+  width: 250px;
+  height: 300px;
   position: absolute;
-  left: 15%;
+  left: 25%;
   bottom: 0;
   filter: drop-shadow(0px 0px 20px rgb(0, 0, 0));
 }
@@ -93,14 +93,14 @@ body,
   padding-left: 15%;
   padding-right: 15%;
   padding-top: 15px;
-  max-width: 800px;
+  max-width: 460px;
   text-align: center;
   padding: 20px;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 500;
   color: #cdcdcd;
   position: relative;
-  left: 35%;
+  left: 37%;
   bottom: -30px;
   background: none;
   font-family: "Normal-CH";
@@ -126,7 +126,7 @@ body,
   font-weight: 500;
   color: #fff;
   margin-top: -50px;
-  margin-left: 50%;
+  margin-left: 45%;
   background: none;
   font-family: "Normal-CH";
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
@@ -358,5 +358,44 @@ body,
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media (min-width: 1800px) {
+  .person-back {
+    left: 25%;
+    width: 380px;
+    height: 380px;
+  }
+  .person {
+    left: 29%;
+    width: 280px;
+    height: 320px;
+  }
+  .dialog {
+    font-size: 22px;
+    left: 42%;
+  }
+
+  .options {
+    font-size: 22px;
+    margin-left: 48%;
+  }
+
+  .option-text {
+    font-size: 22px;
+  }
+
+  .time-frame-png {
+    width: 300px;
+  }
+
+  .flipPhoto-pos-0,
+  .flipPhoto-pos-1,
+  .flipPhoto-pos-2,
+  .flipPhoto-pos-3,
+  .flipPhoto-pos-4 {
+    width: calc(18vw * 1.15);
+    height: calc(12.5vw * 1.15);
   }
 }
