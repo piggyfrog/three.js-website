@@ -38,7 +38,7 @@ export default function MemoryScene() {
   }, [useGameState]);
 
   useEffect(() => {
-    if (action === "ChangeScene3") {
+    if (action === "ChangeScene2") {
       setShouldSave(true);
       navigate("/third");
     }
@@ -99,7 +99,7 @@ export default function MemoryScene() {
         <GameUI />
         {!showDialogStore && (
           <img
-            src="/images/time-frame.png"
+            src="/images/time-frame-1.png"
             className="time-frame-png"
             alt="Time frame"
           />

@@ -29,10 +29,9 @@ export default function ThirdScene() {
   const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const action = useActionStore((state) => state.action);
   const [bloom, setBloom] = useState({
-    luminanceThreshold: 0.5, // 控制从哪个亮度值开始应用泛光
+    luminanceThreshold: 0.001, // 控制从哪个亮度值开始应用泛光
     luminanceSmoothing: 0.8, // 泛光的平滑度，较低的值会使泛光效果更尖锐
-    intensity: 0.2,
-    layers: 0, // 用于指定哪些层应用泛光
+    intensity: 3,
   });
 
   const navigate = useNavigate();
@@ -48,10 +47,9 @@ export default function ThirdScene() {
     }
     if (action === "playLaoLaoAnimation") {
       setBloom({
-        luminanceThreshold: 0.001,
-        luminanceSmoothing: 1,
-        intensity: 1000,
-        layers: 0,
+        luminanceThreshold: 0.0001,
+        luminanceSmoothing: 5,
+        intensity: 300,
       });
       // 重置泛光参数
     }
@@ -100,7 +98,7 @@ export default function ThirdScene() {
         <GameUI />
         {!showDialogStore && (
           <img
-            src="/images/time-frame.png"
+            src="/images/time-frame-3.png"
             className="time-frame-png"
             alt="Time frame"
           />

@@ -100,7 +100,7 @@ export default function MemoryScene() {
         <GameUI />
         {!showDialogStore && (
           <img
-            src="/images/time-frame.png"
+            src="/images/time-frame-2.png"
             className="time-frame-png"
             alt="Time frame"
           />

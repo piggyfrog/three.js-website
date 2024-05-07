@@ -11,9 +11,10 @@ import { Fog } from "three";
 import { useThree } from "@react-three/fiber";
 import { useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
+import { t } from "i18next";
 
 const World = () => {
-  const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
+  const floorMeterial2 = useTexture("/images/diban.png");
   const { scene: WallScene } = useGLTF("/thirdScene/with-collider/yangtai.glb");
   const { scene: item1 } = useGLTF("/thirdScene/no-collider/item1.glb");
   const { scene: item2 } = useGLTF("/thirdScene/no-collider/item2.glb");
@@ -41,6 +42,8 @@ const World = () => {
     laoyeAction.play();
     lAction.play();
   }, []);
+
+  
 
   //@@@@lights@@@@
 
@@ -84,6 +87,48 @@ const World = () => {
   }, [scene]);
   //
 
+   //@@@@dust@@@@
+   function DustParticles() {
+    const count = 1000; // 粒子数量
+    const particleGeometry = useMemo(() => {
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3); // 每个粒子有 x, y, z 三个坐标
+
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 20; // 随机分布在一个范围内
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
+      return geometry;
+    }, [count]);
+
+    const particleMaterial = useMemo(() => {
+      return new THREE.PointsMaterial({
+        color: "gray",
+        size: 0.015,
+        sizeAttenuation: true,
+      });
+    }, []);
+
+    // 让粒子缓慢下落
+    useFrame(() => {
+      const positions = particleGeometry.attributes.position.array;
+      for (let i = 1; i < count * 3; i += 3) {
+        positions[i] -= 0.0004; // y 轴下降
+        if (positions[i] < -10) {
+          positions[i] = 10; // 当粒子落到一定位置时重新出现在顶部
+        }
+      }
+      particleGeometry.attributes.position.needsUpdate = true; // 更新粒子位置
+    });
+
+    return <points geometry={particleGeometry} material={particleMaterial} />;
+  }
+  //
+
   useEffect(() => {
     if (actionStore === "playLaoLaoAnimation") {
       const lAction = lAnimated.actions.idle;
@@ -102,19 +147,22 @@ const World = () => {
 
   return (
     <>
+      <DustParticles />
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <mesh
           position-y={-0.02}
           rotation-x={-Math.PI * 0.5}
           rotateZ={Math.PI}
+          
           scale={20}
         >
           <planeGeometry />
           <meshStandardMaterial
             attach={"material"}
-            map={floorMeterial}
+            map={floorMeterial2}
             map-repeat={[1, -1]}
             map-offset={[0, 1]}
+            
           />
         </mesh>
       </RigidBody>
@@ -145,7 +193,7 @@ const World = () => {
         dialogID={"laolao"}
         // 是否锁定视角
         lockCamera={false}
-        isCheck={false}
+        isCheck={true}
         // 需要给一个child的位置
         position={laolao.children[0].position || new THREE.Vector3(0, 0, 0)}
         // 调整透明盒子位置
@@ -154,7 +202,7 @@ const World = () => {
         offsetZ={0.4}
         // 调整透明盒子大小
         scaleX={1}
-        scaleY={4}
+        scaleY={6}
         scaleZ={0.8}
       />
       <primitive object={grass} scale={[2, 2, 2]} />
