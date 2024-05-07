@@ -21,13 +21,8 @@ const DialogSelectDict = {
     isItem: true,
     withPersonArt: true,
     personArtPath: "/images/mama.png",
-    itemImgPath: "/images/radio.png",
-    withSelect: true,
-    selectAmount: 2,
-    selectFunctions: {
-      0: "action-ChangeScene3",
-      1: "action-ChangeScene3",
-    },
+    itemImgPath: "/images/camera.png",
+    withSelect: false,
   },
   diary: {
     withMultiPage: true,
@@ -123,10 +118,8 @@ const DialogSelectDict = {
     pageAmount: 1,
     withSelect: true,
     selectAmount: 1,
-    isItem: true,
     withPersonArt: true,
     personArtPath: "/images/mama.png",
-    itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "album3",
     },
@@ -414,7 +407,7 @@ const DialogUI = () => {
         setDialogClose();
         setAction("");
         setLockCamera(false);
-      }, 5000);
+      }, 3000);
       return () => {
         clearTimeout(id);
       };
