@@ -20,6 +20,10 @@ html {
   height: 100%;
   overflow: hidden;
 }
+
+.scrollable-content::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 canvas.webgl {
   position: fixed;
   top: 0;
@@ -28,9 +32,14 @@ canvas.webgl {
   height: 100%;
   z-index: -1;
 }
-.content {
-  position: relative;
-  z-index: 1;
-  color: white;
+.scrollable-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll; /* 在这个容器内允许垂直滚动 */
   padding: 20px;
+  box-sizing: border-box; /* 保证内边距不会影响定义的宽高 */
+  color: white; /* 文本颜色 */
 }
