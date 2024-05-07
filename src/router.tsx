@@ -4,6 +4,7 @@ import MemoryScene from "./pages/MemoryScene";
 import ThirdScene from "./pages/ThirdScene";
 import VideoScene from "./pages/VideoScene";
 import React from "react";
+import Onboarding from "./pages/onboarding";
 
 function Router() {
   return (
@@ -13,6 +14,7 @@ function Router() {
         <Route path="/memory" element={<MemoryScene />} />
         <Route path="/third" element={<ThirdScene />} />
         <Route path="/video" element={<VideoScene />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </BrowserRouter>
   );
