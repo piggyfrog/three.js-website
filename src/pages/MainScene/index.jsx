@@ -86,10 +86,10 @@ export default function MemoryScene() {
               intensity={0.5} // 泛光的强度
             />
             <DepthOfField
-              focusDistance={0.2} // 焦点距离，可以调整
-              focalLength={1.3} // 焦距，可以调整
-              bokehScale={13} // 虚化程度，可以调整
-              height={480} // 渲染分辨率，可以调整
+              focusDistance={0.12} // 焦点距离，可以调整
+              focalLength={0.8} // 焦距，可以调整
+              bokehScale={18} // 虚化程度，可以调整
+              height={516} // 渲染分辨率，可以调整
             />
 
             <N8AO color="#696969" aoRadius={1} intensity={1} />

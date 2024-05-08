@@ -13,6 +13,7 @@ import { useFrame } from "@react-three/fiber";
 
 const World = () => {
   const floorMeterial = useTexture("/secondScene/with-collider/floor.jpeg");
+  const dustTexture = useTexture("/images/glow.png");
   const { scene: WallScene } = useGLTF("secondScene/with-collider/wall.glb");
   const { scene: FixedItemsScene } = useGLTF(
     "secondScene/with-collider/room.glb"
@@ -103,6 +104,9 @@ const World = () => {
         color: "gray",
         size: 0.015,
         sizeAttenuation: true,
+        map: dustTexture,
+        transparent: true,
+        depthWrite: false,
       });
     }, []);
 
