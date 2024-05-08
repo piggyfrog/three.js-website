@@ -76,24 +76,37 @@ const Onboarding = () => {
 
     // Controls
     const controls = new OrbitControls(camera, canvas);
-    controls.enableDamping = true;
+    controls.enableDamping = false;
     controls.enableZoom = false;
     controls.enablePan = false;
-    controls.minPolarAngle = Math.PI * 0.2
-    controls.maxPolarAngle = Math.PI * 0.7;
+    controls.minPolarAngle = Math.PI * 0.45
+    controls.maxPolarAngle = Math.PI * 0.55;
     controls.dampingFactor = 0.1;
     controls.minAzimuthAngle = Math.PI * -0.05;
     controls.maxAzimuthAngle = Math.PI * 0.05;
 
-    window.addEventListener("mousemove", (event) => {
+    window.addEventListener('mousemove', (event) => {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
-
+  
       // Calculate target offset based on mouse position
       controls.target.x = mouseX * 0.1; // Scale these values to adjust the effect intensity
       controls.target.y = -mouseY * 0.1;
       controls.update(); // Update the controls to apply the new target
-    });
+  });
+  
+  window.addEventListener('pointermove', (event) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1; // Redefine mouseX for this scope
+      const mouseY = (event.clientY / window.innerHeight) * 2 - 1; // Redefine mouseY for this scope
+  
+      displacement.screenCursor.x = mouseX;
+      displacement.screenCursor.y = -mouseY;
+  
+      // Calculate target offset based on mouse position
+      controls.target.x = mouseX * 0.5; // Adjust these values if needed
+      controls.target.y = -mouseY * 0.5;
+      controls.update(); // Update the controls to apply the new target
+  });
 
     const clock = new THREE.Clock(); // 创建一个新的 Clock 实例
     /**
@@ -287,17 +300,10 @@ const Onboarding = () => {
 
   return (
     <div className="Body">
-      <div class="scrollable-content">
-        <h1>煤矿的现代应用</h1>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p> .</p>
-        <p> .</p>
-        <p> ..</p>
-        <p> .</p>
-        <p> .</p>
-
+      <img src="/images/onboarding-title.png" alt="Title" className="onboarding-title-png" />
+      <div className="scrollable-content">
+        <h1>占位</h1>
+        
       </div>
       <canvas className="webgl"></canvas>
     </div>
