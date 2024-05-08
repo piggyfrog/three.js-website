@@ -199,7 +199,7 @@ body,
   pointer-events: none;
   user-select: none;
   mix-blend-mode: screen;
-  opacity: 0.2;
+  opacity: 0.1;
 }
 .centered {
   position: absolute;

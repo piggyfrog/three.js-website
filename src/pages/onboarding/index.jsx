@@ -12,7 +12,7 @@ const Onboarding = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setPhotoIndex((photoIndex) => (photoIndex + 1) % photoArray.length);
-    }, 5000);
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
 
@@ -79,8 +79,8 @@ const Onboarding = () => {
     controls.enableDamping = true;
     controls.enableZoom = false;
     controls.enablePan = false;
-    controls.minPolarAngle = Math.PI * 0.45;
-    controls.maxPolarAngle = Math.PI * 0.55;
+    controls.minPolarAngle = Math.PI * 0.2
+    controls.maxPolarAngle = Math.PI * 0.7;
     controls.dampingFactor = 0.1;
     controls.minAzimuthAngle = Math.PI * -0.05;
     controls.maxAzimuthAngle = Math.PI * 0.05;
@@ -95,6 +95,7 @@ const Onboarding = () => {
       controls.update(); // Update the controls to apply the new target
     });
 
+    const clock = new THREE.Clock(); // 创建一个新的 Clock 实例
     /**
      * Renderer
      */
@@ -206,7 +207,9 @@ const Onboarding = () => {
         ),
         uPictureTexture: new THREE.Uniform(textureLoader.load(photo)),
         uDisplacementTexture: new THREE.Uniform(displacement.texture),
-      },
+        uTime: { value: 0 } ,// 添加时间控制变量
+        uRandomSeed: { value: new THREE.Vector3(Math.random(), Math.random(), Math.random()) }
+        },
       blending: THREE.AdditiveBlending,
     });
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -218,6 +221,9 @@ const Onboarding = () => {
     const tick = () => {
       // Update controls
       controls.update();
+
+      const elapsedTime = clock.getElapsedTime();
+      particlesMaterial.uniforms.uTime.value = elapsedTime;
 
       /**
        * Raycaster
@@ -239,7 +245,7 @@ const Onboarding = () => {
        */
       // Fade out
       displacement.context.globalCompositeOperation = "source-over";
-      displacement.context.globalAlpha = 0.01;
+      displacement.context.globalAlpha = 0.02;
       displacement.context.fillRect(
         0,
         0,
@@ -255,8 +261,8 @@ const Onboarding = () => {
       const alpha = Math.min(cursorDistance * 0.05, 1);
 
       // Draw glow
-      const glowSize = displacement.canvas.width * 0.25;
-      displacement.context.globalCompositeOperation = "lighten";
+      const glowSize = displacement.canvas.width * 0.35;
+      displacement.context.globalCompositeOperation = "lighter";
       displacement.context.globalAlpha = alpha;
       displacement.context.drawImage(
         displacement.glowImage,
@@ -291,75 +297,7 @@ const Onboarding = () => {
         <p> ..</p>
         <p> .</p>
         <p> .</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>
-          煤炭不仅是一个重要的能源来源，还在许多工业生产过程中扮演着关键角色。
-        </p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
-        <p>尽管环保和可再生能源的发展，煤炭在全球能源结构中仍占有一席之地。</p>
+
       </div>
       <canvas className="webgl"></canvas>
     </div>
