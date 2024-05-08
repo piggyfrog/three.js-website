@@ -15,6 +15,7 @@ import { t } from "i18next";
 
 const World = () => {
   const floorMeterial2 = useTexture("/images/diban.png");
+  const dustTexture = useTexture("/images/glow.png");
   const { scene: WallScene } = useGLTF("/thirdScene/with-collider/yangtai.glb");
   const { scene: item1 } = useGLTF("/thirdScene/no-collider/item1.glb");
   const { scene: item2 } = useGLTF("/thirdScene/no-collider/item2.glb");
@@ -110,6 +111,9 @@ const World = () => {
         color: "gray",
         size: 0.015,
         sizeAttenuation: true,
+        map: dustTexture,
+        transparent: true,
+        depthWrite: false,
       });
     }, []);
 
