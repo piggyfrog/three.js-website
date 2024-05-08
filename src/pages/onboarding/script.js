@@ -78,6 +78,7 @@ window.addEventListener("mousemove", (event) => {
   controls.update(); // Update the controls to apply the new target
 });
 
+const clock = new THREE.Clock(); // 创建一个新的 Clock 实例
 /**
  * Renderer
  */
@@ -188,6 +189,7 @@ const particlesMaterial = new THREE.ShaderMaterial({
     ),
     uPictureTexture: new THREE.Uniform(textureLoader.load("./color.png")),
     uDisplacementTexture: new THREE.Uniform(displacement.texture),
+    uTime: { value: 0 } // 添加时间控制变量
   },
   blending: THREE.AdditiveBlending,
 });
@@ -201,6 +203,8 @@ const tick = () => {
   // Update controls
   controls.update();
 
+  const elapsedTime = clock.getElapsedTime();
+  particlesMaterial.uniforms.uTime.value = elapsedTime;
   /**
    * Raycaster
    */
@@ -221,7 +225,7 @@ const tick = () => {
    */
   // Fade out
   displacement.context.globalCompositeOperation = "source-over";
-  displacement.context.globalAlpha = 0.01;
+  displacement.context.globalAlpha = 0.015;
   displacement.context.fillRect(
     0,
     0,
@@ -237,7 +241,7 @@ const tick = () => {
   const alpha = Math.min(cursorDistance * 0.05, 1);
 
   // Draw glow
-  const glowSize = displacement.canvas.width * 0.25;
+  const glowSize = displacement.canvas.width * 0.5;
   displacement.context.globalCompositeOperation = "lighten";
   displacement.context.globalAlpha = alpha;
   displacement.context.drawImage(

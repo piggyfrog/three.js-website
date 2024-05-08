@@ -31,6 +31,7 @@ canvas.webgl {
   width: 100%;
   height: 100%;
   z-index: -1;
+  overflow-y: scroll; /* 在这个容器内允许垂直滚动 */
 }
 .scrollable-content {
   position: absolute;
