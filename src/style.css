@@ -155,14 +155,7 @@ body,
   width: 280px;
   z-index: 3;
 }
-.onboarding-title-png {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-}
+
 .settings-png {
   position: absolute;
   top: 80px;
@@ -370,9 +363,11 @@ body,
 
 @media (min-width: 1800px) {
   .person-back {
-    left: 25%;
+    left: 26%;
     width: 380px;
     height: 380px;
+    mix-blend-mode: overlay;
+    opacity:  0.8;
   }
   .person {
     left: 29%;

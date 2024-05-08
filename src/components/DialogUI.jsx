@@ -487,7 +487,7 @@ const DialogUI = () => {
         )}
         <div className="dialogBackground">
           {withPersonArt && (
-            <img className="person-back" src="/images/person-back.png" />
+            <img className="person-back" src="/images/person-back.gif" />
           )}
           {withPersonArt && <img className="person" src={personArtPath} />}
           <div className="dialog">{t(mainTextID)}</div>
@@ -521,7 +521,7 @@ const DialogUI = () => {
 
       <div className="dialogBackground">
         {withPersonArt && (
-          <img className="person-back" src="/images/person-back.png" />
+          <img className="person-back" src="/images/person-back.gif" />
         )}
         {withPersonArt && <img className="person" src={personArtPath} />}
         <div className="dialog">
