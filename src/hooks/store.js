@@ -23,6 +23,7 @@ export const useGameStateStore = create((set) => ({
       return state;
     });
   },
+  cleanGameState: () => set({ gameState: [] }),
 }));
 
 export const usePlayerLocationStore = create((set) => ({
@@ -42,4 +43,20 @@ export const useLockCameraStore = create((set) => ({
 export const useActionStore = create((set) => ({
   action: "",
   setAction: (value) => set({ action: value }),
+}));
+
+export const useShowPngStore = create((set) => ({
+  show: false,
+  pngPath: "",
+  setPngPath: (value) => set({ pngPath: value }),
+  setShow: (value) => set({ show: value }),
+}));
+
+export const useSettingStore = create((set) => ({
+  sound: false,
+  openSetting: false,
+  language: "ch",
+  setOpenSetting: (value) => set({ openSetting: value }),
+  setSound: (value) => set({ sound: value }),
+  setLanguage: (value) => set({ language: value }),
 }));

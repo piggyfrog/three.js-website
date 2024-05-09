@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import particlesVertexShader from "./shaders/particles/vertex.glsl";
 import particlesFragmentShader from "./shaders/particles/fragment.glsl";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { useNavigate } from "react-router";
 import * as THREE from "three";
 import "./style.css";
 const Onboarding = () => {
   const photoArray = ["./images/color1.png", "./images/color.png"];
   const [photoIndex, setPhotoIndex] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       setPhotoIndex((photoIndex) => (photoIndex + 1) % photoArray.length);
@@ -79,34 +80,34 @@ const Onboarding = () => {
     controls.enableDamping = false;
     controls.enableZoom = false;
     controls.enablePan = false;
-    controls.minPolarAngle = Math.PI * 0.45
+    controls.minPolarAngle = Math.PI * 0.45;
     controls.maxPolarAngle = Math.PI * 0.55;
     controls.dampingFactor = 0.1;
     controls.minAzimuthAngle = Math.PI * -0.05;
     controls.maxAzimuthAngle = Math.PI * 0.05;
 
-    window.addEventListener('mousemove', (event) => {
+    window.addEventListener("mousemove", (event) => {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
-  
+
       // Calculate target offset based on mouse position
       controls.target.x = mouseX * 0.1; // Scale these values to adjust the effect intensity
       controls.target.y = -mouseY * 0.1;
       controls.update(); // Update the controls to apply the new target
-  });
-  
-  window.addEventListener('pointermove', (event) => {
+    });
+
+    window.addEventListener("pointermove", (event) => {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1; // Redefine mouseX for this scope
       const mouseY = (event.clientY / window.innerHeight) * 2 - 1; // Redefine mouseY for this scope
-  
+
       displacement.screenCursor.x = mouseX;
       displacement.screenCursor.y = -mouseY;
-  
+
       // Calculate target offset based on mouse position
       controls.target.x = mouseX * 0.5; // Adjust these values if needed
       controls.target.y = -mouseY * 0.5;
       controls.update(); // Update the controls to apply the new target
-  });
+    });
 
     const clock = new THREE.Clock(); // 创建一个新的 Clock 实例
     /**
@@ -220,9 +221,11 @@ const Onboarding = () => {
         ),
         uPictureTexture: new THREE.Uniform(textureLoader.load(photo)),
         uDisplacementTexture: new THREE.Uniform(displacement.texture),
-        uTime: { value: 0 } ,// 添加时间控制变量
-        uRandomSeed: { value: new THREE.Vector3(Math.random(), Math.random(), Math.random()) }
+        uTime: { value: 0 }, // 添加时间控制变量
+        uRandomSeed: {
+          value: new THREE.Vector3(Math.random(), Math.random(), Math.random()),
         },
+      },
       blending: THREE.AdditiveBlending,
     });
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -300,10 +303,14 @@ const Onboarding = () => {
 
   return (
     <div className="Body">
-      <img src="/images/onboarding-title.png" alt="Title" className="onboarding-title-png" />
+      <img
+        src="/images/onboarding-title.png"
+        alt="Title"
+        className="onboarding-title-png"
+        onClick={() => navigate("/main")}
+      />
       <div className="scrollable-content">
         <h1>占位</h1>
-        
       </div>
       <canvas className="webgl"></canvas>
     </div>
