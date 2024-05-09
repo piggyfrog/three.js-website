@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useThree, useFrame } from "@react-three/fiber";
 import { usePlayerLocationStore } from "../hooks/store";
 
-const SPEED = 5;
+const SPEED = 3;
 const velocity = new THREE.Vector3();
 const forwardDirectionVector = new THREE.Vector3();
 const sidewaysDirectionVector = new THREE.Vector3();

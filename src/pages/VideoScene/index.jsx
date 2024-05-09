@@ -19,19 +19,7 @@ const VideoScene = () => {
     return <Loader />;
   }
   return (
-    <KeyboardControls
-      map={[
-        { name: "forwardKeyPressed", keys: ["KeyW"] },
-        { name: "rightKeyPressed", keys: ["KeyD"] },
-        { name: "backwardKeyPressed", keys: ["KeyS"] },
-        { name: "leftKeyPressed", keys: ["KeyA"] },
-        { name: "selectUp", keys: ["ArrowUp"] },
-        { name: "selectDown", keys: ["ArrowDown"] },
-        { name: "nextPage", keys: ["ArrowRight"] },
-        { name: "select", keys: ["Space"] },
-        { name: "closeDialog", keys: ["KeyQ"] },
-      ]}
-    >
+    <>
       <ReactPlayer
         url="/videos/v1.mp4"
         width={"100svw"}
@@ -50,7 +38,7 @@ const VideoScene = () => {
         }}
       />
       {showUI && <DialogUI />}
-    </KeyboardControls>
+    </>
   );
 };
 

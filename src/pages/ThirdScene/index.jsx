@@ -57,54 +57,40 @@ export default function ThirdScene() {
 
   return (
     <Suspense fallback={<Loader text="loading-third" />}>
-      <KeyboardControls
-        map={[
-          { name: "forwardKeyPressed", keys: ["KeyW"] },
-          { name: "rightKeyPressed", keys: ["KeyD"] },
-          { name: "backwardKeyPressed", keys: ["KeyS"] },
-          { name: "leftKeyPressed", keys: ["KeyA"] },
-          { name: "selectUp", keys: ["ArrowUp"] },
-          { name: "selectDown", keys: ["ArrowDown"] },
-          { name: "nextPage", keys: ["ArrowRight"] },
-          { name: "select", keys: ["Space"] },
-          { name: "closeDialog", keys: ["KeyQ"] },
-        ]}
-      >
-        <Canvas camera={{ position: [10, 2, 5] }} shadows frameloop="demand">
-          <ambientLight intensity={1.5} />
-          {/* 这两个切换第一还是自由视角  */}
-          {/* <OrbitControls />*/}
+      <Canvas camera={{ position: [10, 2, 5] }} shadows frameloop="demand">
+        <ambientLight intensity={1.5} />
+        {/* 这两个切换第一还是自由视角  */}
+        {/* <OrbitControls />*/}
 
-          <FPV />
+        <FPV />
 
-          <Physics gravity={[0, 0, 0]}>
-            <World />
+        <Physics gravity={[0, 0, 0]}>
+          <World />
 
-            <FPScontrols />
-          </Physics>
-          <EffectComposer>
-            <Bloom {...bloom} />
-            <DepthOfField
-              focusDistance={0.2} // 焦点距离，可以调整
-              focalLength={1.5} // 焦距，可以调整
-              bokehScale={8} // 虚化程度，可以调整
-              height={480} // 渲染分辨率，可以调整
-            />
-
-            <N8AO color="#696969" aoRadius={1} intensity={1} />
-          </EffectComposer>
-        </Canvas>
-        <div className="cursor">&#x25CB;</div>
-        <GameUI />
-        {!showDialogStore && (
-          <img
-            src="/images/time-frame-3.png"
-            className="time-frame-png"
-            alt="Time frame"
+          <FPScontrols />
+        </Physics>
+        <EffectComposer>
+          <Bloom {...bloom} />
+          <DepthOfField
+            focusDistance={0.2} // 焦点距离，可以调整
+            focalLength={1.5} // 焦距，可以调整
+            bokehScale={8} // 虚化程度，可以调整
+            height={480} // 渲染分辨率，可以调整
           />
-        )}
-        {showDialogStore && <DialogUI />}
-      </KeyboardControls>
+
+          <N8AO color="#696969" aoRadius={1} intensity={1} />
+        </EffectComposer>
+      </Canvas>
+      <div className="cursor">&#x25CB;</div>
+      <GameUI />
+      {!showDialogStore && (
+        <img
+          src="/images/time-frame-3.png"
+          className="time-frame-png"
+          alt="Time frame"
+        />
+      )}
+      {showDialogStore && <DialogUI />}
     </Suspense>
   );
 }

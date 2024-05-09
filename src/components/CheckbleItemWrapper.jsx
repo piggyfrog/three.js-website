@@ -5,11 +5,17 @@ import { useThree } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import * as THREE from "three";
 import { useGameStateStore, useDialogStore } from "../hooks/store";
-import { useLockCameraStore, useActionStore } from "../hooks/store";
+import {
+  useLockCameraStore,
+  useActionStore,
+  useShowPngStore,
+} from "../hooks/store";
+import { set } from "layer";
 
 export default function CheckbleItemWrapper({
   isCheck = true,
   lockCamera = false,
+  onlyPng = false,
   position,
   dialogID,
   offsetX = 0,
@@ -32,14 +38,26 @@ export default function CheckbleItemWrapper({
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   const setAction = useActionStore((state) => state.setAction);
   const setShowDialog = useDialogStore((state) => state.setOpen);
+  const setShowPng = useShowPngStore((state) => state.setShow);
+  const setPngPath = useShowPngStore((state) => state.setPngPath);
+
   const showLabelFunc = () => {
-    const distance = camera.position.distanceTo(itemPosition);
-    if (showLabelDistance > distance) {
+    if (!onlyPng) {
+      const distance = camera.position.distanceTo(itemPosition);
+      if (showLabelDistance > distance) {
+        setShowLabel(true);
+      }
+    } else {
       setShowLabel(true);
     }
   };
 
   const showDialogFunc = () => {
+    if (onlyPng) {
+      setShowPng(true);
+      setPngPath(`/images/${dialogID}.png`);
+      return;
+    }
     const distance = camera.position.distanceTo(itemPosition);
     if (showLabelDistance > distance) {
       setShowDialog(dialogID);
@@ -64,11 +82,11 @@ export default function CheckbleItemWrapper({
       onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
       onClick={showDialogFunc}
-      visible={false}  // 直接设置mesh为不可见
+      // visible={false}  // 直接设置mesh为不可见
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
-      <meshBasicMaterial color="red" opacity={0} transparent />
+      <meshBasicMaterial color="red" opacity={0.1} transparent />
 
       {showLabel && (
         <Html position={[0, Math.max(scaleY / 2, 0.3), 0]} wrapperClass="label">

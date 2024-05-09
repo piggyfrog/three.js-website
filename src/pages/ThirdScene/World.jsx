@@ -44,8 +44,6 @@ const World = () => {
     lAction.play();
   }, []);
 
-  
-
   //@@@@lights@@@@
 
   useEffect(() => {
@@ -88,8 +86,8 @@ const World = () => {
   }, [scene]);
   //
 
-   //@@@@dust@@@@
-   function DustParticles() {
+  //@@@@dust@@@@
+  function DustParticles() {
     const count = 1000; // 粒子数量
     const particleGeometry = useMemo(() => {
       const geometry = new THREE.BufferGeometry();
@@ -157,7 +155,6 @@ const World = () => {
           position-y={-0.02}
           rotation-x={-Math.PI * 0.5}
           rotateZ={Math.PI}
-          
           scale={20}
         >
           <planeGeometry />
@@ -166,7 +163,6 @@ const World = () => {
             map={floorMeterial2}
             map-repeat={[1, -1]}
             map-offset={[0, 1]}
-            
           />
         </mesh>
       </RigidBody>
@@ -215,5 +211,10 @@ const World = () => {
 };
 
 useGLTF.preload("/thirdScene/with-collider/yangtai.glb");
+useGLTF.preload("/thirdScene/no-collider/item1.glb");
+useGLTF.preload("/thirdScene/no-collider/item2.glb");
+useGLTF.preload("/thirdScene/with-collider/laoye-back.glb");
+useGLTF.preload("/thirdScene/no-collider/grass.glb");
+useGLTF.preload("/thirdScene/no-collider/laolao.glb");
 
 export default World;
