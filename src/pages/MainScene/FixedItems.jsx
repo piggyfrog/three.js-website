@@ -7,7 +7,7 @@ import * as THREE from "three";
 export default function FixedItems(props) {
   const { scene } = useGLTF("/main-scene-items.glb");
   const { scene:color } = useGLTF("/main-scene-items-color.glb");
-  
+  const { scene:building } = useGLTF("/main-scene-building.glb");
   useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
@@ -97,6 +97,7 @@ export default function FixedItems(props) {
         scaleZ={0.3}
       />
       <primitive object={color} scale={2} />
+      <primitive object={building} scale={2} />
       
     </>
   );

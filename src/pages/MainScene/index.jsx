@@ -66,7 +66,7 @@ export default function MemoryScene() {
   return (
     <Suspense fallback={<Loader text="loading-main" />}>
       <Canvas camera={{ position: [0, 2, 2] }} shadows frameloop="demand">
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={0.5} />
         {/* 这两个切换第一还是自由视角  */}
         {/* <OrbitControls />*/}
 
@@ -82,9 +82,9 @@ export default function MemoryScene() {
         </Physics>
         <EffectComposer>
           <Bloom
-            luminanceThreshold={0.5} // 控制从哪个亮度值开始应用泛光
-            luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
-            intensity={0.5} // 泛光的强度
+            luminanceThreshold={0.001} // 控制从哪个亮度值开始应用泛光
+            luminanceSmoothing={1} // 泛光的平滑度，较低的值会使泛光效果更尖锐
+            intensity={0.9} // 泛光的强度
           />
           <DepthOfField 
             focusDistance={focusDistance} 
@@ -93,7 +93,7 @@ export default function MemoryScene() {
             height={516} />
            
 
-          <N8AO color="#696969" aoRadius={1} intensity={1} />
+          <N8AO color="#50463b" aoRadius={1} intensity={2} />
         </EffectComposer>
       </Canvas>
       <div className="cursor">&#x25CB;</div>

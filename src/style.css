@@ -363,7 +363,9 @@ body,
   transform: translate(-50%, -50%);
   width: 500px;
   height: 630px;
-  background: linear-gradient(#000000, #0000003f);
+  background: linear-gradient(#00000066, #00000066);
+  filter: drop-shadow(10px 10px 20px rgb(0, 0, 0));
+  border-radius: 40px;
   opacity: 1;
   padding: 20px;
 }

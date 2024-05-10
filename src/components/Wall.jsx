@@ -6,6 +6,17 @@ export default function Wall(props) {
   const { scene } = useGLTF("/wall.glb");
   const { scene: roofScene } = useGLTF("/roof.glb");
   useEffect(() => {
+    roofScene.traverse((child) => {
+      if (child.isMesh) {
+        // 为隐藏的对象设置一种不参与渲染的材料
+        child.material = new THREE.MeshBasicMaterial({
+          visible: false, // 完全不渲染这个材料
+          side: THREE.DoubleSide // 确保所有面都不渲染
+        });
+      }
+    });
+  }, [scene]);
+  useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
         // 为隐藏的对象设置一种不参与渲染的材料
