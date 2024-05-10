@@ -52,7 +52,7 @@ export default function MemoryScene() {
   return (
     <Suspense fallback={<Loader text="loading-main" />}>
       <Canvas camera={{ position: [0, 2, 2] }} shadows frameloop="demand">
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.2} />
         {/* 这两个切换第一还是自由视角  */}
         {/* <OrbitControls />*/}
 
@@ -74,8 +74,8 @@ export default function MemoryScene() {
           />
           <DepthOfField
             focusDistance={0.12} // 焦点距离，可以调整
-            focalLength={0.8} // 焦距，可以调整
-            bokehScale={18} // 虚化程度，可以调整
+            focalLength={1} // 焦距，可以调整
+            bokehScale={12} // 虚化程度，可以调整
             height={516} // 渲染分辨率，可以调整
           />
 
