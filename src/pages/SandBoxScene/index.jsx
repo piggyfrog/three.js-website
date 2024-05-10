@@ -9,6 +9,12 @@ import { Suspense } from "react";
 import Loader from "../../components/Loader.jsx";
 import { OrbitControls } from "@react-three/drei";
 import { useKeyboardControls } from "@react-three/drei";
+import {
+  EffectComposer,
+  DepthOfField,
+  N8AO,
+  Bloom,
+} from "@react-three/postprocessing";
 import { useNavigate } from "react-router";
 import {
   useDialogStore,
@@ -36,15 +42,26 @@ export default function SandboxScene() {
   return (
     <Suspense fallback={<Loader text="loading-third" />}>
       <Canvas
-        camera={{ position: [5, 28, 15], fov: 45 }}
+        camera={{ position: [5, 28, 15], fov: 35 }}
         shadows
         frameloop="demand"
       >
         <ambientLight intensity={1.5} />
         <OrbitControls target={[10, 0, 0]} />
-
+     
         <World />
+        <EffectComposer>
+          <Bloom
+            luminanceThreshold={0.001} // 控制从哪个亮度值开始应用泛光
+            luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
+            intensity={3} // 泛光的强度
+          />
+        
+
+          <N8AO color="#696969" aoRadius={1} intensity={1} />
+        </EffectComposer>
       </Canvas>
+
       <GameUI />
       {showPng && (
         <div className="item-pic-background">
