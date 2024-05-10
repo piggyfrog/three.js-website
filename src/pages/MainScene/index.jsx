@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef  } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
@@ -7,6 +7,8 @@ import FPScontrols from "../../components/FPScontrols.jsx";
 import FPV from "../../components/FPV.jsx";
 import DialogUI from "../../components/DialogUI.jsx";
 import GameUI from "../../components/GameUI.jsx";
+import { GUI } from 'dat.gui';
+
 import {
   EffectComposer,
   DepthOfField,
@@ -32,6 +34,18 @@ export default function MemoryScene() {
   const photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]; //添加照片
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
+
+  const [focusDistance, setFocusDistance] = useState(4);
+  const [focalLength, setFocalLength] = useState(40);
+  const gui = useRef();
+
+  useEffect(() => {
+    gui.current = new GUI();
+    gui.current.add({ focusDistance }, 'focusDistance', 0, 10).onChange(setFocusDistance);
+    gui.current.add({ focalLength }, 'focalLength', 0.1, 100).onChange(setFocalLength);
+
+    return () => gui.current.destroy();
+  }, []);
 
   useEffect(() => {
     console.log("gameState", useGameState);
@@ -72,12 +86,12 @@ export default function MemoryScene() {
             luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
             intensity={0.5} // 泛光的强度
           />
-          <DepthOfField
-            focusDistance={0.12} // 焦点距离，可以调整
-            focalLength={1} // 焦距，可以调整
-            bokehScale={12} // 虚化程度，可以调整
-            height={516} // 渲染分辨率，可以调整
-          />
+          <DepthOfField 
+            focusDistance={focusDistance} 
+            focalLength={focalLength} 
+            bokehScale={18} 
+            height={516} />
+           
 
           <N8AO color="#696969" aoRadius={1} intensity={1} />
         </EffectComposer>
