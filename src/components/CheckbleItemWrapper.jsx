@@ -72,6 +72,13 @@ export default function CheckbleItemWrapper({
     }
   };
 
+  const getLabel = () => {
+    if (onlyPng) {
+      return `/images/${dialogID}-label.png`;
+    }
+    return isCheck ? "/images/check.png" : "/images/talk.png";
+  };
+
   return (
     <mesh
       position={[
@@ -90,11 +97,7 @@ export default function CheckbleItemWrapper({
 
       {showLabel && (
         <Html position={[0, Math.max(scaleY / 2, 0.3), 0]} wrapperClass="label">
-          <img
-            src={isCheck ? "/images/check.png" : "/images/talk.png"}
-            alt="check item"
-            className="checkIcon"
-          />
+          <img src={getLabel()} alt="check item" className="checkIcon" />
         </Html>
       )}
     </mesh>
