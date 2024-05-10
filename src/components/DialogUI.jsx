@@ -325,7 +325,7 @@ const DialogSelectDict = {
     itemImgPath: "/images/chiarMain.png",
     personArtPath: "/images/laoye.png",
     selectFunctions: {
-      0: "ction-closeDialog",
+      0: "action-closeDialog",
       1: "thirdscene",
     },
   },
