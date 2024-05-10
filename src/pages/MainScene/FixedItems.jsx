@@ -34,6 +34,7 @@ export default function FixedItems(props) {
   const { scene: chair } = useGLTF("/chair.glb");
   const { scene: glasscup } = useGLTF("/glasscup.glb");
   const { scene: teeth } = useGLTF("/teeth.glb");
+  const { scene: soap } = useGLTF("/soap.glb");
   return (
     <>
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
@@ -84,7 +85,19 @@ export default function FixedItems(props) {
         scaleY={0.3}
         scaleZ={0.3}
       />
+       <primitive object={soap} scale={2} />
+      <CheckbleItemWrapper
+        dialogID={"soap"}
+        position={soap.children[0].position}
+        offsetX={0}
+        offsetY={0}
+        offsetZ={0}
+        scaleX={0.3}
+        scaleY={0.3}
+        scaleZ={0.3}
+      />
       <primitive object={color} scale={2} />
+      
     </>
   );
 }

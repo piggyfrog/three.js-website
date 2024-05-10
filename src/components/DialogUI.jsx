@@ -63,7 +63,7 @@ const DialogSelectDict = {
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary5",
-      1: "action-closeDialog",
+      1: "sandboxscene",
     },
   },
   diary4: {
@@ -185,6 +185,41 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/jiujiu.png",
   },
+  video6: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+  },
+  video7: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+  },
+  video8: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+  },
+  video9: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+  },
+  video10: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withSelect: false,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+  },
   laolao: {
     withMultiPage: true,
     pageAmount: 4,
@@ -213,7 +248,7 @@ const DialogSelectDict = {
     selectAmount: 2,
     selectFunctions: {
       0: "action-closeDialog",
-      1: "action-ChangeScene2",
+      1: "mainScene",
     },
   },
   mamaback: {
@@ -224,7 +259,7 @@ const DialogSelectDict = {
     selectAmount: 2,
     selectFunctions: {
       0: "action-closeDialog",
-      1: "action-ChangeScene3",
+      1: "mainscene",
     },
   },
   teethMain: {
@@ -252,7 +287,7 @@ const DialogSelectDict = {
     personArtPath: "/images/jiujiu.png",
     selectFunctions: {
       0: "action-closeDialog",
-      1: "changevideo1",
+      1: "video1scene",
     },
   },
   albumMain: {
@@ -277,20 +312,21 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "action-ChangeScene3",
+      0: "memoryscene",
     },
   },
   chairMain: {
     withMultiPage: true,
     isItem: true,
     withSelect: true,
-    pageAmount: 2,
-    selectAmount: 1,
+    pageAmount: 1,
+    selectAmount: 2,
     withPersonArt: true,
     itemImgPath: "/images/chiarMain.png",
-    personArtPath: "/images/mama.png",
+    personArtPath: "/images/laoye.png",
     selectFunctions: {
-      0: "action-ChangeScene3",
+      0: "ction-closeDialog",
+      1: "thirdscene",
     },
   },
   grandmaMain: {
@@ -315,11 +351,34 @@ const DialogSelectDict = {
       0: "action-closeDialog",
     },
   },
+  grandpaMainNew: {
+    withMultiPage: false,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 1,
+    selectAmount: 2,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "endingscene",
+    },
+  },
   momMain: {
     withMultiPage: true,
     isItem: false,
     withSelect: true,
     pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  momMainNew: {
+    withMultiPage: false,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 1,
     selectAmount: 1,
     withPersonArt: false,
     selectFunctions: {
@@ -335,6 +394,45 @@ const DialogSelectDict = {
     withPersonArt: false,
     selectFunctions: {
       0: "action-closeDialog",
+    },
+  },
+  uncleMainNew: {
+    withMultiPage: true,
+    isItem: false,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 1,
+    withPersonArt: false,
+    selectFunctions: {
+      0: "action-closeDialog",
+    },
+  },
+  soap: {
+    withMultiPage: true,
+    isItem: true,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 2,
+    withPersonArt: true,
+    itemImgPath: "/images/teethMain.png",
+    personArtPath: "/images/laoye.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "soap2",
+    },
+  },
+  soap2: {
+    withMultiPage: true,
+    isItem: true,
+    withSelect: true,
+    pageAmount: 2,
+    selectAmount: 2,
+    withPersonArt: true,
+    itemImgPath: "/images/teethMain.png",
+    personArtPath: "/images/laoye.png",
+    selectFunctions: {
+      0: "action-closeDialog",
+      1: "video2scene",
     },
   },
 };
