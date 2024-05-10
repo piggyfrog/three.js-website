@@ -15,8 +15,17 @@ import { useFrame } from "@react-three/fiber";
 
 const World = () => {
   const { scene: floor } = useGLTF("/sandbox/floor.glb");
+  floor.scale.set(2, 2, 2);
   const { scene: sky } = useGLTF("/sandbox/sky.glb");
   const { scene: buildings } = useGLTF("/sandbox/buildings.glb");
+
+  const { scene } = useThree();
+  //@@@@fog@@@@
+  useEffect(() => {
+    scene.fog = new Fog("#A69A7C", 1, 200);
+    scene.background = new THREE.Color("#A69A7C");
+  }, [scene]);
+  //
   return (
     <>
       <primitive object={floor} />
