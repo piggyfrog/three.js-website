@@ -19,6 +19,7 @@ void main()
     {
         particle.a = mod(particle.a, 1.0);
         particle.xyz = base.xyz;
+        //console.log(particle.xyz)
     }
 
     // Alive

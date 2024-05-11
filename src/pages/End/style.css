@@ -19,10 +19,36 @@ body
 }
 .ending-back-png {
     position: absolute;
-    top: 75%;
+    top: 80%;
     left: 50%;
     width: 260px;
     transform: translate(-50%, -50%);
     z-index: 3;
     cursor: pointer;
   }
+  .maskEnding {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+  }
+  .bottom-2
+    {
+        position: absolute;
+        bottom: 5%;
+        left: 80px;
+        width: 300px;
+    }
+    .bottom-1
+    {
+        position: absolute;
+        bottom: 4%;
+        right: 60px;
+        width: 400px;
+    }

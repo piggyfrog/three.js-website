@@ -14,9 +14,34 @@ import gpgpuParticlesShader from './shaders/gpgpu/particles.glsl'
 import { mergeBufferGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import "./style.css";
 import { useGLTF } from "@react-three/drei";
+import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
+import GameUI from "../../components/GameUI.jsx";
+import { useLoader } from "@react-three/fiber";
+// const land = useLoader(GLTFLoader, "/ending/ending.glb", loader => {
+//     loader.manager.onLoad = () => {
+//         console.log("loaded");
+//         onLoaded();
+//         }
+// });
 
 const End = () => {
-    const land  = useGLTF("/ending/ending.glb");
+    //TODO:load model
+  //const land  = useGLTF("/ending/ending.glb");
+    //console.log("before use",land)
+    const [modelLoaded, setModelLoaded] = useState(false);
+    const land = useGLTF("/ending/ending.glb");
+    useEffect(() => {
+      if (land.scene) {
+        console.log("GLTF model scene is available.");
+        setModelLoaded(true); // Setting the state to true when model is loaded
+      }
+    }, [land.scene, setModelLoaded]);
+    useEffect(() => {
+      if (modelLoaded) {
+        console.log("Model is fully loaded and additional function can be executed!");
+        // Execute more code here as needed
+      }
+    }, [modelLoaded]); 
   const gltf2 = useGLTF("/ending/jiujiu.glb");
  
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
@@ -27,6 +52,7 @@ const End = () => {
   };
   
   useEffect(() => {
+    console.log(land);
 /**
  * Base
  */
@@ -80,8 +106,10 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(60, sizes.width / sizes.height, 0.1, 200)
-camera.position.set(35, 2, -25)
+camera.position.set(40, 0, -28)
 scene.add(camera)
+const ambientLight = new THREE.AmbientLight(0xffffff, 2)
+scene.add(ambientLight)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
@@ -89,8 +117,8 @@ controls.enableDamping = true
 controls.enablePan = false
 controls.minAzimuthAngle = Math.PI * 0.65
 controls.maxAzimuthAngle = Math.PI * 0.7
-controls.minPolarAngle = Math.PI * 0.45
-controls.maxPolarAngle = Math.PI * 0.51
+controls.minPolarAngle = Math.PI * 0.48
+controls.maxPolarAngle = Math.PI * 0.49
 controls.enableZoom = false
 controls.dampingFactor = 1
 controls.update()
@@ -105,7 +133,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(sizes.pixelRatio)
 
-debugObject.clearColor = '#ffffff'
+debugObject.clearColor = '#f2e5c3'
 renderer.setClearColor(debugObject.clearColor)
 
 /**
@@ -123,7 +151,7 @@ land.scene.traverse(function (child) {
 const mergedGeometry = mergeBufferGeometries(geometries, false);
 
 gltf2.scene.scale.set(3, 3, 3)
-gltf2.scene.position.set(4, 3, -5)
+gltf2.scene.position.set(6, 3, -8.2)
 scene.add(gltf2.scene)
 
 /**
@@ -144,7 +172,8 @@ gpgpu.computation = new GPUComputationRenderer(gpgpu.size, gpgpu.size, renderer)
 const baseParticlesTexture = gpgpu.computation.createTexture()
 const scale = 3
 const scale2 = 3
-
+baseParticlesTexture.image.data[3]
+baseParticlesTexture.image.data[7]
 for(let i = 0; i < baseGeometry.count; i++)
 {
     
@@ -155,7 +184,12 @@ for(let i = 0; i < baseGeometry.count; i++)
     baseParticlesTexture.image.data[i4 + 0] = baseGeometry.instance.attributes.position.array[i3 + 0]*scale2
     baseParticlesTexture.image.data[i4 + 1] = baseGeometry.instance.attributes.position.array[i3 + 1]*scale
     baseParticlesTexture.image.data[i4 + 2] = baseGeometry.instance.attributes.position.array[i3 + 2]*scale
-    baseParticlesTexture.image.data[i4 + 3] = Math.random()
+    baseParticlesTexture.image.data[i4 + 3] = Math.random()*100 //TODO: Set random
+    if (i === 1 || i === 0) {
+        console.log(baseParticlesTexture.image.data[i4+3])
+    }
+
+    //console.log(baseParticlesTexture.image.data[i4 + 3])
 }
 
 // Particles variable
@@ -270,13 +304,18 @@ const tick = () =>
 }
 
 tick()
-  }, []);
+  }, [land]);
 
   return  (
   <div className="Body">
-      <img src="/images/restart.png" alt="restart" onClick={restart} className="ending-back-png" />;
+      <img src="/images/maskEnding.png" alt="Mask2" className="maskEnding" />
+      <img src="/images/title2.png" alt="Title2" className="title-png" />
+      <img src="/images/restartEnd.png" alt="restart" onClick={restart} className="ending-back-png" />;
+      <img src="/images/endingBottom-2.png" alt="bottom2" className="bottom-2" />;
+      <img src="/images/endingBottom-1.png" alt="bottom1" className="bottom-1" />;
       <canvas className="webgl"></canvas>
     </div>
+  
     );
 };
 
