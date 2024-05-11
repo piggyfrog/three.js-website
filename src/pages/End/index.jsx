@@ -16,9 +16,9 @@ import "./style.css";
 import { useGLTF } from "@react-three/drei";
 
 const End = () => {
-  const gltf = useGLTF("/ending/ending.glb");
+    const land  = useGLTF("/ending/ending.glb");
   const gltf2 = useGLTF("/ending/jiujiu.glb");
-  const randomValue = Math.random(); // Generate and store
+ 
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
   const navigate = useNavigate();
   const restart = () => {
@@ -111,10 +111,10 @@ renderer.setClearColor(debugObject.clearColor)
 /**
  * Load model
  */
-const model = gltf.scene;  // 获取加载的模型场景对象
+const model = land.scene;  // 获取加载的模型场景对象
 model.scale.set(1, 1, 1);  // 将模型的缩放设置为0.5倍，可以根据需要调整这些值
 const geometries = [];
-gltf.scene.traverse(function (child) {
+land.scene.traverse(function (child) {
     if (child.isMesh) {
         geometries.push(child.geometry);
     }
@@ -155,7 +155,7 @@ for(let i = 0; i < baseGeometry.count; i++)
     baseParticlesTexture.image.data[i4 + 0] = baseGeometry.instance.attributes.position.array[i3 + 0]*scale2
     baseParticlesTexture.image.data[i4 + 1] = baseGeometry.instance.attributes.position.array[i3 + 1]*scale
     baseParticlesTexture.image.data[i4 + 2] = baseGeometry.instance.attributes.position.array[i3 + 2]*scale
-    baseParticlesTexture.image.data[i4 + 3] = randomValue
+    baseParticlesTexture.image.data[i4 + 3] = Math.random()
 }
 
 // Particles variable
