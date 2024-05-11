@@ -11,10 +11,13 @@ const Onboarding = () => {
   const [photoIndex, setPhotoIndex] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPhotoIndex((photoIndex) => (photoIndex + 1) % photoArray.length);
-    }, 15000);
-    return () => clearInterval(interval);
+    const tick = () => {
+      setPhotoIndex(index => (index + 1) % photoArray.length); // 更新照片索引
+      setTimeout(tick, 15000); // 设置下一次更新
+    };
+  
+    const timeoutId = setTimeout(tick, 15000);
+    return () => clearTimeout(timeoutId); // 清理函数
   }, []);
 
   const photo = photoArray[photoIndex];

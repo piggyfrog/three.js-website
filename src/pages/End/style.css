@@ -17,3 +17,12 @@ body
     left: 0;
     outline: none;
 }
+.ending-back-png {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    width: 260px;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    cursor: pointer;
+  }

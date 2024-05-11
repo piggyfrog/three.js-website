@@ -18,6 +18,7 @@ import { useGLTF } from "@react-three/drei";
 const End = () => {
   const gltf = useGLTF("/ending/ending.glb");
   const gltf2 = useGLTF("/ending/jiujiu.glb");
+  const randomValue = Math.random(); // Generate and store
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
   const navigate = useNavigate();
   const restart = () => {
@@ -30,7 +31,7 @@ const End = () => {
  * Base
  */
 // Debug
-const gui = new GUI({ width: 340 })
+//const gui = new GUI({ width: 340 })
 const debugObject = {}
 
 // Canvas
@@ -146,6 +147,7 @@ const scale2 = 3
 
 for(let i = 0; i < baseGeometry.count; i++)
 {
+    
     const i3 = i * 3
     const i4 = i * 4
 
@@ -153,7 +155,7 @@ for(let i = 0; i < baseGeometry.count; i++)
     baseParticlesTexture.image.data[i4 + 0] = baseGeometry.instance.attributes.position.array[i3 + 0]*scale2
     baseParticlesTexture.image.data[i4 + 1] = baseGeometry.instance.attributes.position.array[i3 + 1]*scale
     baseParticlesTexture.image.data[i4 + 2] = baseGeometry.instance.attributes.position.array[i3 + 2]*scale
-    baseParticlesTexture.image.data[i4 + 3] = Math.random()
+    baseParticlesTexture.image.data[i4 + 3] = randomValue
 }
 
 // Particles variable
@@ -177,8 +179,8 @@ gpgpu.debug = new THREE.Mesh(
     new THREE.MeshBasicMaterial({ map: gpgpu.computation.getCurrentRenderTarget(gpgpu.particlesVariable).texture })
 )
 gpgpu.debug.position.x = 0
-gpgpu.debug.visible = true 
-scene.add(gpgpu.debug)
+gpgpu.debug.visible = false
+//scene.add(gpgpu.debug)
 
 /**
  * Particles
@@ -233,11 +235,11 @@ scene.add(particles.points)
 /**
  * Tweaks
  */
-gui.addColor(debugObject, 'clearColor').onChange(() => { renderer.setClearColor(debugObject.clearColor) })
-gui.add(particles.material.uniforms.uSize, 'value').min(0).max(1).step(0.001).name('uSize')
-gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldInfluence, 'value').min(0).max(1).step(0.001).name('uFlowfieldInfluence')
-gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldStrength, 'value').min(0).max(10).step(0.001).name('uFlowfieldStrength')
-gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency, 'value').min(0).max(1).step(0.001).name('uFlowfieldFrequency')
+//gui.addColor(debugObject, 'clearColor').onChange(() => { renderer.setClearColor(debugObject.clearColor) })
+//gui.add(particles.material.uniforms.uSize, 'value').min(0).max(1).step(0.001).name('uSize')
+//gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldInfluence, 'value').min(0).max(1).step(0.001).name('uFlowfieldInfluence')
+//gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldStrength, 'value').min(0).max(10).step(0.001).name('uFlowfieldStrength')
+//gui.add(gpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency, 'value').min(0).max(1).step(0.001).name('uFlowfieldFrequency')
 
 /**
  * Animate
@@ -272,10 +274,7 @@ tick()
 
   return  (
   <div className="Body">
-      <img src="/images/restart.png" alt="restart" onClick={restart} />;
-      <div className="scrollable-content">
-        <h1>占位</h1>
-      </div>
+      <img src="/images/restart.png" alt="restart" onClick={restart} className="ending-back-png" />;
       <canvas className="webgl"></canvas>
     </div>
     );
