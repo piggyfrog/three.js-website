@@ -25,9 +25,7 @@ import { useLoader } from "@react-three/fiber";
 // });
 
 const End = () => {
-    //TODO:load model
-  //const land  = useGLTF("/ending/ending.glb");
-    //console.log("before use",land)
+
     const [modelLoaded, setModelLoaded] = useState(false);
     const land = useGLTF("/ending/ending.glb");
     useEffect(() => {
@@ -36,12 +34,7 @@ const End = () => {
         setModelLoaded(true); // Setting the state to true when model is loaded
       }
     }, [land.scene, setModelLoaded]);
-    useEffect(() => {
-      if (modelLoaded) {
-        console.log("Model is fully loaded and additional function can be executed!");
-        // Execute more code here as needed
-      }
-    }, [modelLoaded]); 
+
   const gltf2 = useGLTF("/ending/jiujiu.glb");
  
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
@@ -52,7 +45,9 @@ const End = () => {
   };
   
   useEffect(() => {
-    console.log(land);
+    if (modelLoaded) {
+        console.log("Model is fully loaded and additional function can be executed!");
+    
 /**
  * Base
  */
@@ -304,7 +299,7 @@ const tick = () =>
 }
 
 tick()
-  }, [land]);
+  }}, [modelLoaded]);
 
   return  (
   <div className="Body">
