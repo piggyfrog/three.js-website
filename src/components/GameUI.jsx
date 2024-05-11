@@ -1,6 +1,6 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useState, useEffect } from "react";
-import { useSettingStore } from "../hooks/store";
+import { useSettingStore, useLockCameraStore } from "../hooks/store";
 const GameUI = () => {
   const [sub, get] = useKeyboardControls();
 
@@ -9,13 +9,14 @@ const GameUI = () => {
   const language = useSettingStore((state) => state.language);
   const setLanguage = useSettingStore((state) => state.setLanguage);
   const setOpenSetting = useSettingStore((state) => state.setOpenSetting);
-
+  const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   useEffect(() => {
     return sub(
       (state) => state.toggleSetting,
       (pressed) => {
         if (pressed) {
           setOpenSetting(!openSetting);
+          setLockCamera(!openSetting);
         }
       }
     );

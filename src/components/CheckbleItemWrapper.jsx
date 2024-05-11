@@ -66,7 +66,6 @@ export default function CheckbleItemWrapper({
         setLockCamera(true);
       }
       if (dialogID.includes("album")) {
-        console.log("showAlbum");
         setAction("showAlbum");
       }
     }
@@ -89,7 +88,7 @@ export default function CheckbleItemWrapper({
       onPointerOver={showLabelFunc}
       onPointerOut={() => setShowLabel(false)}
       onClick={showDialogFunc}
-      visible={false}  // 直接设置mesh为不可见
+      visible={false} // 直接设置mesh为不可见
     >
       <boxGeometry args={[scaleX, scaleY, scaleZ]} />
       {/* 调整透明度到0.001就看不见了 */}
