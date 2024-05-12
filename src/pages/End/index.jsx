@@ -25,7 +25,12 @@ import { useLoader } from "@react-three/fiber";
 // });
 
 const End = () => {
-
+    const [imageStatus, setImageStatus] = useState({
+        showImage1: false,
+        showImage2: false,
+        showImage3: false,
+        showImage4: false
+      });
     const [modelLoaded, setModelLoaded] = useState(false);
     const land = useGLTF("/ending/ending.glb");
     useEffect(() => {
@@ -43,10 +48,46 @@ const End = () => {
     cleanGameState();
     navigate("/");
   };
-  
-  useEffect(() => {
-    if (modelLoaded) {
-        console.log("Model is fully loaded and additional function can be executed!");
+
+//timer
+useEffect(() => {
+    const showDuration = 10000; // 显示持续时间为10秒
+    const totalDuration = 40000; // 总持续时间（显示加隐藏）
+
+    let timeoutIds = [];
+
+    const scheduleVisibility = (key, delay) => {
+        const show = () => {
+            const showId = setTimeout(() => {
+                setImageStatus(prev => ({ ...prev, [key]: 'show' }));
+                const hideId = setTimeout(() => {
+                    setImageStatus(prev => ({ ...prev, [key]: 'hide' }));
+                    // 安排下一次显示
+                    timeoutIds.push(setTimeout(show, totalDuration - showDuration));
+                }, showDuration);
+                timeoutIds.push(hideId);
+            }, delay);
+            timeoutIds.push(showId);
+        };
+
+        show();
+    };
+
+    scheduleVisibility('showImage1', 0);
+    scheduleVisibility('showImage2', 10000);
+    scheduleVisibility('showImage3', 20000);
+    scheduleVisibility('showImage4', 30000);
+
+    return () => {
+        timeoutIds.forEach(clearTimeout); // 清理所有定时器
+    };
+}, []);
+      
+//
+
+useEffect(() => {
+  if (modelLoaded) {
+    console.log("Model is fully loaded and additional function can be executed!");
     
 /**
  * Base
@@ -100,7 +141,7 @@ window.addEventListener('resize', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(60, sizes.width / sizes.height, 0.1, 200)
+const camera = new THREE.PerspectiveCamera(55, sizes.width / sizes.height, 0.1, 200)
 camera.position.set(40, 0, -28)
 scene.add(camera)
 const ambientLight = new THREE.AmbientLight(0xffffff, 2)
@@ -303,6 +344,15 @@ tick()
 
   return  (
   <div className="Body">
+    {['showImage1', 'showImage2', 'showImage3', 'showImage4'].map((key, index) => (
+        <img
+            key={key}
+            src={`/images/talkEnding${index + 1}.png`}
+            alt={`Image ${index + 1}`}
+            className={`image-position-${index + 1} ${imageStatus[key] === 'show' ? 'image-fade-in' : 'image-fade-out'}`}
+            style={{ display: imageStatus[key] ? 'block' : 'none' }}
+        />
+    ))}
       <img src="/images/maskEnding.png" alt="Mask2" className="maskEnding" />
       <img src="/images/title2.png" alt="Title2" className="title-png" />
       <img src="/images/restartEnd.png" alt="restart" onClick={restart} className="ending-back-png" />;
