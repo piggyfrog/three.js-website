@@ -1,7 +1,11 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useState, useEffect } from "react";
-import { useSettingStore, useLockCameraStore } from "../hooks/store";
-import { set } from "layer";
+import {
+  useSettingStore,
+  useLockCameraStore,
+  useGameStateStore,
+} from "../hooks/store";
+import { useNavigate } from "react-router";
 const GameUI = () => {
   const [sub, get] = useKeyboardControls();
 
@@ -11,6 +15,8 @@ const GameUI = () => {
   const setLanguage = useSettingStore((state) => state.setLanguage);
   const setOpenSetting = useSettingStore((state) => state.setOpenSetting);
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
+  const navigate = useNavigate();
+  const setGameState = useGameStateStore((state) => state.setGameState);
   useEffect(() => {
     return sub(
       (state) => state.toggleSetting,
@@ -22,6 +28,11 @@ const GameUI = () => {
       }
     );
   }, [openSetting]);
+
+  const restart = () => {
+    setGameState([]);
+    navigate("/");
+  };
 
   return (
     <>
@@ -63,6 +74,7 @@ const GameUI = () => {
             src="/images/restart.png"
             alt="restart"
             className="restart-png"
+            onClick={restart}
           />
           <img
             src="/images/settingsBackground.png"
