@@ -22,12 +22,25 @@ const FPScontrols = () => {
   const playerLocation = usePlayerLocationStore(
     (state) => state.playerLocation
   );
+  const playerLocation2 = usePlayerLocationStore(
+    (state) => state.playLocation2
+  );
   const setPlayerLocation = usePlayerLocationStore(
     (state) => state.setPlayerLocation
   );
+  const setDoubleLocation = usePlayerLocationStore(
+    (state) => state.setDoubleLocation
+  );
 
   useEffect(() => {
-    if (shouldLoad) {
+    if (shouldLoad === "memory") {
+      rigidBodyRef.current.setTranslation({
+        x: playerLocation2.x,
+        y: playerLocation2.y,
+        z: playerLocation2.z,
+      });
+      setShouldLoad(false);
+    } else if (shouldLoad) {
       rigidBodyRef.current.setTranslation({
         x: playerLocation.x,
         y: playerLocation.y,
@@ -35,7 +48,12 @@ const FPScontrols = () => {
       });
       setShouldLoad(false);
     }
-    if (shouldSave) {
+
+    if (shouldSave === "memory") {
+      const pos = rigidBodyRef.current.translation();
+      setDoubleLocation(new THREE.Vector3(pos.x, pos.y, pos.z));
+      setShouldSave(false);
+    } else if (shouldSave) {
       const pos = rigidBodyRef.current.translation();
       setPlayerLocation(new THREE.Vector3(pos.x, pos.y, pos.z));
       console.log("saving location", pos);

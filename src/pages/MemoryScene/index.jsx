@@ -37,7 +37,7 @@ export default function MemoryScene() {
 
   useEffect(() => {
     if (action === "changeSandboxScene") {
-      setShouldSave(true);
+      setShouldSave("memory");
       navigate("/sandbox");
     } else if (action === "changeMainScene") {
       setShouldLoad(true);

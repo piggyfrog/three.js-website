@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import Loader from "../../components/Loader";
-import { useDialogStore } from "../../hooks/store";
+import { useDialogStore, usePlayerLocationStore } from "../../hooks/store";
 import DialogUI from "../../components/DialogUI";
 import { useNavigate } from "react-router";
 const VideoScene2 = () => {
   const [loading, setLoading] = useState(true);
   const [showUI, setShowUI] = useState(false);
   const setDialogID = useDialogStore((state) => state.setDialogID);
+  const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
@@ -38,6 +39,7 @@ const VideoScene2 = () => {
         }}
         onEnded={() => {
           setTimeout(() => {
+            setShouldLoad(true);
             navigate("/main");
           }, 1000);
         }}

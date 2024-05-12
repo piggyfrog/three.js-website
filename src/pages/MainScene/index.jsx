@@ -22,6 +22,7 @@ import {
   useGameStateStore,
   useActionStore,
   usePlayerLocationStore,
+  useLockCameraStore,
 } from "../../hooks/store.js";
 import FlipPhoto from "../../components/flipPhoto.jsx";
 import { useNavigate } from "react-router";
@@ -30,6 +31,7 @@ export default function MemoryScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
   const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
+  const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   const [showFotos, setShowFotos] = useState(false);
   const photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]; //添加照片
   const action = useActionStore((state) => state.action);
@@ -58,6 +60,7 @@ export default function MemoryScene() {
   useEffect(() => {
     if (action === "changeMemoryScene") {
       setShouldSave(true);
+      setLockCamera(false);
       navigate("/memory");
     } else if (action === "changeThirdScene") {
       setShouldSave(true);

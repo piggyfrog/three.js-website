@@ -16,19 +16,25 @@ import {
   Bloom,
 } from "@react-three/postprocessing";
 import { useNavigate } from "react-router";
-import { useActionStore, useShowPngStore } from "../../hooks/store.js";
+import {
+  useActionStore,
+  useShowPngStore,
+  usePlayerLocationStore,
+} from "../../hooks/store.js";
 
 export default function SandboxScene() {
   const showPng = useShowPngStore((state) => state.show);
   const setShowPng = useShowPngStore((state) => state.setShow);
   const pngPath = useShowPngStore((state) => state.pngPath);
+  const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const [sub, get] = useKeyboardControls();
   const action = useActionStore((state) => state.action);
+  const setAction = useActionStore((state) => state.setAction);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (action === "changeMemoryScene") {
-      setShouldLoad(true);
+      setShouldLoad("memory");
       navigate("/memory");
     }
   }, [action]);
@@ -76,7 +82,8 @@ export default function SandboxScene() {
         alt="back"
         className="sandbox-box-png"
         onClick={() => {
-          setShouldLoad(true);
+          setAction("");
+          setShouldLoad("memory");
           navigate("/memory");
         }}
       />
