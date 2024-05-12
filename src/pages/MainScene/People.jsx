@@ -1,12 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
-import { useTexture } from "@react-three/drei";
 import { useAnimations } from "@react-three/drei";
 import * as THREE from "three";
-import { useDialogStore } from "../../hooks/store";
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
-import { useActionStore } from "../../hooks/store";
+import { useGameStateStore } from "../../hooks/store";
 
 const MainScenePeople = () => {
   const { scene: grandMa, animations: grandMaAnimations } =
@@ -19,6 +16,12 @@ const MainScenePeople = () => {
   const momAnimated = useAnimations(momAnimations, mom);
   const { scene: uncle, animations: uncleAnimations } = useGLTF("uncle.glb");
   const uncleAnimated = useAnimations(uncleAnimations, uncle);
+
+  const gameState = useGameStateStore((state) => state.gameState);
+  const isMomNew = gameState.includes("albumMain");
+  const isJiujiuNew = gameState.includes("chairMain");
+  const isGrandpaNew = isMomNew && isJiujiuNew;
+
   useEffect(() => {
     const gMaAction = gMaAnimated.actions.ldle;
     const gPaAction = gPaAnimated.actions.ldle;
@@ -50,7 +53,7 @@ const MainScenePeople = () => {
       />
       <primitive object={grandPa} scale={2} />
       <CheckbleItemWrapper
-        dialogID={"grandpaMain"}
+        dialogID={isGrandpaNew ? "grandpaMainNew" : "grandpaMain"}
         isCheck={false}
         // 是否锁定视角
         // 需要给一个child的位置
@@ -66,7 +69,7 @@ const MainScenePeople = () => {
       />
       <primitive object={mom} scale={2} />
       <CheckbleItemWrapper
-        dialogID={"momMain"}
+        dialogID={isMomNew ? "momMainNew" : "momMain"}
         isCheck={false}
         // 是否锁定视角
         // 需要给一个child的位置
@@ -83,7 +86,7 @@ const MainScenePeople = () => {
 
       <primitive object={uncle} scale={2} />
       <CheckbleItemWrapper
-        dialogID={"uncleMain"}
+        dialogID={isJiujiuNew ? "uncleMainNew" : "uncleMain"}
         isCheck={false}
         // 是否锁定视角
         // 需要给一个child的位置

@@ -4,8 +4,7 @@ import Loader from "../../components/Loader";
 import { useDialogStore } from "../../hooks/store";
 import DialogUI from "../../components/DialogUI";
 import { useNavigate } from "react-router";
-import { KeyboardControls } from "@react-three/drei";
-const VideoScene = () => {
+const VideoScene2 = () => {
   const [loading, setLoading] = useState(true);
   const [showUI, setShowUI] = useState(false);
   const setDialogID = useDialogStore((state) => state.setDialogID);
@@ -13,7 +12,7 @@ const VideoScene = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      setDialogID("video1");
+      setDialogID("video6");
     }, 3000);
   }, []);
 
@@ -30,9 +29,8 @@ const VideoScene = () => {
         muted
         onProgress={({ playedSeconds }) => {
           let sec = Math.floor(playedSeconds);
-          console.log(sec);
           if (sec % 5 === 0 && sec > 5 && sec < 30) {
-            setDialogID(`video${sec / 5}`);
+            setDialogID(`video${sec / 5 + 5}`);
           }
         }}
         onPlay={() => {
@@ -49,4 +47,4 @@ const VideoScene = () => {
   );
 };
 
-export default VideoScene;
+export default VideoScene2;

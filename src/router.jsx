@@ -9,6 +9,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import SandboxScene from "./pages/SandBoxScene";
 import { useSettingStore } from "./hooks/store";
 import End from "./pages/End";
+import VideoScene2 from "./pages/VideoScene/Video2";
 function Router() {
   const sound = useSettingStore((state) => state.sound);
   const setSound = useSettingStore((state) => state.setSound);
@@ -39,7 +40,8 @@ function Router() {
         <Route path="/main" element={<MainScene />} />
         <Route path="/memory" element={<MemoryScene />} />
         <Route path="/third" element={<ThirdScene />} />
-        <Route path="/video" element={<VideoScene />} />
+        <Route path="/video1" element={<VideoScene />} />
+        <Route path="/video2" element={<VideoScene2 />} />
         <Route path="/" element={<Onboarding />} />
         <Route path="/sandbox" element={<SandboxScene />} />
         <Route path="/end" element={<End />} />

@@ -25,7 +25,6 @@ import {
 
 export default function ThirdScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
-  const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const action = useActionStore((state) => state.action);
   const [bloom, setBloom] = useState({
@@ -37,15 +36,10 @@ export default function ThirdScene() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("gameState", useGameState);
-  }, [useGameState]);
-
-  useEffect(() => {
-    if (action === "ChangeScene2") {
+    if (action === "changeMainScene") {
       setShouldLoad(true);
-      navigate("/memory");
-    }
-    if (action === "playLaoLaoAnimation") {
+      navigate("/main");
+    } else if (action === "playLaoLaoAnimation") {
       setBloom({
         luminanceThreshold: 0.0001,
         luminanceSmoothing: 5,

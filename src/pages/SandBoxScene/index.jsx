@@ -16,19 +16,23 @@ import {
   Bloom,
 } from "@react-three/postprocessing";
 import { useNavigate } from "react-router";
-import {
-  useDialogStore,
-  useGameStateStore,
-  useActionStore,
-  usePlayerLocationStore,
-  useShowPngStore,
-} from "../../hooks/store.js";
+import { useActionStore, useShowPngStore } from "../../hooks/store.js";
 
 export default function SandboxScene() {
   const showPng = useShowPngStore((state) => state.show);
   const setShowPng = useShowPngStore((state) => state.setShow);
   const pngPath = useShowPngStore((state) => state.pngPath);
   const [sub, get] = useKeyboardControls();
+  const action = useActionStore((state) => state.action);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (action === "changeMemoryScene") {
+      setShouldLoad(true);
+      navigate("/memory");
+    }
+  }, [action]);
+
   useEffect(() => {
     return sub(
       (state) => state.closeDialog,
@@ -48,7 +52,7 @@ export default function SandboxScene() {
       >
         <ambientLight intensity={1.5} />
         <OrbitControls target={[10, 0, 0]} />
-     
+
         <World />
         <EffectComposer>
           <Bloom
@@ -56,7 +60,6 @@ export default function SandboxScene() {
             luminanceSmoothing={0.8} // 泛光的平滑度，较低的值会使泛光效果更尖锐
             intensity={3} // 泛光的强度
           />
-        
 
           <N8AO color="#696969" aoRadius={1} intensity={1} />
         </EffectComposer>

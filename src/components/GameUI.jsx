@@ -1,6 +1,7 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useState, useEffect } from "react";
 import { useSettingStore, useLockCameraStore } from "../hooks/store";
+import { set } from "layer";
 const GameUI = () => {
   const [sub, get] = useKeyboardControls();
 
@@ -38,7 +39,10 @@ const GameUI = () => {
             src="/images/settingsClose.png"
             alt="close setting"
             className="setting-close"
-            onClick={() => setOpenSetting(false)}
+            onClick={() => {
+              setOpenSetting(false);
+              setLockCamera(false);
+            }}
           />
           {language === "en" ? (
             <img

@@ -1,4 +1,4 @@
-import React, { useRef,useEffect} from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import CheckbleItemWrapper from "../../components/CheckbleItemWrapper";
@@ -6,8 +6,8 @@ import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 export default function FixedItems(props) {
   const { scene } = useGLTF("/main-scene-items.glb");
-  const { scene:color } = useGLTF("/main-scene-items-color.glb");
-  const { scene:building } = useGLTF("/main-scene-building.glb");
+  const { scene: color } = useGLTF("/main-scene-items-color.glb");
+  const { scene: building } = useGLTF("/main-scene-building.glb");
   useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
@@ -23,12 +23,11 @@ export default function FixedItems(props) {
         // 为隐藏的对象设置一种不参与渲染的材料
         child.material = new THREE.MeshBasicMaterial({
           visible: false, // 完全不渲染这个材料
-          side: THREE.DoubleSide // 确保所有面都不渲染
+          side: THREE.DoubleSide, // 确保所有面都不渲染
         });
       }
     });
   }, [scene]);
- 
 
   const { scene: album } = useGLTF("/album2.glb");
   const { scene: chair } = useGLTF("/chair.glb");
@@ -85,7 +84,7 @@ export default function FixedItems(props) {
         scaleY={0.3}
         scaleZ={0.3}
       />
-       <primitive object={soap} scale={2} />
+      <primitive object={soap} scale={2} />
       <CheckbleItemWrapper
         dialogID={"soap"}
         position={soap.children[0].position}
@@ -98,7 +97,6 @@ export default function FixedItems(props) {
       />
       <primitive object={color} scale={2} />
       <primitive object={building} scale={2} />
-      
     </>
   );
 }
