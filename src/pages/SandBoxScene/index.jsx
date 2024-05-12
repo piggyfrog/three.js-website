@@ -75,7 +75,10 @@ export default function SandboxScene() {
         src="/images/check.png"
         alt="back"
         className="sandbox-box-png"
-        onClick={() => navigate("/memory")}
+        onClick={() => {
+          setShouldLoad(true);
+          navigate("/memory");
+        }}
       />
     </Suspense>
   );
