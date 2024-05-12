@@ -65,7 +65,7 @@ export default function MemoryScene() {
 
   return (
     <Suspense fallback={<Loader text="loading-main" />}>
-      <Canvas camera={{ position: [0, 2, 2] }} shadows frameloop="demand">
+      <Canvas camera={{ position: [5, 5, 20] }} shadows frameloop="demand">
         <ambientLight intensity={0.5} />
         {/* 这两个切换第一还是自由视角  */}
         {/* <OrbitControls />*/}

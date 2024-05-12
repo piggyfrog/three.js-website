@@ -29,16 +29,20 @@ void main()
     // 使用此值生成随机数
     float rand = random(n);
 
-
+    // 生成随机偏移
+    vec3 randomOffset = vec3(random(n + 1.0), random(n + 2.0), random(n + 3.0)) - 0.5;
+    float offsetScale = 0.01; // 控制偏移量的大小
+    randomOffset *= offsetScale;
 
     // Displacement
-    vec3 newPosition = position;
+    // Displacement
+    vec3 newPosition = position + randomOffset; // 应用随机偏移
     float displacementIntensity = texture(uDisplacementTexture, uv).r;
     displacementIntensity = smoothstep(0.1, 0.8, displacementIntensity);
 
     vec3 displacement = vec3(
-        cos(aAngle) * 0.5 ,
-        sin(aAngle) * 0.5 ,
+        cos(aAngle) * 0.5,
+        sin(aAngle) * 0.5,
         0.5
     );
     displacement = normalize(displacement);

@@ -8,6 +8,7 @@ html,
 body
 {
     overflow: hidden;
+    cursor: url('/images/cursor-image.png'),auto;
 }
 
 .webgl
@@ -55,34 +56,34 @@ body
     .image-position-1
     {
         position: absolute;
-        top: 50%;
-        left: 10%;
+        top: 30%;
+        left: 28%;
         transform: translate(-50%, -50%);
-        width: 100px;
+        width: 130px;
     }
     .image-position-2
     {
         position: absolute;
-        top: 50%;
-        left: 30%;
+        top: 25%;
+        left: 40%;
         transform: translate(-50%, -50%);
-        width: 100px;
+        width: 130px;
     }
     .image-position-3
     {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 30%;
+        left: 55%;
         transform: translate(-50%, -50%);
-        width: 100px;
+        width: 130px;
     }
     .image-position-4
     {
         position: absolute;
-        top: 50%;
-        left: 80%;
+        top: 40%;
+        left: 68%;
         transform: translate(-50%, -50%);
-        width: 100px;
+        width: 120px;
     }
     .image-fade-in {
         animation: fadeIn 1s forwards;

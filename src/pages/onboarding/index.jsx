@@ -22,6 +22,26 @@ const Onboarding = () => {
 
   const photo = photoArray[photoIndex];
 
+  //scorll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollElements = document.querySelectorAll('.scroll-text');
+      for (const element of scrollElements) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - rect.height / 2) {
+          element.classList.add('visible');
+        } else {
+          element.classList.remove('visible');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初始化时执行一次以应用效果于初始可见元素
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     /**
      * Base
@@ -280,7 +300,7 @@ const Onboarding = () => {
       const alpha = Math.min(cursorDistance * 0.05, 1);
 
       // Draw glow
-      const glowSize = displacement.canvas.width * 0.35;
+      const glowSize = displacement.canvas.width * 0.25;
       displacement.context.globalCompositeOperation = "lighter";
       displacement.context.globalAlpha = alpha;
       displacement.context.drawImage(
@@ -312,8 +332,18 @@ const Onboarding = () => {
         className="onboarding-title-png"
         onClick={() => navigate("/main")}
       />
+      
       <div className="scrollable-content">
-        <h1>占位</h1>
+        <div class="scrollable-container">
+          <div class="scroll-content">
+            <h2 class="scroll-text">这是一个标题</h2>
+            <p class="scroll-text">这是一段文本。Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <svg class="scroll-text svg-element" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+            </svg>
+            <p class="scroll-text">另一段文本。Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
       </div>
       <canvas className="webgl"></canvas>
     </div>

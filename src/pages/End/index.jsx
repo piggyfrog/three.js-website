@@ -41,7 +41,10 @@ const End = () => {
     }, [land.scene, setModelLoaded]);
 
   const gltf2 = useGLTF("/ending/jiujiu.glb");
- 
+  const gltf3 = useGLTF("/ending/laoye.glb");
+  const gltf4 = useGLTF("/ending/laolao.glb");
+  const gltf5 = useGLTF("/ending/mama.glb");
+
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
   const navigate = useNavigate();
   const restart = () => {
@@ -187,8 +190,20 @@ land.scene.traverse(function (child) {
 const mergedGeometry = mergeBufferGeometries(geometries, false);
 
 gltf2.scene.scale.set(3, 3, 3)
-gltf2.scene.position.set(6, 3, -8.2)
+gltf2.scene.position.set(6, 2.7, -8.5)
 scene.add(gltf2.scene)
+
+gltf3.scene.scale.set(3, 3, 3)
+gltf3.scene.position.set(6.5, 2.5, -1)
+scene.add(gltf3.scene)
+
+gltf4.scene.scale.set(3, 3, 3)
+gltf4.scene.position.set(6, 2.5, 1)
+scene.add(gltf4.scene)
+
+gltf5.scene.scale.set(3, 3, 3)
+gltf5.scene.position.set(3, 2.6, 5.7)
+scene.add(gltf5.scene)
 
 /**
  * Base geometry

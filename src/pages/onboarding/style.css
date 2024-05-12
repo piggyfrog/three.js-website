@@ -6,6 +6,7 @@
 html,
 body {
   overflow: hidden;
+  cursor: url('/images/cursor-image.png'),auto;
 }
 
 .webgl {
@@ -42,4 +43,37 @@ canvas.webgl {
   transform: translate(-50%, -50%);
   z-index: 3;
   cursor: pointer;
+}
+.scrollable-container {
+  width: 1152px;
+  margin: 0 auto; /* 横向居中 */
+  margin-top: 1080px; /* 顶部外边距设置为1080px */
+  overflow-y: auto; /* 允许垂直滚动 */
+  height: 80vh; /* 容器高度，可根据需要调整 */
+  background: #00000000; /* 背景色，可根据需要调整 */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.scroll-content {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-text {
+  opacity: 0;
+  transform: translate3d(0, 50px, 0);
+  color:beige;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.svg-element {
+  display: block; /* SVG默认是inline，可能需要调整为block以正确定位 */
+  margin: 10px auto; /* SVG居中显示 */
 }
