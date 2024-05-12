@@ -71,6 +71,12 @@ export default function SandboxScene() {
           <img src={pngPath} alt="item" className="item-img" />
         </div>
       )}
+      <img
+        src="/images/check.png"
+        alt="back"
+        className="sandbox-box-png"
+        onClick={() => navigate("/memory")}
+      />
     </Suspense>
   );
 }

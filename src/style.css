@@ -361,6 +361,14 @@ body,
   transform: rotateY(180deg);
 }
 
+.sandbox-box-png {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  width: 100px;
+}
+
 .settings-background {
   position: absolute;
   display: flex;
