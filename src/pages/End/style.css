@@ -1,104 +1,102 @@
-*
-{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html,
-body
-{
-    overflow: hidden;
-    cursor: url('/images/cursor-image.png'),auto;
+body {
+  cursor: url("/images/cursor-image.png"), auto;
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
 }
 .ending-back-png {
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    width: 260px;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    cursor: pointer;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 260px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  cursor: pointer;
+}
+.maskEnding {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+}
+.bottom-2 {
+  position: absolute;
+  bottom: 5%;
+  left: 80px;
+  width: 300px;
+}
+.bottom-1 {
+  position: absolute;
+  bottom: 4%;
+  right: 60px;
+  width: 400px;
+}
+.image-position-1 {
+  position: absolute;
+  top: 30%;
+  left: 28%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+}
+.image-position-2 {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+}
+.image-position-3 {
+  position: absolute;
+  top: 30%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+}
+.image-position-4 {
+  position: absolute;
+  top: 40%;
+  left: 68%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+}
+.image-fade-in {
+  animation: fadeIn 1s forwards;
+}
+
+.image-fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  .maskEnding {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+  to {
+    opacity: 1;
   }
-  .bottom-2
-    {
-        position: absolute;
-        bottom: 5%;
-        left: 80px;
-        width: 300px;
-    }
-    .bottom-1
-    {
-        position: absolute;
-        bottom: 4%;
-        right: 60px;
-        width: 400px;
-    }
-    .image-position-1
-    {
-        position: absolute;
-        top: 30%;
-        left: 28%;
-        transform: translate(-50%, -50%);
-        width: 130px;
-    }
-    .image-position-2
-    {
-        position: absolute;
-        top: 25%;
-        left: 40%;
-        transform: translate(-50%, -50%);
-        width: 130px;
-    }
-    .image-position-3
-    {
-        position: absolute;
-        top: 30%;
-        left: 55%;
-        transform: translate(-50%, -50%);
-        width: 130px;
-    }
-    .image-position-4
-    {
-        position: absolute;
-        top: 40%;
-        left: 68%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-    }
-    .image-fade-in {
-        animation: fadeIn 1s forwards;
-      }
-      
-      .image-fade-out {
-        animation: fadeOut 1s forwards;
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      
-      @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
-      }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

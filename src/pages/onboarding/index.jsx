@@ -12,34 +12,33 @@ const Onboarding = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const tick = () => {
-      setPhotoIndex(index => (index + 1) % photoArray.length); // 更新照片索引
+      setPhotoIndex((index) => (index + 1) % photoArray.length); // 更新照片索引
       setTimeout(tick, 15000); // 设置下一次更新
     };
-  
+
     const timeoutId = setTimeout(tick, 15000);
     return () => clearTimeout(timeoutId); // 清理函数
   }, []);
 
   const photo = photoArray[photoIndex];
 
-  //scorll
   useEffect(() => {
     const handleScroll = () => {
-      const scrollElements = document.querySelectorAll('.scroll-text');
+      const scrollElements = document.querySelectorAll(".scroll-text");
       for (const element of scrollElements) {
         const rect = element.getBoundingClientRect();
         if (rect.top < window.innerHeight - rect.height / 2) {
-          element.classList.add('visible');
+          element.classList.add("visible");
         } else {
-          element.classList.remove('visible');
+          element.classList.remove("visible");
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // 初始化时执行一次以应用效果于初始可见元素
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -325,28 +324,49 @@ const Onboarding = () => {
   }, [photo]);
 
   return (
-    <div className="Body">
-      <img
-        src="/images/onboarding-title.png"
-        alt="Title"
-        className="onboarding-title-png"
-        onClick={() => navigate("/main")}
-      />
-      
-      <div className="scrollable-content">
-        <div class="scrollable-container">
-          <div class="scroll-content">
-            <h2 class="scroll-text">这是一个标题</h2>
-            <p class="scroll-text">这是一段文本。Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <svg class="scroll-text svg-element" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-            </svg>
-            <p class="scroll-text">另一段文本。Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
+    <>
+      <div className="scroll-content">
+        <img
+          src="/images/onboarding-title.png"
+          alt="Title"
+          className="onboarding-title-png"
+          onClick={() => navigate("/main")}
+        />
+        <h2 className="scroll-text">这是一个标题</h2>
+        <p className="scroll-text">
+          这是一段文本。Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <svg
+          className="scroll-text svg-element"
+          width="100"
+          height="100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="green"
+            strokeWidth="4"
+            fill="yellow"
+          />
+        </svg>
+        <p className="scroll-text">
+          另一段文本。Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua.
+        </p>
+        <p className="scroll-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+          soluta animi laborum incidunt dolor. Optio dolor numquam tempore,
+          reiciendis minus assumenda tenetur sunt at recusandae nam modi
+          accusantium quisquam libero? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Nemo repellat omnis quisquam dicta maxime, quos
+          necessitatibus blanditiis sed aperiam optio ea inventore, quas velit
+          sint aliquam. Perspiciatis obcaecati quis fugiat?
+        </p>
       </div>
       <canvas className="webgl"></canvas>
-    </div>
+    </>
   );
 };
 
