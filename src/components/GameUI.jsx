@@ -31,6 +31,8 @@ const GameUI = () => {
 
   const restart = () => {
     setGameState([]);
+    setOpenSetting(false);
+    setLockCamera(false);
     navigate("/");
   };
 
