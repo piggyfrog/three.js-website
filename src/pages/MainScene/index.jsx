@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
@@ -7,7 +7,7 @@ import FPScontrols from "../../components/FPScontrols.jsx";
 import FPV from "../../components/FPV.jsx";
 import DialogUI from "../../components/DialogUI.jsx";
 import GameUI from "../../components/GameUI.jsx";
-import { GUI } from 'dat.gui';
+import { GUI } from "dat.gui";
 
 import {
   EffectComposer,
@@ -41,8 +41,12 @@ export default function MemoryScene() {
 
   useEffect(() => {
     gui.current = new GUI();
-    gui.current.add({ focusDistance }, 'focusDistance', 0, 10).onChange(setFocusDistance);
-    gui.current.add({ focalLength }, 'focalLength', 0.1, 100).onChange(setFocalLength);
+    gui.current
+      .add({ focusDistance }, "focusDistance", 0, 10)
+      .onChange(setFocusDistance);
+    gui.current
+      .add({ focalLength }, "focalLength", 0.1, 100)
+      .onChange(setFocalLength);
 
     return () => gui.current.destroy();
   }, []);
@@ -52,9 +56,21 @@ export default function MemoryScene() {
   }, [useGameState]);
 
   useEffect(() => {
-    if (action === "ChangeScene2") {
+    if (action === "changeMemoryScene") {
+      setShouldSave(true);
+      navigate("/memory");
+    } else if (action === "changeThirdScene") {
       setShouldSave(true);
       navigate("/third");
+    } else if (action === "changeVideo1Scene") {
+      setShouldSave(true);
+      navigate("/video1");
+    } else if (action === "changeEndingScene") {
+      setShouldSave(true);
+      navigate("/end");
+    } else if (action === "changeVideo2Scene") {
+      setShouldSave(true);
+      navigate("/video2");
     }
     if (action === "showAlbum") {
       setShowFotos(true);
@@ -86,12 +102,12 @@ export default function MemoryScene() {
             luminanceSmoothing={1} // 泛光的平滑度，较低的值会使泛光效果更尖锐
             intensity={0.9} // 泛光的强度
           />
-          <DepthOfField 
-            focusDistance={focusDistance} 
-            focalLength={focalLength} 
-            bokehScale={18} 
-            height={516} />
-           
+          <DepthOfField
+            focusDistance={focusDistance}
+            focalLength={focalLength}
+            bokehScale={18}
+            height={516}
+          />
 
           <N8AO color="#50463b" aoRadius={1} intensity={2} />
         </EffectComposer>

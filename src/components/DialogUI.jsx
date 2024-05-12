@@ -63,7 +63,7 @@ const DialogSelectDict = {
     itemImgPath: "/images/radio.png",
     selectFunctions: {
       0: "diary5",
-      1: "sandboxscene",
+      1: "action-changeSandboxScene",
     },
   },
   diary4: {
@@ -248,7 +248,7 @@ const DialogSelectDict = {
     selectAmount: 2,
     selectFunctions: {
       0: "action-closeDialog",
-      1: "mainScene",
+      1: "action-changeMainScene",
     },
   },
   mamaback: {
@@ -259,7 +259,7 @@ const DialogSelectDict = {
     selectAmount: 2,
     selectFunctions: {
       0: "action-closeDialog",
-      1: "mainscene",
+      1: "action-changeMainScene",
     },
   },
   teethMain: {
@@ -287,7 +287,7 @@ const DialogSelectDict = {
     personArtPath: "/images/jiujiu.png",
     selectFunctions: {
       0: "action-closeDialog",
-      1: "video1scene",
+      1: "action-changeVideo1Scene",
     },
   },
   albumMain: {
@@ -312,7 +312,7 @@ const DialogSelectDict = {
     withPersonArt: true,
     personArtPath: "/images/mama.png",
     selectFunctions: {
-      0: "memoryscene",
+      0: "action-changeMemoryScene",
     },
   },
   chairMain: {
@@ -326,7 +326,7 @@ const DialogSelectDict = {
     personArtPath: "/images/laoye.png",
     selectFunctions: {
       0: "action-closeDialog",
-      1: "thirdscene",
+      1: "action-changeThirdScene",
     },
   },
   grandmaMain: {
@@ -360,7 +360,7 @@ const DialogSelectDict = {
     withPersonArt: false,
     selectFunctions: {
       0: "action-closeDialog",
-      1: "endingscene",
+      1: "action-changeEndingScene",
     },
   },
   momMain: {
@@ -432,7 +432,7 @@ const DialogSelectDict = {
     personArtPath: "/images/laoye.png",
     selectFunctions: {
       0: "action-closeDialog",
-      1: "video2scene",
+      1: "action-changeVideo2Scene",
     },
   },
 };

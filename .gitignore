@@ -19,3 +19,6 @@ test/e2e/output-screenshots
 
 **/public/ThirdScene
 **/node_modules
+
+**/public/main-scene-building.glb
+**/public/main-scene-items-color.glb

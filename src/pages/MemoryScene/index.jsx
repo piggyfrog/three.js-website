@@ -28,21 +28,20 @@ import { useNavigate } from "react-router";
 
 export default function MemoryScene() {
   const showDialogStore = useDialogStore((state) => state.isOpen);
-  const useGameState = useGameStateStore((state) => state.gameState);
   const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
+  const setShouldLoad = usePlayerLocationStore((state) => state.setShouldLoad);
   const [showFotos, setShowFotos] = useState(false);
   const photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]; //添加照片
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("gameState", useGameState);
-  }, [useGameState]);
-
-  useEffect(() => {
-    if (action === "ChangeScene3") {
+    if (action === "changeSandboxScene") {
       setShouldSave(true);
-      navigate("/third");
+      navigate("/sandbox");
+    } else if (action === "changeMainScene") {
+      setShouldLoad(true);
+      navigate("/main");
     }
     if (action === "showAlbum") {
       setShowFotos(true);
