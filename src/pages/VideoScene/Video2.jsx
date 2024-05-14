@@ -24,7 +24,7 @@ const VideoScene2 = () => {
   return (
     <>
       <ReactPlayer
-        url="/videos/v1.mp4"
+        url="/videos/v2.mp4"
         width={"100svw"}
         height={"100svh"}
         playing={true}
