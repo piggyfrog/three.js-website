@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas,useFrame, extend } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import World from "./World.jsx";
 import FPScontrols from "../../components/FPScontrols.jsx";
@@ -50,14 +50,23 @@ export default function SandboxScene() {
     );
   }, []);
   return (
-    <Suspense fallback={<Loader text="loading-third" />}>
+    <Suspense fallback={<Loader text="loading-sandbox" />}>
       <Canvas
-        camera={{ position: [5, 28, 15], fov: 35 }}
+        camera={{ position: [20, 10, -50], fov: 35 }}
         shadows
         frameloop="demand"
       >
         <ambientLight intensity={1.5} />
-        <OrbitControls target={[10, 0, 0]} />
+        <OrbitControls target={[1, 2, 5]}
+        enableZoom={false}
+        enablePan={false}
+        enableRotate={true}
+        rotateSpeed={0.2}
+        minDistance={5}
+        maxDistance={50}
+        minPolarAngle={Math.PI * 0.1}
+        maxPolarAngle={Math.PI * 0.45}
+        />
 
         <World />
         <EffectComposer>
@@ -73,12 +82,12 @@ export default function SandboxScene() {
 
       <GameUI />
       {showPng && (
-        <div className="item-pic-background">
-          <img src={pngPath} alt="item" className="item-img" />
+        <div>
+          <img src={pngPath} alt="item" className="item-img-pngOnly" />
         </div>
       )}
       <img
-        src="/images/check.png"
+        src="/images/sandbox-exit.png"
         alt="back"
         className="sandbox-box-png"
         onClick={() => {
@@ -87,6 +96,11 @@ export default function SandboxScene() {
           navigate("/memory");
         }}
       />
+      <img src="/images/sandbox-left.png" className="sandbox-left-png" />
+      <img src="/images/sandbox-right.png" className="sandbox-right-png" />
+      <img src="/images/sandbox-bottom.png" className="sandbox-bottom-png" />
+      <img src="/images/mask2.jpg" className="mask-jpg-2" />
+
     </Suspense>
   );
 }

@@ -5,6 +5,7 @@ import { useDialogStore, usePlayerLocationStore } from "../../hooks/store";
 import DialogUI from "../../components/DialogUI";
 import { useNavigate } from "react-router";
 import { KeyboardControls } from "@react-three/drei";
+import GameUI from "../../components/GameUI.jsx";
 const VideoScene = () => {
   const [loading, setLoading] = useState(true);
   const [showUI, setShowUI] = useState(false);
@@ -19,7 +20,7 @@ const VideoScene = () => {
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return <Loader text="loading-sandbox"/>;
   }
   return (
     <>
@@ -47,6 +48,12 @@ const VideoScene = () => {
         }}
       />
       {showUI && <DialogUI />}
+      <GameUI />
+      <img
+          src="/images/time-frame-4.png"
+          className="time-frame-png-2"
+          alt="Time frame 2"
+        />
     </>
   );
 };

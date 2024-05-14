@@ -10,7 +10,6 @@ import {
   useActionStore,
   useShowPngStore,
 } from "../hooks/store";
-import { set } from "layer";
 
 export default function CheckbleItemWrapper({
   isCheck = true,
@@ -77,7 +76,14 @@ export default function CheckbleItemWrapper({
     }
     return isCheck ? "/images/check.png" : "/images/talk.png";
   };
-
+  const wrapperClassName = onlyPng ? "labelOnlyPng" : "label";
+  const getLabelPosition = () => {
+    if (onlyPng) {
+      // 在 onlyPng 为 true 时，返回一个修改后的位置
+      return [0, scaleY*2+4, 0]; 
+    }
+    return [0, Math.max(scaleY / 2, 0.3), 0]; 
+  };
   return (
     <mesh
       position={[
@@ -95,8 +101,8 @@ export default function CheckbleItemWrapper({
       <meshBasicMaterial color="red" opacity={0.1} transparent />
 
       {showLabel && (
-        <Html position={[0, Math.max(scaleY / 2, 0.3), 0]} wrapperClass="label">
-          <img src={getLabel()} alt="check item" className="checkIcon" />
+        <Html position={getLabelPosition()} wrapperClass={wrapperClassName}>
+          <img src={getLabel()} alt="check item" className={`checkIcon ${onlyPng ? "checkIconOnlyPng" : ""}`} />
         </Html>
       )}
     </mesh>

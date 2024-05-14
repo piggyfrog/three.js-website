@@ -33,7 +33,7 @@ export default function MemoryScene() {
   const setShouldSave = usePlayerLocationStore((state) => state.setShouldSave);
   const setLockCamera = useLockCameraStore((state) => state.setLockCamera);
   const [showFotos, setShowFotos] = useState(false);
-  const photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]; //添加照片
+  const photos = ["photo10", "photo9", "photo8", "photo7", "photo6"]; //添加照片
   const action = useActionStore((state) => state.action);
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ export default function MemoryScene() {
   const [focalLength, setFocalLength] = useState(40);
   const gui = useRef();
 
-  useEffect(() => {
+  /*useEffect(() => {
     gui.current = new GUI();
     gui.current
       .add({ focusDistance }, "focusDistance", 0, 10)
@@ -52,6 +52,7 @@ export default function MemoryScene() {
 
     return () => gui.current.destroy();
   }, []);
+  */
 
   useEffect(() => {
     console.log("gameState", useGameState);

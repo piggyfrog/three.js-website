@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import * as THREE from "three";
 import "./style.css";
 const Onboarding = () => {
-  const photoArray = ["./images/color1.png", "./images/color.png"];
+  const photoArray = ["./images/color3.png", "./images/color.png", "./images/color2.png", "./images/color1.png"];
   const [photoIndex, setPhotoIndex] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,22 +23,29 @@ const Onboarding = () => {
   const photo = photoArray[photoIndex];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollElements = document.querySelectorAll(".scroll-text");
-      for (const element of scrollElements) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight - rect.height / 2) {
-          element.classList.add("visible");
-        } else {
-          element.classList.remove("visible");
-        }
+    // 添加 Intersection Observer API 逻辑
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -300px 0px", // 延迟 200px 出现
+        threshold: 1 // 设置为 0 当元素刚刚进入视窗时触发
       }
+    );
+
+    const scrollElements = document.querySelectorAll(".scroll-png");
+    scrollElements.forEach((element) => observer.observe(element));
+
+    return () => {
+      scrollElements.forEach((element) => observer.unobserve(element));
     };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // 初始化时执行一次以应用效果于初始可见元素
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -323,6 +330,45 @@ const Onboarding = () => {
     tick();
   }, [photo]);
 
+  //scroll speed
+  useEffect(() => {
+    let scrollTimeout;
+    let isScrolling = false;
+  
+    const smoothScroll = (event) => {
+      if (isScrolling) return; // 如果正在滚动，则不处理新的滚动事件
+  
+      isScrolling = true; // 标记为正在滚动
+      const deltaY = event.deltaY * 0.5; // 调整此值来控制滚动速度
+      const targetScroll = window.scrollY + deltaY;
+      const startScroll = window.scrollY;
+      const startTime = performance.now();
+  
+      const animateScroll = (currentTime) => {
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / 500, 1); // 调整500以改变滚动持续时间
+        window.scrollTo(0, startScroll + (targetScroll - startScroll) * progress);
+  
+        if (progress < 1) {
+          scrollTimeout = window.requestAnimationFrame(animateScroll);
+        } else {
+          isScrolling = false; // 滚动完成后标记为未滚动
+        }
+      };
+  
+      scrollTimeout = window.requestAnimationFrame(animateScroll);
+    };
+  
+    window.addEventListener("wheel", smoothScroll, { passive: false });
+  
+    return () => {
+      window.removeEventListener("wheel", smoothScroll);
+      if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+      }
+    };
+  }, []);
+
   return (
     <>
       <div className="scroll-content">
@@ -330,40 +376,36 @@ const Onboarding = () => {
           src="/images/onboarding-title.png"
           alt="Title"
           className="onboarding-title-png"
-          onClick={() => navigate("/main")}
         />
-        <h2 className="scroll-text">这是一个标题</h2>
-        <p className="scroll-text">
-          这是一段文本。Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <svg
-          className="scroll-text svg-element"
-          width="100"
-          height="100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="green"
-            strokeWidth="4"
-            fill="yellow"
-          />
-        </svg>
-        <p className="scroll-text">
-          另一段文本。Sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua.
-        </p>
-        <p className="scroll-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-          soluta animi laborum incidunt dolor. Optio dolor numquam tempore,
-          reiciendis minus assumenda tenetur sunt at recusandae nam modi
-          accusantium quisquam libero? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Nemo repellat omnis quisquam dicta maxime, quos
-          necessitatibus blanditiis sed aperiam optio ea inventore, quas velit
-          sint aliquam. Perspiciatis obcaecati quis fugiat?
-        </p>
+        <img src="/images/onboarding/0.png" alt="Onboarding" className="scroll-png-0" />
+        <img src="/images/onboarding/1.png" alt="Onboarding1" className="scroll-png scroll-png-1" />
+        <img src="/images/onboarding/2.png" alt="Onboarding2" className="scroll-png scroll-png-2" />
+        <img src="/images/onboarding/3.png" alt="Onboarding3" className="scroll-png scroll-png-3" />
+        <img src="/images/onboarding/23.png" alt="Onboarding4" className="scroll-png scroll-png-23" />
+        <img src="/images/onboarding/4.png" alt="Onboarding4" className="scroll-png scroll-png-4" />
+        <img src="/images/onboarding/5.png" alt="Onboarding5" className="scroll-png scroll-png-5" />
+        <img src="/images/onboarding/6.png" alt="Onboarding6" className="scroll-png scroll-png-6" />
+        <img src="/images/onboarding/7.png" alt="Onboarding7" className="scroll-png scroll-png-7" />
+        <img src="/images/onboarding/24.png" alt="Onboarding24" className="scroll-png scroll-png-24" />
+        <img src="/images/onboarding/8.png" alt="Onboarding8" className="scroll-png scroll-png-8" />
+        <img src="/images/onboarding/9.png" alt="Onboarding9" className="scroll-png scroll-png-9" />
+        <img src="/images/onboarding/25.png" alt="Onboarding25" className="scroll-png scroll-png-25" />
+        <img src="/images/onboarding/10.png" alt="Onboarding10" className="scroll-png scroll-png-10" />
+        <img src="/images/onboarding/11.png" alt="Onboarding11" className="scroll-png scroll-png-11" />
+        <img src="/images/onboarding/26.png" alt="Onboarding26" className="scroll-png scroll-png-26" />
+        <img src="/images/onboarding/12.png" alt="Onboarding12" className="scroll-png scroll-png-12" />
+        <img src="/images/onboarding/13.png" alt="Onboarding13" className="scroll-png scroll-png-13" />
+        <img src="/images/onboarding/14.png" alt="Onboarding14" className="scroll-png scroll-png-14" />
+        <img src="/images/onboarding/15.png" alt="Onboarding15" className="scroll-png scroll-png-15" />
+        <img src="/images/onboarding/16.png" alt="Onboarding16" className="scroll-png scroll-png-16" />
+        <img src="/images/onboarding/27.png" alt="Onboarding27" className="scroll-png scroll-png-27" />
+        <img src="/images/onboarding/17.png" alt="Onboarding17" className="scroll-png scroll-png-17" />
+        <img src="/images/onboarding/18.png" alt="Onboarding18" className="scroll-png scroll-png-18" />
+        <img src="/images/onboarding/19.png" alt="Onboarding19" className="scroll-png scroll-png-19" />
+        <img src="/images/onboarding/20.png" alt="Onboarding20" className="scroll-png scroll-png-20" onClick={() => navigate("/main")}/>
+        <img src="/images/onboarding/21.png" alt="Onboarding21" className=" scroll-png-21" />
+        <img src="/images/onboarding/22.png" alt="Onboarding22" className=" scroll-png-22" />
+        
       </div>
       <canvas className="webgl"></canvas>
     </>

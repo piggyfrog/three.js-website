@@ -31,7 +31,7 @@ void main()
 
     // 生成随机偏移
     vec3 randomOffset = vec3(random(n + 1.0), random(n + 2.0), random(n + 3.0)) - 0.5;
-    float offsetScale = 0.01; // 控制偏移量的大小
+    float offsetScale = 0.02; // 控制偏移量的大小
     randomOffset *= offsetScale;
 
     // Displacement

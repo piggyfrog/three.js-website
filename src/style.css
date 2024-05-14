@@ -42,6 +42,24 @@ body,
   height: 80px; /* 设置高度 */
   padding: 10px; /* 添加内边距以适应内容 */
 }
+.labelOnlyPng > div {
+  font-family: Helvetica, Arial;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: 'center center';
+  background: #fff0f000;
+  color: rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  display: flex;
+  border-radius: 60px;
+  user-select: none;
+  font-size: 2.4rem;
+  width: 180px; /* 设置宽度 */
+  height: 180px; /* 设置高度 */
+  padding: 10px; /* 添加内边距以适应内容 */
+}
 .checkIcon {
   width: 90px;
   height: 90px;
@@ -50,6 +68,18 @@ body,
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.checkIconOnlyPng {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0px 0px 3px rgb(164, 153, 125));
+  
+}
+
 
 .loading {
   color: #fff;
@@ -95,7 +125,7 @@ body,
   padding-left: 15%;
   padding-right: 15%;
   padding-top: 15px;
-  max-width: 460px;
+  max-width: 480px;
   text-align: center;
   padding: 20px;
   font-size: 23px;
@@ -108,6 +138,7 @@ body,
   background: none;
   font-family: "Normal-CH";
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 水平偏移、垂直偏移、模糊半径、颜色 */
+  white-space: pre-line;
 }
 
 .dialog .dialog-next {
@@ -157,6 +188,7 @@ body,
   left: 80px;
   width: 280px;
   z-index: 3;
+  user-select: none;
 }
 
 .title-png2 {
@@ -166,6 +198,7 @@ body,
   width: 280px;
   mix-blend-mode: exclusion;
   z-index: 3;
+  user-select: none;
 }
 
 .settings-png {
@@ -174,6 +207,7 @@ body,
   right: 80px;
   width: 70px;
   z-index: 3;
+  user-select: none;
 }
 
 .mute-png {
@@ -182,6 +216,7 @@ body,
   right: 170px;
   width: 70px;
   z-index: 3;
+  user-select: none;
 }
 
 .option-text {
@@ -200,6 +235,13 @@ body,
   transform: translateX(-50%);
   width: 500px;
 }
+.time-frame-png-2 {
+  position: absolute;
+  bottom: 40px;
+  left: 55%;
+  transform: translateX(-50%);
+  width: 500px;
+}
 .mask-jpg {
   position: fixed;
   top: 0;
@@ -207,6 +249,19 @@ body,
   width: 100vw;
   height: 100vh;
   background-image: url("/images/mask.jpg");
+  background-size: cover;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  opacity: 0.1;
+}
+.mask-jpg-2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/mask2.jpg");
   background-size: cover;
   pointer-events: none;
   user-select: none;
@@ -273,6 +328,17 @@ body,
   max-height: 580px;
   opacity: 1;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+}
+.item-img-pngOnly {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  max-width: 700px;
+  max-height: 580px;
+  opacity: 1;
+  filter: drop-shadow(10px 10px 20px rgba(234, 217, 196, 0.67));
+  user-select: none;
 }
 
 .flipPhoto-pos-0-main {
@@ -394,6 +460,61 @@ body,
   height: calc(12.5vw * 1.15);
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
+.flipPhoto-pos-6 {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 80%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipPhoto-pos-7 {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipPhoto-pos-8 {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipPhoto-pos-9 {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipPhoto-pos-10 {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
 
 .flipPhoto-inner {
   position: relative;
@@ -423,10 +544,37 @@ body,
 
 .sandbox-box-png {
   position: absolute;
-  top: 80%;
-  left: 50%;
+  top: 92%;
+  left: 8.9%;
   transform: translate(-50%, -80%);
-  width: 100px;
+  width: 150px;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(10px 10px 20px rgb(94, 84, 70));
+}
+.sandbox-left-png {
+  position: absolute;
+  top: 60%;
+  left: 6%;
+  transform: translate(-50%, -80%);
+  width: 30px;
+  user-select: none;
+}
+.sandbox-right-png {
+  position: absolute;
+  top: 80.5%;
+  left: 95.3%;
+  transform: translate(-50%, -80%);
+  width: 70px;
+  user-select: none;
+}
+.sandbox-bottom-png {
+  position: absolute;
+  top: 93%;
+  left: 76%;
+  transform: translate(-50%, -80%);
+  width: 350px;
+  user-select: none;
 }
 
 .settings-background {
