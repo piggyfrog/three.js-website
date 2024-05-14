@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router";
+
 const FlipPhoto = ({ photo, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const location = useLocation();
+  const adder = location.pathname.replace("/", "");
   const handleClick = () => {
     setIsFlipped(!isFlipped);
   };
   const flipPhotoClass = isFlipped
     ? "flipPhoto-inner flipped"
     : "flipPhoto-inner";
-  const positionClass = `flipPhoto-pos-${index}`;
+  const positionClass = `flipPhoto-pos-${index}-${adder}`;
   return (
     <div className={positionClass} onClick={handleClick}>
       <div className={flipPhotoClass}>

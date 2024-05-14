@@ -275,7 +275,7 @@ body,
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
 }
 
-.flipPhoto-pos-0 {
+.flipPhoto-pos-0-main {
   cursor: pointer;
   position: absolute;
   top: 20%;
@@ -287,7 +287,7 @@ body,
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.flipPhoto-pos-1 {
+.flipPhoto-pos-1-main {
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -299,7 +299,7 @@ body,
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.flipPhoto-pos-2 {
+.flipPhoto-pos-2-main {
   cursor: pointer;
   position: absolute;
   top: 19%;
@@ -311,7 +311,7 @@ body,
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.flipPhoto-pos-4 {
+.flipPhoto-pos-4-main {
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -323,7 +323,67 @@ body,
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.flipPhoto-pos-3 {
+.flipPhoto-pos-3-main {
+  cursor: pointer;
+  position: absolute;
+  top: 42%;
+  left: 48%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-0-memory {
+  cursor: pointer;
+  position: absolute;
+  top: 20%;
+  left: 60%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-1-memory {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 75%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-2-memory {
+  cursor: pointer;
+  position: absolute;
+  top: 19%;
+  left: 67.5%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-4-memory {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 16%;
+  transform: translate(-30%, -25%);
+  background-color: transparent;
+  width: calc(18vw * 1.15);
+  height: calc(12.5vw * 1.15);
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipPhoto-pos-3-memory {
   cursor: pointer;
   position: absolute;
   top: 42%;
