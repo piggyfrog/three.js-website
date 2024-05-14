@@ -4,6 +4,7 @@ import Loader from "../../components/Loader";
 import { useDialogStore, usePlayerLocationStore } from "../../hooks/store";
 import DialogUI from "../../components/DialogUI";
 import { useNavigate } from "react-router";
+import GameUI from "../../components/GameUI.jsx";
 const VideoScene2 = () => {
   const [loading, setLoading] = useState(true);
   const [showUI, setShowUI] = useState(false);
@@ -18,7 +19,7 @@ const VideoScene2 = () => {
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return <Loader text="loading-sandbox"/>;
   }
   return (
     <>
@@ -45,6 +46,12 @@ const VideoScene2 = () => {
         }}
       />
       {showUI && <DialogUI />}
+      <GameUI />
+      <img
+          src="/images/time-frame-3.png"
+          className="time-frame-png-2"
+          alt="Time frame 2"
+        />
     </>
   );
 };
