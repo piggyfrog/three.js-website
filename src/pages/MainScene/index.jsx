@@ -9,6 +9,7 @@ import DialogUI from "../../components/DialogUI.jsx";
 import GameUI from "../../components/GameUI.jsx";
 import { GUI } from "dat.gui";
 
+
 import {
   EffectComposer,
   DepthOfField,
@@ -103,7 +104,7 @@ export default function MemoryScene() {
         <EffectComposer>
           <Bloom
             luminanceThreshold={0.001} // 控制从哪个亮度值开始应用泛光
-            luminanceSmoothing={1} // 泛光的平滑度，较低的值会使泛光效果更尖锐
+            luminanceSmoothing={0.5} // 泛光的平滑度，较低的值会使泛光效果更尖锐
             intensity={0.9} // 泛光的强度
           />
           <DepthOfField

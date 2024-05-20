@@ -39,6 +39,7 @@ export default function FixedItems(props) {
       <RigidBody type="fixed" friction={0} restitution={0} scale={2}>
         <primitive object={scene} />
       </RigidBody>
+      
       <primitive object={album} scale={2} />
       <CheckbleItemWrapper
         dialogID={"albumMain"}
@@ -64,7 +65,7 @@ export default function FixedItems(props) {
       />
       <primitive object={glasscup} scale={2} />
       <CheckbleItemWrapper
-        dialogID={"glasscupMain"}
+        dialogID={"cupmain"}
         position={glasscup.children[0].position}
         offsetX={0.1}
         offsetY={0}
@@ -97,6 +98,37 @@ export default function FixedItems(props) {
       />
       <primitive object={color} scale={2} />
       <primitive object={building} scale={2} />
+      
+      <CheckbleItemWrapper
+        dialogID={"paintMain"}
+        position={soap.children[0].position}
+        offsetX={-6.3}
+        offsetY={1}
+        offsetZ={-1.1}
+        scaleX={0.8}
+        scaleY={1.5}
+        scaleZ={0.8}
+      />
+      <CheckbleItemWrapper
+        dialogID={"paintMain2"}
+        position={soap.children[0].position}
+        offsetX={-3.5}
+        offsetY={0.3}
+        offsetZ={2.8}
+        scaleX={0.8}
+        scaleY={1.5}
+        scaleZ={0.8}
+      />
+      <CheckbleItemWrapper
+        dialogID={"bookMain"}
+        position={soap.children[0].position}
+        offsetX={-5.25}
+        offsetY={0.7}
+        offsetZ={-2.2}
+        scaleX={0.5}
+        scaleY={0.5}
+        scaleZ={0.5}
+      />
     </>
   );
 }

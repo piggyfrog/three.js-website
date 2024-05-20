@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import * as THREE from "three";
 import "./style.css";
 const Onboarding = () => {
-  const photoArray = ["./images/color3.png", "./images/color.png", "./images/color2.png", "./images/color1.png"];
+  const photoArray = ["./images/color5.png", "./images/color3.png", "./images/color.png", "./images/color2.png", "./images/color4.png","./images/color1.png"];
   const [photoIndex, setPhotoIndex] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {

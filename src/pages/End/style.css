@@ -16,7 +16,7 @@ body {
 }
 .ending-back-png {
   position: absolute;
-  top: 80%;
+  top: 87.9%;
   left: 50%;
   width: 260px;
   transform: translate(-50%, -50%);
@@ -37,15 +37,15 @@ body {
 }
 .bottom-2 {
   position: absolute;
-  bottom: 5%;
-  left: 80px;
+  bottom: 7.7%;
+  left: 100px;
   width: 300px;
 }
 .bottom-1 {
   position: absolute;
-  bottom: 4%;
-  right: 60px;
-  width: 400px;
+  bottom: 8%;
+  right: 80px;
+  width: 450px;
 }
 .image-position-1 {
   position: absolute;

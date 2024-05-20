@@ -19,7 +19,7 @@ const VideoScene2 = () => {
   }, []);
 
   if (loading) {
-    return <Loader text="loading-sandbox"/>;
+    return <Loader text="loading-video2"/>;
   }
   return (
     <>

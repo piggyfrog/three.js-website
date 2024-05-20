@@ -44,6 +44,10 @@ const End = () => {
   const gltf3 = useGLTF("/ending/laoye.glb");
   const gltf4 = useGLTF("/ending/laolao.glb");
   const gltf5 = useGLTF("/ending/mama.glb");
+  const gltf6 = useGLTF("/ending/text-1.glb");
+  const gltf7 = useGLTF("/ending/text-2.glb");
+  const gltf8 = useGLTF("/ending/text-3.glb");
+  const gltf9 = useGLTF("/ending/text-4.glb");
 
   const cleanGameState = useGameStateStore((state) => state.cleanGameState);
   const setAction = useActionStore((state) => state.setAction);
@@ -55,41 +59,6 @@ const End = () => {
     navigate("/");
   };
 
-  //timer
-  useEffect(() => {
-    const showDuration = 10000; // 显示持续时间为10秒
-    const totalDuration = 40000; // 总持续时间（显示加隐藏）
-
-    let timeoutIds = [];
-
-    const scheduleVisibility = (key, delay) => {
-      const show = () => {
-        const showId = setTimeout(() => {
-          setImageStatus((prev) => ({ ...prev, [key]: "show" }));
-          const hideId = setTimeout(() => {
-            setImageStatus((prev) => ({ ...prev, [key]: "hide" }));
-            // 安排下一次显示
-            timeoutIds.push(setTimeout(show, totalDuration - showDuration));
-          }, showDuration);
-          timeoutIds.push(hideId);
-        }, delay);
-        timeoutIds.push(showId);
-      };
-
-      show();
-    };
-
-    scheduleVisibility("showImage1", 0);
-    scheduleVisibility("showImage2", 10000);
-    scheduleVisibility("showImage3", 20000);
-    scheduleVisibility("showImage4", 30000);
-
-    return () => {
-      timeoutIds.forEach(clearTimeout); // 清理所有定时器
-    };
-  }, []);
-
-  //
 
   useEffect(() => {
     if (modelLoaded) {
@@ -152,26 +121,31 @@ const End = () => {
        */
       // Base camera
       const camera = new THREE.PerspectiveCamera(
-        55,
+        35,
         sizes.width / sizes.height,
         0.1,
         200
       );
-      camera.position.set(40, 0, -28);
+      camera.position.set(0, 2, -18);
       scene.add(camera);
-      const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 15);
       scene.add(ambientLight);
 
       // Controls
       const controls = new OrbitControls(camera, canvas);
       controls.enableDamping = true;
+      controls.dampingFactor = 0.25;
       controls.enablePan = false;
-      controls.minAzimuthAngle = Math.PI * 0.65;
-      controls.maxAzimuthAngle = Math.PI * 0.7;
-      controls.minPolarAngle = Math.PI * 0.48;
-      controls.maxPolarAngle = Math.PI * 0.49;
+      //controls.minAzimuthAngle = Math.PI * 0.65;
+      //ontrols.maxAzimuthAngle = Math.PI * 0.7;
+      controls.minPolarAngle = Math.PI * 0.1;
+      controls.maxPolarAngle = Math.PI * 0.55;
       controls.enableZoom = false;
       controls.dampingFactor = 1;
+      controls.enableRotate = true;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.0;
+      controls.rotateSpeed = 0.2;
       controls.update();
 
       /**
@@ -184,7 +158,7 @@ const End = () => {
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(sizes.pixelRatio);
 
-      debugObject.clearColor = "#f2e5c3";
+      debugObject.clearColor = "#000000";
       renderer.setClearColor(debugObject.clearColor);
 
       /**
@@ -201,21 +175,38 @@ const End = () => {
 
       const mergedGeometry = mergeBufferGeometries(geometries, false);
 
-      gltf2.scene.scale.set(3, 3, 3);
-      gltf2.scene.position.set(6, 2.7, -8.5);
+      gltf2.scene.scale.set(1, 1, 1);
+      gltf2.scene.position.set(0, -6.5, 0);
       scene.add(gltf2.scene);
 
-      gltf3.scene.scale.set(3, 3, 3);
-      gltf3.scene.position.set(6.5, 2.5, -1);
+      gltf3.scene.scale.set(1, 1, 1);
+      gltf3.scene.position.set(0, -6.6, 0);
       scene.add(gltf3.scene);
 
-      gltf4.scene.scale.set(3, 3, 3);
-      gltf4.scene.position.set(6, 2.5, 1);
+      gltf4.scene.scale.set(1, 1, 1);
+      gltf4.scene.position.set(0, -6.8, 0);
       scene.add(gltf4.scene);
 
-      gltf5.scene.scale.set(3, 3, 3);
-      gltf5.scene.position.set(3, 2.6, 5.7);
+      gltf5.scene.scale.set(1, 1,1);
+      gltf5.scene.position.set(0, -6.8, 0);
       scene.add(gltf5.scene);
+
+      gltf6.scene.scale.set(1, 1, 1);
+      gltf6.scene.position.set(0, -6.8, 0);
+      scene.add(gltf6.scene);
+
+      gltf7.scene.scale.set(1, 1, 1);
+      gltf7.scene.position.set(0, -6.8, 0);
+      scene.add(gltf7.scene);
+
+      gltf8.scene.scale.set(1, 1, 1);
+      gltf8.scene.position.set(0, -6.8, 0);
+      scene.add(gltf8.scene);
+
+      gltf9.scene.scale.set(1, 1, 1);
+      gltf9.scene.position.set(0, -6.8, 0);
+      scene.add(gltf9.scene);
+
 
       /**
        * Base geometry
@@ -238,7 +229,7 @@ const End = () => {
       // Base particles
       const baseParticlesTexture = gpgpu.computation.createTexture();
       const scale = 3;
-      const scale2 = 3;
+      const scale2 = 5;
       baseParticlesTexture.image.data[3];
       baseParticlesTexture.image.data[7];
       for (let i = 0; i < baseGeometry.count; i++) {
@@ -251,7 +242,7 @@ const End = () => {
         baseParticlesTexture.image.data[i4 + 1] =
           baseGeometry.instance.attributes.position.array[i3 + 1] * scale;
         baseParticlesTexture.image.data[i4 + 2] =
-          baseGeometry.instance.attributes.position.array[i3 + 2] * scale;
+          baseGeometry.instance.attributes.position.array[i3 + 2] * scale2;
         baseParticlesTexture.image.data[i4 + 3] = Math.random() * 100; //TODO: Set random
         if (i === 1 || i === 0) {
           console.log(baseParticlesTexture.image.data[i4 + 3]);
@@ -279,11 +270,11 @@ const End = () => {
         baseParticlesTexture
       );
       gpgpu.particlesVariable.material.uniforms.uFlowFieldInfluence =
-        new THREE.Uniform(0.5);
+        new THREE.Uniform(0.8);
       gpgpu.particlesVariable.material.uniforms.uFlowFieldStrength =
-        new THREE.Uniform(2);
+        new THREE.Uniform(1);
       gpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency =
-        new THREE.Uniform(0.5);
+        new THREE.Uniform(0.01);
 
       // Init
       gpgpu.computation.init();
@@ -346,7 +337,7 @@ const End = () => {
         vertexShader: particlesVertexShader,
         fragmentShader: particlesFragmentShader,
         uniforms: {
-          uSize: new THREE.Uniform(0.3),
+          uSize: new THREE.Uniform(0.15),
           uResolution: new THREE.Uniform(
             new THREE.Vector2(
               sizes.width * sizes.pixelRatio,
@@ -409,20 +400,7 @@ const End = () => {
 
   return (
     <div className="Body">
-      {["showImage1", "showImage2", "showImage3", "showImage4"].map(
-        (key, index) => (
-          <img
-            key={key}
-            src={`/images/talkEnding${index + 1}.png`}
-            alt={`Image ${index + 1}`}
-            className={`image-position-${index + 1} ${
-              imageStatus[key] === "show" ? "image-fade-in" : "image-fade-out"
-            }`}
-            style={{ display: imageStatus[key] ? "block" : "none" }}
-          />
-        )
-      )}
-      <img src="/images/maskEnding.png" alt="Mask2" className="maskEnding" />
+      
       <img src="/images/title2.png" alt="Title2" className="title-png" />
       <img
         src="/images/restartEnd.png"

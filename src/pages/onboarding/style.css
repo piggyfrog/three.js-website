@@ -214,12 +214,12 @@ canvas.webgl {
   width: 267px;
   margin-left: 267px;
   margin-right: 267px;
-  margin-top: 257px;
+  margin-top: 190px;
   cursor: pointer;
 }
 .scroll-png-21{
   width: 800px;
-  margin-top: 50px;
+  margin-top: 170px;
   pointer-events: none;
   user-select: none;
 }

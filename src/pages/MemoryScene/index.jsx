@@ -9,6 +9,8 @@ import { OrbitControls } from "@react-three/drei";
 import Items from "./CheckbleItems.jsx";
 import DialogUI from "../../components/DialogUI.jsx";
 import GameUI from "../../components/GameUI.jsx";
+import DisableDragForPngImages from "../../components/DisableDrag.jsx";
+
 import {
   EffectComposer,
   DepthOfField,
@@ -84,6 +86,7 @@ export default function MemoryScene() {
       </Canvas>
       <div className="cursor">&#x25CB;</div>
       <GameUI />
+      <DisableDragForPngImages />
       {!showDialogStore && (
         <img
           src="/images/time-frame-2.png"

@@ -505,6 +505,38 @@ const DialogSelectDict = {
     itemImgPath: "/images/camera.png",
     withSelect: false,
   },
+  cupmain: {
+    withMultiPage: true,
+    pageAmount: 2,
+    isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/laoye.png",
+    itemImgPath: "/images/glasscup.png",
+    withSelect: false,
+  },
+  bookMain: {
+    withMultiPage: true,
+    pageAmount: 2,
+    isItem: true,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
+    itemImgPath: "/images/bookMain.png",
+    withSelect: false,
+  },
+  paintMain: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
+    withSelect: false,
+  },
+  paintMain2: {
+    withMultiPage: false,
+    pageAmount: 1,
+    withPersonArt: true,
+    personArtPath: "/images/mama.png",
+    withSelect: false,
+  },
 };
 
 const DialogUI = () => {
